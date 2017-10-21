@@ -1,6 +1,6 @@
 angular.module('wnoo-login',[])
 
-.controller('LoginController', ['$scope', function($scope) {
+.controller('LoginController', ['$scope', '$http', '$window', function($scope, $http, $window) {
 
   $scope.dates = [
     1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
@@ -25,6 +25,25 @@ angular.module('wnoo-login',[])
   }
 
   $scope.login = function() {
+    console.log($scope.logEmail)
+    console.log($scope.logPass)
+
+    $http.post('/login', {email: $scope.logEmail, password: $scope.logPass})
+    .then(
+      function(success) {
+        if(success && success.statusText == 'OK') {
+          $window.location.href = '/feed'
+        } else {
+          hideLoader()
+          alert('need to handle this success error')
+        }
+      },
+      function(error) {
+        hideLoader()
+        alert('need to handle this fatal error')
+      }
+    );
+
     showLoader('Logging you in.')
   }
 
@@ -34,7 +53,7 @@ angular.module('wnoo-login',[])
   }
 
   function hideLoader() {
-
+    $('#loader').removeClass('active')
   }
 
 }])

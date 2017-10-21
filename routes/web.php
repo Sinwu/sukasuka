@@ -31,6 +31,7 @@ Route::get('/editbasic',function (){
 Route::get('/editpassword',function (){
 	return view('editpassword');
 });
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

@@ -56,7 +56,8 @@
         	<div class="col-sm-6 col-sm-offset-1">
             <div class="reg-form-container ui segment">
 
-              <div id="loader" class="ui dimmer">
+              <!--  Loader  -->
+              <div id="loader" class="ui inverted dimmer">
                 <div class="ui text loader">Loading</div>
               </div>
             
@@ -99,6 +100,12 @@
                       </div>
                     </div>
                     <div class="row">
+                      <div class="form-group col-xs-12">
+                        <label for="password-confirm" class="sr-only">Confirm Password</label>
+                        <input id="password-confirm" class="form-control input-group-lg" type="password" name="password-confirm" title="Confirm password" placeholder="Confirm Password"/>
+                      </div>
+                    </div>
+                    <div class="row">
                       <p class="birth"><strong>Date of Birth</strong></p>
                       <div class="form-group col-sm-3 col-xs-6">
                         <label for="month" class="sr-only"></label>
@@ -137,8 +144,7 @@
                       </div>
                     </div>
                   </form><!--Register Now Form Ends-->
-                  <p><a href="#">Already have an account?</a></p>
-                  <button class="btn btn-primary">Register Now</button>
+                  <button class="btn btn-primary">Register</button>
                 </div><!--Registration Form Contents Ends-->
                 
                 <!--Login-->
@@ -151,17 +157,16 @@
                      <div class="row">
                       <div class="form-group col-xs-12">
                         <label for="my-email" class="sr-only">Email</label>
-                        <input id="my-email" class="form-control input-group-lg" type="text" name="Email" title="Enter Email" placeholder="Your Email"/>
+                        <input ng-model="logEmail" id="my-email" class="form-control input-group-lg" type="text" name="Email" title="Enter Email" placeholder="Your Email"/>
                       </div>
                     </div>
                     <div class="row">
                       <div class="form-group col-xs-12">
                         <label for="my-password" class="sr-only">Password</label>
-                        <input id="my-password" class="form-control input-group-lg" type="password" name="password" title="Enter password" placeholder="Password"/>
+                        <input ng-model="logPass" id="my-password" class="form-control input-group-lg" type="password" name="password" title="Enter password" placeholder="Password"/>
                       </div>
                     </div>
-                  </form><!--Login Form Ends--> 
-                  <p><a href="#">Forgot Password?</a></p>
+                  </form><!--Login Form Ends-->
                   <button class="btn btn-primary" ng-click="login()" hidefocus="hidefocus">Login Now</button>
                 </div>
               </div>
