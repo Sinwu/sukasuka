@@ -167,6 +167,7 @@
                       </div>
                     </div>
                   </form><!--Login Form Ends-->
+                  <div ng-show="loginError" class="ui negative message">Invalid email or password</div>
                   <button class="btn btn-primary" ng-click="login()" hidefocus="hidefocus">Login Now</button>
                 </div>
               </div>

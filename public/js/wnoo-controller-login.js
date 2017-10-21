@@ -2,6 +2,8 @@ angular.module('wnoo-login',[])
 
 .controller('LoginController', ['$scope', '$http', '$window', function($scope, $http, $window) {
 
+  $scope.loginError = false
+
   $scope.dates = [
     1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
     11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
@@ -25,8 +27,7 @@ angular.module('wnoo-login',[])
   }
 
   $scope.login = function() {
-    console.log($scope.logEmail)
-    console.log($scope.logPass)
+    $scope.loginError = false
 
     $http.post('/login', {email: $scope.logEmail, password: $scope.logPass})
     .then(
@@ -40,7 +41,11 @@ angular.module('wnoo-login',[])
       },
       function(error) {
         hideLoader()
-        alert('need to handle this fatal error')
+        if(error && error.status == 422) {
+          $scope.loginError = true
+        } else {
+          alert('Please check your internet connection')
+        }
       }
     );
 
