@@ -15,6 +15,18 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/timeline',function (){
+Route::get('/newsfeed',function (){
 	return view('newsfeed');
+});
+
+Route::get('/timeline',function (){
+	return view('timeline');
+});
+
+Route::get('/editbasic',function (){
+	return view('editbasic');
+});
+
+Route::get('/editpassword',function (){
+	return view('editpassword');
 });
