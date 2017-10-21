@@ -49,7 +49,7 @@
         	<div class="col-sm-5">
             <div class="intro-texts">
             	<h1 class="text-white">Make Cool Friends !!!</h1>
-            	<p>Friend Finder is a social network template that can be used to connect people. The template offers Landing pages, News Feed, Image/Video Feed, Chat Box, Timeline and lot more. <br /> <br />Why are you waiting for? Buy it now.</p>
+            	<p>Wis Noo is a social network that can be used to connect people. This has Landing pages, News Feed, Image/Video Feed, Timeline and lot more. <br /> <br />Why are you waiting for? Register Now.</p>
               <button class="btn btn-primary">Learn More</button>
             </div>
           </div>
@@ -73,78 +73,72 @@
               <div class="tab-content">
                 <div class="tab-pane" id="register">
                   <h3>Register</h3>
-                  <p class="text-muted">Be cool and join today. Meet millions</p>
+                  <p class="text-muted">Be cool and join today.</p>
+                  <div class="ui divider"></div>
                   
                   <!--Register Form-->
                   <form name="registration_form" id='registration_form' class="form-inline">
                     <div class="row">
-                      <div class="form-group col-xs-6">
-                        <label for="firstname" class="sr-only">First Name</label>
-                        <input id="firstname" class="form-control input-group-lg" type="text" name="firstname" title="Enter first name" placeholder="First name"/>
-                      </div>
-                      <div class="form-group col-xs-6">
-                        <label for="lastname" class="sr-only">Last Name</label>
-                        <input id="lastname" class="form-control input-group-lg" type="text" name="lastname" title="Enter last name" placeholder="Last name"/>
+                      <div class="form-group col-xs-12">
+                        <label for="fullname" class="sr-only">Full Name</label>
+                        <input ng-model="regName" id="fullname" class="form-control input-group-lg" type="text" name="fullname" title="Enter full name" placeholder="Full Name"/>
                       </div>
                     </div>
                     <div class="row">
                       <div class="form-group col-xs-12">
                         <label for="email" class="sr-only">Email</label>
-                        <input id="email" class="form-control input-group-lg" type="text" name="Email" title="Enter Email" placeholder="Your Email"/>
+                        <input ng-model="regEmail" id="email" class="form-control input-group-lg" type="text" name="Email" title="Enter Email" placeholder="Your Email"/>
                       </div>
                     </div>
                     <div class="row">
                       <div class="form-group col-xs-12">
                         <label for="password" class="sr-only">Password</label>
-                        <input id="password" class="form-control input-group-lg" type="password" name="password" title="Enter password" placeholder="Password"/>
+                        <input ng-model="regPass" id="password" class="form-control input-group-lg" type="password" name="password" title="Enter password" placeholder="Password"/>
                       </div>
                     </div>
                     <div class="row">
                       <div class="form-group col-xs-12">
                         <label for="password-confirm" class="sr-only">Confirm Password</label>
-                        <input id="password-confirm" class="form-control input-group-lg" type="password" name="password-confirm" title="Confirm password" placeholder="Confirm Password"/>
+                        <input ng-model="regConfirm" id="password-confirm" class="form-control input-group-lg" type="password" name="password_confirmation" title="Confirm password" placeholder="Confirm Password"/>
                       </div>
                     </div>
                     <div class="row">
-                      <p class="birth"><strong>Date of Birth</strong></p>
+                      <p class="sub header"><strong>Gender</strong></p>
+                      <div class="form-group gender col-xs-12">
+                        <label class="radio-inline">
+                          <input ng-model="regGender" type="radio" name="optradio" value="m">Male
+                        </label>
+                        <label class="radio-inline">
+                          <input ng-model="regGender" type="radio" name="optradio" value="f">Female
+                        </label>
+                      </div>
+                    </div> 
+                    <div class="row">
+                      <p class="sub header"><strong>Date of Birth</strong></p>
                       <div class="form-group col-sm-3 col-xs-6">
                         <label for="month" class="sr-only"></label>
-                        <select class="form-control" id="day">
+                        <select ng-model="regBirthDate" class="form-control" id="day">
                           <option value="Day" disabled selected>Day</option>
                           <option ng-repeat="date in dates" value="@{{date}}">@{{ date }}</option>
                         </select>
                       </div>
-                      <div class="form-group col-sm-3 col-xs-6">
+                      <div class="form-group col-sm-6 col-xs-12">
                         <label for="month" class="sr-only"></label>
-                        <select class="form-control" id="month">
+                        <select ng-model="regBirthMonth" class="form-control" id="month">
                           <option value="month" disabled selected>Month</option>
                           <option ng-repeat="month in months" value="@{{month}}">@{{ month }}</option>
                         </select>
                       </div>
-                      <div class="form-group col-sm-6 col-xs-12">
+                      <div class="form-group col-sm-3 col-xs-6">
                         <label for="year" class="sr-only"></label>
-                        <select class="form-control" id="year">
+                        <select ng-model="regBirthYear" class="form-control" id="year">
                           <option value="year" disabled selected>Year</option>
                           <option ng-repeat="year in years()" value="@{{year}}">@{{ year }}</option>
                         </select>
                       </div>
                     </div>
-                    <div class="form-group gender">
-                      <label class="radio-inline">
-                        <input type="radio" name="optradio" checked>Male
-                      </label>
-                      <label class="radio-inline">
-                        <input type="radio" name="optradio">Female
-                      </label>
-                    </div>
-                    <div class="row">
-                      <div class="form-group col-xs-12">
-                        <label for="city" class="sr-only">City</label>
-                        <input id="city" class="form-control input-group-lg reg_name" type="text" name="city" title="Enter city" placeholder="Your city"/>
-                      </div>
-                    </div>
                   </form><!--Register Now Form Ends-->
-                  <button class="btn btn-primary">Register</button>
+                  <button class="btn btn-primary" ng-click="register()" hidefocus="hidefocus">Register</button>
                 </div><!--Registration Form Contents Ends-->
                 
                 <!--Login-->
@@ -168,7 +162,7 @@
                     </div>
                   </form><!--Login Form Ends-->
                   <div ng-show="loginError" class="ui negative message">Invalid email or password</div>
-                  <button class="btn btn-primary" ng-click="login()" hidefocus="hidefocus">Login Now</button>
+                  <button class="btn btn-primary" ng-click="login()" hidefocus="hidefocus">Login</button>
                 </div>
               </div>
             </div>

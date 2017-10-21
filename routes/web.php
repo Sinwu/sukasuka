@@ -16,19 +16,19 @@ Route::middleware('guest')->get('/', function () {
     return view('index');
 })->name('gate');
 
-Route::middleware('auth')->get('/feed',function (){
+Route::middleware('auth:web')->get('/feed',function (){
 	return view('feed');
 });
 
-Route::get('/timeline',function (){
+Route::middleware('auth:web')->get('/timeline',function (){
 	return view('timeline');
 });
 
-Route::get('/editbasic',function (){
+Route::middleware('auth:web')->get('/editbasic',function (){
 	return view('editbasic');
 });
 
-Route::get('/editpassword',function (){
+Route::middleware('auth:web')->get('/editpassword',function (){
 	return view('editpassword');
 });
 

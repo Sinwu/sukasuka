@@ -8,6 +8,10 @@
   padding: 40px 40px 40px 60px;
 }
 
+#lp-register .ui.negative.message {
+  margin-top: .2rem;
+}
+
 .btn:focus {
   outline: none;
 }
@@ -16,6 +20,9 @@
   border:0;
 }
 
-h6.error {
+p.sub.header {
+  margin-top: .6rem;
+  margin-bottom: .5rem;
+  padding-left: .65rem;
   font-size: .9rem;
 }

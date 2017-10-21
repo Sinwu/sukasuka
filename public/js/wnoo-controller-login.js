@@ -2,7 +2,9 @@ angular.module('wnoo-login',[])
 
 .controller('LoginController', ['$scope', '$http', '$window', function($scope, $http, $window) {
 
+  // Default values
   $scope.loginError = false
+  $scope.regGender = 'm'
 
   $scope.dates = [
     1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
@@ -28,6 +30,7 @@ angular.module('wnoo-login',[])
 
   $scope.login = function() {
     $scope.loginError = false
+    showLoader('Logging you in.')
 
     $http.post('/login', {email: $scope.logEmail, password: $scope.logPass})
     .then(
@@ -48,8 +51,44 @@ angular.module('wnoo-login',[])
         }
       }
     );
+  }
 
+  $scope.register = function() {
+    $scope.loginError = false
     showLoader('Logging you in.')
+
+    var data = {
+      email: $scope.regEmail,
+      password: $scope.regPass,
+      password_confirmation: $scope.regConfirm,
+      name: $scope.regName,
+      gender: $scope.regGender
+    }
+
+    if ($scope.regBirthDate && $scope.regBirthMonth && $scope.regBirthYear) {
+      $.extend(data, {birthday: `${$scope.regBirthDate} ${$scope.regBirthMonth} ${$scope.regBirthYear}`})
+    }
+
+    $http.post('/register', data)
+    .then(
+      function(success) {
+        if(success && success.statusText == 'OK') {
+          $window.location.href = '/feed'
+        } else {
+          hideLoader()
+          alert('need to handle this success error')
+        }
+      },
+      function(error) {
+        hideLoader()
+        if(error && error.status == 422) {
+          console.log(error)
+          $scope.loginError = true
+        } else {
+          alert('Please check your internet connection')
+        }
+      }
+    );
   }
 
   function showLoader(msg) {
