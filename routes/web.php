@@ -14,7 +14,7 @@
 // View Routes
 Route::middleware('guest')->get('/', function () {
     return view('index');
-})->name('login');
+})->name('gate');
 
 Route::middleware('auth')->get('/feed',function (){
 	return view('feed');
@@ -31,3 +31,6 @@ Route::get('/editbasic',function (){
 Route::get('/editpassword',function (){
 	return view('editpassword');
 });
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

@@ -58,6 +58,6 @@ class Handler extends ExceptionHandler
     {
        return $request->ajax()
             ? response()->json(['message' => 'Unauthenticated.'], 401)
-            : redirect()->guest(route('login'));
+            : redirect()->guest(route('gate'));
     }
 }
