@@ -1,0 +1,17 @@
+#lp-register > .container.wrapper {
+  min-height: 100vh;
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+#lp-register .reg-form-container.ui.segment {
+  padding: 40px 40px 40px 60px;
+}
+
+.btn:focus {
+  outline: none;
+}
+
+.btn::-moz-focus-inner {
+  border:0;
+}

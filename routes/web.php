@@ -11,12 +11,13 @@
 |
 */
 
-Route::get('/', function () {
+// View Routes
+Route::middleware('guest')->get('/', function () {
     return view('index');
-});
+})->name('login');
 
-Route::get('/newsfeed',function (){
-	return view('newsfeed');
+Route::middleware('auth')->get('/feed',function (){
+	return view('feed');
 });
 
 Route::get('/timeline',function (){
