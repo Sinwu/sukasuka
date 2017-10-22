@@ -14,4 +14,13 @@ class Profile extends Model
 	protected $fillable = [
 		'name', 'birthday'
 	];
+
+	/**
+	 * The attributes that should be hidden for arrays.
+	 *
+	 * @var array
+	 */
+	protected $hidden = [
+		'user_id'
+	];
 }

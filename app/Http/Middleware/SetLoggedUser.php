@@ -3,8 +3,10 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\View;
 
-class CheckSession
+class SetLoggedUser
 {
     /**
      * Handle an incoming request.
@@ -15,10 +17,11 @@ class CheckSession
      */
     public function handle($request, Closure $next)
     {
-        $value = $request->session()->pull('user', 'none');
+        if (Auth::guard()->check()) {
+            $user = Auth::user();
+            $user->load('profile');
 
-        if($value = 'none') {
-            return redirect('/');
+            View::share('user', $user);
         }
 
         return $next($request);

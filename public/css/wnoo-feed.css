@@ -3,3 +3,11 @@
   box-shadow: none;
   margin-top: 2.5rem;
 }
+
+.follow-user h5 {
+  margin-bottom: .2rem;
+}
+
+.profile-card > h5 {
+  margin-bottom: .1rem;
+}

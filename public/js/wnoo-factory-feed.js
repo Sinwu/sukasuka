@@ -13,7 +13,7 @@ angular.module('wnoo')
         type: 'photo',
         chrono: '3 mins ago',
         image: 'http://placehold.it/1920x1280',
-        content: 'content here',
+        content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         like: 20,
         user: {
           profile: {
@@ -23,19 +23,26 @@ angular.module('wnoo')
         },
         comments: [
           {
-            content: 'this is comment',
+            content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud',
             user: {
               image: 'http://placehold.it/300x300',
               name: 'Diana'
+            }
+          },
+          {
+            content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud',
+            user: {
+              image: 'http://placehold.it/300x300',
+              name: 'Felix Tan'
             }
           }
         ]
       },
       {
-        type: 'photo',
+        type: 'post',
         chrono: '3 mins ago',
-        image: 'http://placehold.it/1920x1280',
-        content: 'content here',
+        image: '',
+        content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
         like: 20,
         user: {
           profile: {
@@ -45,7 +52,7 @@ angular.module('wnoo')
         },
         comments: [
           {
-            content: 'this is comment',
+            content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud',
             user: {
               image: 'http://placehold.it/300x300',
               name: 'Diana'
@@ -67,7 +74,7 @@ angular.module('wnoo')
         },
         comments: [
           {
-            content: 'this is comment',
+            content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud',
             user: {
               image: 'http://placehold.it/300x300',
               name: 'Diana'
@@ -134,6 +141,10 @@ angular.module('wnoo')
         var posts = success.data.json.data;
         
         for (var i = 0; i < posts.length; i++) {
+          // Define functions
+          posts[i].isPost = getType(posts[i].type, 'post')
+          posts[i].isImage = getType(posts[i].type, 'photo')
+
           this.posts.push(posts[i]);
         }
         
@@ -144,6 +155,12 @@ angular.module('wnoo')
       }
     );
   };
+
+  var getType = function(type, expected) {
+    return function() {
+      return type == expected
+    }
+  }
 
   return Feed;
 });

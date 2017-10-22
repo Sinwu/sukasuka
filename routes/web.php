@@ -16,9 +16,7 @@ Route::middleware('guest')->get('/', function () {
     return view('index');
 })->name('gate');
 
-Route::middleware('auth:web')->get('/feed',function (){
-	return view('feed');
-});
+Route::middleware('auth:web')->get('/feed', 'FeedController@index');
 
 Route::middleware('auth:web')->get('/timeline',function (){
 	return view('timeline');
