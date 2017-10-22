@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="wnoo-login">
+<html lang="en">
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -23,7 +23,7 @@
     <!--Favicon-->
     <link rel="shortcut icon" type="image/png" href="images/fav.png"/>
 	</head>
-	<body>
+	<body ng-app="wnoo-login">
 
     <!-- Header
     ================================================= -->
@@ -187,6 +187,7 @@
 		<script src="js/jquery.incremental-counter.js"></script>
     <script src="js/script.js"></script>
 
+    <!--  Semantic  -->
     <script src="js/semantic.min.js"></script>
 
      <!-- Angulars
