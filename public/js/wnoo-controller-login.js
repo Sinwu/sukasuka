@@ -3,8 +3,10 @@ angular.module('wnoo-login',[])
 .controller('LoginController', ['$scope', '$http', '$window', function($scope, $http, $window) {
 
   // Default values
-  $scope.loginError = false
   $scope.regGender = 'm'
+  $scope.loginError = false
+  $scope.registerError = false
+  $scope.registerErrorMessage = ''
 
   $scope.dates = [
     1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
@@ -54,7 +56,7 @@ angular.module('wnoo-login',[])
   }
 
   $scope.register = function() {
-    $scope.loginError = false
+    hideRegisterError()
     showLoader('Logging you in.')
 
     var data = {
@@ -82,13 +84,28 @@ angular.module('wnoo-login',[])
       function(error) {
         hideLoader()
         if(error && error.status == 422) {
-          console.log(error)
-          $scope.loginError = true
+          showRegisterError(error)
         } else {
           alert('Please check your internet connection')
         }
       }
     );
+  }
+
+  function showRegisterError(error) {
+    // Populate errors
+    var errors = []
+    angular.forEach(error.data.errors, function(value, key) {
+      errors.push(value[0]);
+    })
+
+    $scope.registerErrorMessage = errors[0]
+    $scope.registerError = true
+  }
+
+  function hideRegisterError() {
+    $scope.registerErrorMessage = ''
+    $scope.registerError = false
   }
 
   function showLoader(msg) {

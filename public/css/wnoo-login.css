@@ -10,6 +10,7 @@
 
 #lp-register .ui.negative.message {
   margin-top: .2rem;
+  padding: .7rem;
 }
 
 .btn:focus {

@@ -77,7 +77,7 @@
                   <div class="ui divider"></div>
                   
                   <!--Register Form-->
-                  <form name="registration_form" id='registration_form' class="form-inline">
+                  <form name="registration_form" id='registration_form' ng-submit="register()"  class="form-inline">
                     <div class="row">
                       <div class="form-group col-xs-12">
                         <label for="fullname" class="sr-only">Full Name</label>
@@ -87,19 +87,19 @@
                     <div class="row">
                       <div class="form-group col-xs-12">
                         <label for="email" class="sr-only">Email</label>
-                        <input ng-model="regEmail" id="email" class="form-control input-group-lg" type="text" name="Email" title="Enter Email" placeholder="Your Email"/>
+                        <input ng-model="regEmail" id="email" class="form-control input-group-lg" type="email" name="Email" title="Enter Email" placeholder="Your Email" required />
                       </div>
                     </div>
                     <div class="row">
                       <div class="form-group col-xs-12">
                         <label for="password" class="sr-only">Password</label>
-                        <input ng-model="regPass" id="password" class="form-control input-group-lg" type="password" name="password" title="Enter password" placeholder="Password"/>
+                        <input ng-model="regPass" id="password" class="form-control input-group-lg" type="password" name="password" title="Enter password" placeholder="Password" required/>
                       </div>
                     </div>
                     <div class="row">
                       <div class="form-group col-xs-12">
                         <label for="password-confirm" class="sr-only">Confirm Password</label>
-                        <input ng-model="regConfirm" id="password-confirm" class="form-control input-group-lg" type="password" name="password_confirmation" title="Confirm password" placeholder="Confirm Password"/>
+                        <input ng-model="regConfirm" id="password-confirm" class="form-control input-group-lg" type="password" name="password_confirmation" title="Confirm password" placeholder="Confirm Password" required/>
                       </div>
                     </div>
                     <div class="row">
@@ -137,8 +137,10 @@
                         </select>
                       </div>
                     </div>
+
+                    <div ng-show="registerError" class="ui negative message">@{{ registerErrorMessage }}</div>
+                    <button type="submit" class="btn btn-primary" hidefocus="hidefocus">Register</button>
                   </form><!--Register Now Form Ends-->
-                  <button class="btn btn-primary" ng-click="register()" hidefocus="hidefocus">Register</button>
                 </div><!--Registration Form Contents Ends-->
                 
                 <!--Login-->
@@ -147,7 +149,7 @@
                   <p class="text-muted">Log into your account</p>
                   
                   <!--Login Form-->
-                  <form name="Login_form" id='Login_form'>
+                  <form name="Login_form" id='Login_form' ng-submit="login()">
                      <div class="row">
                       <div class="form-group col-xs-12">
                         <label for="my-email" class="sr-only">Email</label>
@@ -160,9 +162,10 @@
                         <input ng-model="logPass" id="my-password" class="form-control input-group-lg" type="password" name="password" title="Enter password" placeholder="Password"/>
                       </div>
                     </div>
+
+                    <div ng-show="loginError" class="ui negative message">Invalid email or password</div>
+                    <button type="submit" class="btn btn-primary" hidefocus="hidefocus">Login</button>
                   </form><!--Login Form Ends-->
-                  <div ng-show="loginError" class="ui negative message">Invalid email or password</div>
-                  <button class="btn btn-primary" ng-click="login()" hidefocus="hidefocus">Login</button>
                 </div>
               </div>
             </div>
