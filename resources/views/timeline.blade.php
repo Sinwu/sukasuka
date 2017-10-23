@@ -67,9 +67,9 @@
             <div class="row">
               <div class="col-md-3">
                 <div class="profile-info">
-                  <img src="http://placehold.it/300x300" alt="" class="img-responsive profile-photo" />
-                  <h3>Sarah Cruiz</h3>
-                  <p class="text-muted">Creative Director</p>
+                  <img src="images/user-default.png" alt="" class="img-responsive profile-photo" />
+                  <h3>{{ $user->profile->name }}</h3>
+                  <p class="text-muted">Administrator</p>
                 </div>
               </div>
               <div class="col-md-9">
@@ -108,19 +108,16 @@
               ================================================= -->
               <div class="create-post">
                 <div class="row">
-                  <div class="col-md-7 col-sm-7">
+                  <div class="col-md-8 col-sm-8">
                     <div class="form-group">
-                      <img src="http://placehold.it/300x300" alt="" class="profile-photo-md" />
-                      <textarea name="texts" id="exampleTextarea" cols="30" rows="1" class="form-control" placeholder="Write what you wish"></textarea>
+                      <textarea name="texts" id="exampleTextarea" cols="50" rows="2" class="form-control" placeholder="Write what you wish"></textarea>
                     </div>
                   </div>
-                  <div class="col-md-5 col-sm-5">
+                  <div class="col-md-4 col-sm-4">
                     <div class="tools">
                       <ul class="publishing-tools list-inline">
-                        <li><a href="#"><i class="ion-compose"></i></a></li>
                         <li><a href="#"><i class="ion-images"></i></a></li>
-                        <li><a href="#"><i class="ion-ios-videocam"></i></a></li>
-                        <li><a href="#"><i class="ion-map"></i></a></li>
+                        <li><a href="#"><i class="ion-paperclip"></i></a></li>
                       </ul>
                       <button class="btn btn-primary pull-right">Publish</button>
                     </div>

@@ -8,7 +8,7 @@
     <div class="col-md-3 static">
       <div class="profile-card">
         <img src="images/user-default.png" alt="user" class="profile-photo" />
-        <h5><a href="timeline" class="text-white">{{ $user->profile->name }}</a></h5>
+        <h5><a href="timeline" class="text-white">{{ $user->name }}</a></h5>
         <p class="text-white">Administrator</p>
       </div><!--profile card ends-->
       <ul class="nav-news-feed">

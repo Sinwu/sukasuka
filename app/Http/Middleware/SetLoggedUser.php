@@ -19,8 +19,6 @@ class SetLoggedUser
     {
         if (Auth::guard()->check()) {
             $user = Auth::user();
-            $user->load('profile');
-
             View::share('user', $user);
         }
 
