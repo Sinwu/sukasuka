@@ -19,4 +19,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 // Internal API Routes
-Route::post('/login', 'Auth\LoginController@auth');
+Route::post('/post', 'PostController@create');

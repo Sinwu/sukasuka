@@ -68,7 +68,7 @@
               <div class="col-md-3">
                 <div class="profile-info">
                   <img src="images/user-default.png" alt="" class="img-responsive profile-photo" />
-                  <h3>{{ $user->profile->name }}</h3>
+                  <h3>{{ $user->name }}</h3>
                   <p class="text-muted">Administrator</p>
                 </div>
               </div>

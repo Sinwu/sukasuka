@@ -16,11 +16,9 @@ Route::middleware('guest')->get('/', function () {
     return view('index');
 })->name('gate');
 
-Route::middleware('auth:web')->get('/feed', 'FeedController@index');
+Route::get('/feed', 'FeedController@index');
 
-Route::middleware('auth:web')->get('/timeline',function (){
-	return view('timeline');
-});
+Route::get('/timeline', 'TimelineController@index');
 
 Route::middleware('auth:web')->get('/editbasic',function (){
 	return view('editbasic');
