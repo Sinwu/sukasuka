@@ -20,24 +20,87 @@
 
       <!-- Post Create Box
       ================================================= -->
-      <div class="create-post">
-        <div class="row">
-          <div class="col-md-8 col-sm-8">
-            <div class="form-group">
-              <textarea ng-model="postContent" name="texts" id="exampleTextarea" cols="50" rows="2" class="form-control" placeholder="Write what you wish"></textarea>
+      <div class="ui segment create-post">
+        <div class="ui inverted dimmer loader-post">
+          <div ng-show="showProgress">
+            <h5 class="Uploading your post"></h5>
+            <div class="ui teal progress loader-progress">
+              <div class="bar"></div>
+              <div class="label"><span class="counter"></span>22%</div>
             </div>
           </div>
-          <div class="col-md-4 col-sm-4">
-            <div class="tools">
-              <ul class="publishing-tools list-inline">
-                <li><a href="#"><i class="ion-images"></i></a></li>
-                <li><a href="#"><i class="ion-paperclip"></i></a></li>
-              </ul>
-              <button ng-click="postCreate()" class="btn btn-primary pull-right">Publish</button>
-            </div>
+          <div ng-hide="showProgress">
+            <div class="ui text loader">Posting</div>
           </div>
         </div>
+
+        <form name="postForm">
+          <div class="row preview">
+            <div ng-show="image" class="image preview">
+              <img ngf-thumbnail="image" class="img-responsive">
+              <button class="circular ui icon mini negative button" ng-click="image = null" ng-show="image">
+                <i class="icon close"></i>
+              </button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-8 col-sm-8">
+              <div class="form-group">
+                <textarea ng-model="postContent" name="texts" id="exampleTextarea" cols="50" rows="2" class="form-control" placeholder="Write what you wish"></textarea>
+                
+              </div>
+            </div>
+            <div class="col-md-4 col-sm-4">
+              <div class="tools">
+                <ul class="publishing-tools list-inline">
+                  <li>
+                    <a href="#" ngf-select ng-model="image" name="image" ngf-pattern="'image/*'"
+                      ngf-accept="'image/*'" ngf-max-size="5MB" ngf-min-height="100"
+                      ngf-model-invalid="errorImage">
+                      <i class="ion-images"></i>
+                    </a>
+                  </li>
+                  <li><a href="#"><i class="ion-paperclip"></i></a></li>
+                </ul>
+                <button ng-click="postCreate()" class="btn btn-primary pull-right">Publish</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div ng-show="postForm.image.$error.maxSize" class="ui negative message">
+              <span ng-show="postForm.image.$error.maxSize">Please upload an image with size below 5MB</span>
+            </div>
+          </div>
+        </form>
       </div><!-- Post Create Box End-->
+
+      {{--  <form name="myForm">
+        <fieldset>
+          <legend>Upload on form submit</legend>
+          Username:
+          <input type="text" name="userName" ng-model="username" size="31" required>
+          <i ng-show="myForm.userName.$error.required">*required</i>
+          <br>Photo:
+          <input type="file" ngf-select ng-model="picFile" name="file"    
+                accept="image/*" ngf-max-size="2MB" required
+                ngf-model-invalid="errorFile">
+          <i ng-show="myForm.file.$error.required">*required</i><br>
+          <i ng-show="myForm.file.$error.maxSize">File too large 
+              {{errorFile.size / 1000000|number:1}}MB: max 2M</i>
+          <img ng-show="myForm.file.$valid" ngf-thumbnail="picFile" class="thumb"> <button ng-click="picFile = null" ng-show="picFile">Remove</button>
+          <br>
+          <button ng-disabled="!myForm.$valid" 
+                  ng-click="uploadPic(picFile)">Submit</button>
+          <span class="progress" ng-show="picFile.progress >= 0">
+            <div style="width:{{picFile.progress}}%" 
+                ng-bind="picFile.progress + '%'"></div>
+          </span>
+          <span ng-show="picFile.result">Upload Successful</span>
+          <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
+        </fieldset>
+        <br>
+      </form>  --}}
 
       <!-- Post Content
       ================================================= -->
@@ -284,14 +347,14 @@
         </div>
       </div>  --}}
 
-      <div ng-show="feed.busy && !feed.stop" class="ui feed load segment">
+      <div ng-show="feed.init || (feed.busy && !feed.stop)" class="ui feed load segment">
         <div class="ui active feed text loader">
-          Getting your timeline
+          Getting your feed
         </div>
       </div>
 
       <div ng-show="feed.stop" class="ui feed stop segment">
-        <h5>End of your timeline</h5>
+        <h5>End of your feed</h5>
       </div>
 
     </div>
@@ -343,7 +406,9 @@
 @endsection
 
 @section('script')
+<script src="js/ng-file-upload.min.js"></script>
 <script src="js/wnoo-factory-post.js"></script>
 <script src="js/wnoo-factory-feed.js"></script>
+<script src="js/wnoo-factory-media.js"></script>
 <script src="js/wnoo-controller-feed.js"></script>
 @endsection

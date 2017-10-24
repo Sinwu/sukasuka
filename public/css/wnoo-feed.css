@@ -4,6 +4,14 @@
   margin-top: 2.5rem;
 }
 
+.user-info h5 {
+  margin-bottom: 5px;
+}
+
+.user-info p {
+  font-size: .8rem;
+}
+
 .ui.feed.stop.segment h5 {
   text-align: center;
 }
@@ -14,4 +22,43 @@
 
 .profile-card > h5 {
   margin-bottom: .1rem;
+}
+
+.create-post .ui.negative.message {
+  padding: .5rem 1rem .5rem .8rem;
+  font-size: .8rem;
+  margin-top: .5rem;
+}
+
+.create-post .row.preview {
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-bottom: .3rem;
+  position: relative;
+}
+
+.create-post .row.preview .ui.mini.button {
+  position: absolute;
+  left: 66px;
+  top: -5px;
+}
+
+.create-post .row.preview .ui.mini.button > .icon {
+  color: #FFF;
+  text-shadow: none;
+}
+
+.create-post.ui.segment {
+  border: none;
+  box-shadow: none;
+}
+
+.create-post .image.preview {
+  max-height: 80px;
+  min-height: 30px;
+}
+
+.create-post .image.preview img {
+  max-width: 80px;
+  max-height: 80px;
 }

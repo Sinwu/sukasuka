@@ -1,1 +1,1 @@
-angular.module('wnoo', ['infinite-scroll'])
+angular.module('wnoo', ['infinite-scroll', 'ngFileUpload'])
