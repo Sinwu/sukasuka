@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
+use App\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -21,9 +24,25 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($before)
     {
-        //
+        // Get logged user
+        $user = User::find(Auth::user()->id);
+        
+        $posts = Post::with('user')
+            ->orderBy('created_at', 'desc')
+            ->where('destination', 'normal')
+            ->when($before > 0, function($query) use ($before){
+                return $query->where('id', '<', $before);
+            })
+            ->take(5)
+            ->get();
+        \Log::info($posts);
+
+        return response()->json([
+            'ok' => 'true',
+            'posts' => $posts
+        ]);
     }
 
     /**
@@ -44,7 +63,22 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Get logged user
+        $user = User::find(Auth::user()->id);
+        
+        $data = $request->all();
+        $post = new Post([
+            'type' => $data['type'],
+            'content' => $data['content'],
+            'destination' => $data['destination'],
+        ]);
+
+        $userPost = $user->posts()->save($post);
+
+        return response()->json([
+            'ok' => 'true',
+            'post' => $userPost
+        ]);
     }
 
     /**

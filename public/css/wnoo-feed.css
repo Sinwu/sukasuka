@@ -4,6 +4,10 @@
   margin-top: 2.5rem;
 }
 
+.ui.feed.stop.segment h5 {
+  text-align: center;
+}
+
 .follow-user h5 {
   margin-bottom: .2rem;
 }

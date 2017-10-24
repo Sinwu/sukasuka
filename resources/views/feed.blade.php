@@ -24,7 +24,7 @@
         <div class="row">
           <div class="col-md-8 col-sm-8">
             <div class="form-group">
-              <textarea name="texts" id="exampleTextarea" cols="50" rows="2" class="form-control" placeholder="Write what you wish"></textarea>
+              <textarea ng-model="postContent" name="texts" id="exampleTextarea" cols="50" rows="2" class="form-control" placeholder="Write what you wish"></textarea>
             </div>
           </div>
           <div class="col-md-4 col-sm-4">
@@ -33,7 +33,7 @@
                 <li><a href="#"><i class="ion-images"></i></a></li>
                 <li><a href="#"><i class="ion-paperclip"></i></a></li>
               </ul>
-              <button class="btn btn-primary pull-right">Publish</button>
+              <button ng-click="postCreate()" class="btn btn-primary pull-right">Publish</button>
             </div>
           </div>
         </div>
@@ -45,10 +45,10 @@
         <div class="post-content" ng-repeat="post in feed.posts">
           <img ng-show="post.isImage()" ng-src="@{{ post.image }}" alt="post-image" class="img-responsive post-image" />
           <div class="post-container">
-            <img ng-src="@{{ post.user.profile.image }}" alt="user" class="profile-photo-md pull-left" />
+            <img ng-src="http://placehold.it/300x300" alt="user" class="profile-photo-md pull-left" />
             <div class="post-detail">
               <div class="user-info">
-                <h5><a href="timeline" class="profile-link">@{{ post.user.profile.name }}</a></h5>
+                <h5><a href="timeline" class="profile-link">@{{ post.user.name }}</a></h5>
                 <p class="text-muted">Published a @{{ post.type }} about 3 mins ago</p>
               </div>
               <div class="reaction">
@@ -57,7 +57,7 @@
               </div>
               <div class="line-divider"></div>
               <div class="post-text">
-                <p> @{{ post.content }} <i class="em em-anguished"></i> <i class="em em-anguished"></i> <i class="em em-anguished"></i></p>
+                <p> @{{ post.content }} </p>
               </div>
               <div class="line-divider"></div>
 
@@ -284,10 +284,14 @@
         </div>
       </div>  --}}
 
-      <div ng-show="feed.busy" class="ui feed load segment">
+      <div ng-show="feed.busy && !feed.stop" class="ui feed load segment">
         <div class="ui active feed text loader">
           Getting your timeline
         </div>
+      </div>
+
+      <div ng-show="feed.stop" class="ui feed stop segment">
+        <h5>End of your timeline</h5>
       </div>
 
     </div>
@@ -339,6 +343,7 @@
 @endsection
 
 @section('script')
+<script src="js/wnoo-factory-post.js"></script>
 <script src="js/wnoo-factory-feed.js"></script>
 <script src="js/wnoo-controller-feed.js"></script>
 @endsection

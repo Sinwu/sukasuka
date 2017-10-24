@@ -17,6 +17,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
-// Internal API Routes
-Route::post('/post', 'PostController@create');
+Route::post('/lala', function (Request $request) {
+    return response()->json([
+        'ok' => 'true'
+    ]);
+});

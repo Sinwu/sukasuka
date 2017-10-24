@@ -31,3 +31,8 @@ Route::middleware('auth:web')->get('/editpassword',function (){
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+// Internal API Routes
+Route::get('/api/post/{before}', 'PostController@index');
+
+Route::post('/api/post', 'PostController@store');

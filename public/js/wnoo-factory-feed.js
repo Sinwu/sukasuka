@@ -4,7 +4,8 @@ angular.module('wnoo')
   var Feed = function() {
     this.posts = [];
     this.busy = false;
-    this.after = '';
+    this.after = 0;
+    this.stop = false;
   };
 
   var dummy = {
@@ -130,15 +131,21 @@ angular.module('wnoo')
   }
 
   Feed.prototype.nextPage = function() {
-    if (this.busy) return;
+    if (this.busy || this.stop) return;
     this.busy = true;
 
-    var url = "http://httpbin.org/post";
+    var url = `api/post/${this.after}`;
 
-    $http.post(url, dummy)
+    $http.get(url)
     .then(
       function(success) {
-        var posts = success.data.json.data;
+        var posts = success.data.posts;
+        
+        if(posts.length < 1) {
+          this.stop = true
+          return
+        }
+        console.log(posts)
         
         for (var i = 0; i < posts.length; i++) {
           // Define functions
@@ -148,7 +155,9 @@ angular.module('wnoo')
           this.posts.push(posts[i]);
         }
         
-        // this.after = this.posts[this.posts.length - 1].id;
+        this.after = this.posts[this.posts.length - 1].id;
+        console.log(this.after)
+        if(this.posts.length < 5) this.stop = true
         this.busy = false;
       }.bind(this),
       function(error) {
