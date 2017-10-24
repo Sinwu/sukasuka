@@ -36,3 +36,11 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/api/post/{before}', 'PostController@index');
 
 Route::post('/api/post', 'PostController@store');
+
+Route::get('/mod', function(){
+	return view('/mod/index');
+});
+
+Route::get('/dashboard', function(){
+	return view('/mod/dashboard');
+});
