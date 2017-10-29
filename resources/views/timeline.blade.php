@@ -3,10 +3,10 @@
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="description" content="This is social network html5 template available in themeforest......" />
-		<meta name="keywords" content="Social Network, Social Media, Make Friends, Newsfeed, Profile Page" />
+		<meta name="description" content="EDII Soscial Hub" />
+		<meta name="keywords" content="Social Network, Social Media, EDII" />
 		<meta name="robots" content="index, follow" />
-		<title>My Timeline | This is My Coolest Profile</title>
+		<title>EDIISH | My Timeline</title>
 
     <!-- Stylesheets
     ================================================= -->
@@ -38,7 +38,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index-register"><img src="images/logo.png" alt="logo" /></a>
+            <a class="navbar-brand" href="index-register"><img style="max-height: 30px; max-width: 168px;" src="images/logo.png" alt="logo" /></a>
           </div>
 
           <!-- Collect the nav links, forms, and other content for toggling -->

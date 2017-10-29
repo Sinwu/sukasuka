@@ -3,10 +3,10 @@
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="description" content="This is social network html5 template available in themeforest......" />
-		<meta name="keywords" content="Social Network, Social Media, Make Friends, Newsfeed, Profile Page" />
+		<meta name="description" content="EDII Soscial Hub" />
+		<meta name="keywords" content="Social Network, Social Media, EDII" />
 		<meta name="robots" content="index, follow" />
-		<title>Wis Noo | A Social Network</title>
+		<title>EDIISH | Social Hub</title>
 
     <!-- Stylesheets
     ================================================= -->
@@ -33,7 +33,7 @@
 
           <!-- Brand and toggle get grouped for better mobile display -->
           <div class="navbar-header">
-            <img src="images/logo.png" alt="logo" />
+            <img style="max-height: 45px; max-width: 252px;" src="images/logo.png" alt="logo" />
           </div>
 
         </div><!-- /.container -->
@@ -48,9 +48,8 @@
         <div class="row">
         	<div class="col-sm-5">
             <div class="intro-texts">
-            	<h1 class="text-white">Make Cool Friends !!!</h1>
-            	<p>Wis Noo is a social network that can be used to connect people. This has Landing pages, News Feed, Image/Video Feed, Timeline and lot more. <br /> <br />Why are you waiting for? Register Now.</p>
-              <button class="btn btn-primary">Learn More</button>
+            	<h1 class="text-white">EDII Social Hub</h1>
+            	<p>EDIISH is a social network that can be used to share your ideas, and news.<br /></p>
             </div>
           </div>
         	<div class="col-sm-6 col-sm-offset-1">

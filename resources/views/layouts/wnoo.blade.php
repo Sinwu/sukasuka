@@ -48,7 +48,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index-register"><img src="images/logo.png" alt="logo" /></a>
+            <a class="navbar-brand" href="index-register"><img style="max-height: 30px; max-width: 168px;" src="images/logo.png" alt="logo" /></a>
           </div>
 
           <!-- Collect the nav links, forms, and other content for toggling -->
