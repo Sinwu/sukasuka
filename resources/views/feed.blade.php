@@ -206,7 +206,7 @@
           <div class="ui card post-content" ng-repeat="post in feed.posts">
             <img ng-show="post.isImage()" ng-src="@{{ post.image }}" alt="post-image" class="img-responsive post-image" />
             <div class="post-container">
-              <img ng-src="http://placehold.it/300x300" alt="user" class="profile-photo-md pull-left" />
+              <img ng-src="images/user-default.png" alt="user" class="profile-photo-md pull-left" />
               <div class="post-detail">
                 <div class="user-info">
                   <h5><a href="timeline" class="profile-link">@{{ post.user.name }}</a></h5>

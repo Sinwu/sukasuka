@@ -4,7 +4,7 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="description" content="Description" />
-		<meta name="keywords" content="Social Network, Social Media, Make Friends, Newsfeed, Profile Page" />
+		<meta name="keywords" content="Social Network, Social Media, EDII" />
 		<meta name="robots" content="index, follow" />
 
     <!-- CSRF Token -->
@@ -53,12 +53,22 @@
 
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <form class="navbar-form navbar-right hidden-sm">
+            {{--  <form class="navbar-form navbar-right hidden-sm">
               <div class="form-group">
                 <i class="icon ion-android-search"></i>
                 <input type="text" class="form-control" placeholder="Search people">
               </div>
-            </form>
+            </form>  --}}
+            <ul class="nav navbar-nav navbar-right main-menu">
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Action  <span><img src="images/down-arrow.png" alt="" /></span></a>
+                <ul class="dropdown-menu newsfeed-home">
+                  <li><a href="feed">Newsfeed</a></li>
+                  <li><a href="timeline">My Timeline</a></li>
+                  <li><a href="logout">Logout</a></li>
+                </ul>
+              </li>
+            </ul>
           </div><!-- /.navbar-collapse -->
         </div><!-- /.container -->
       </nav>
