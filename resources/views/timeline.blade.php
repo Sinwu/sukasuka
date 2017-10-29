@@ -267,4 +267,7 @@
   </div>
 </div>
 @endsection
-    
+
+@section('script')
+<script src="js/wnoo-controller-feed.js"></script>
+@endsection

@@ -3,10 +3,68 @@
 @section('content')
 <div class="feed container" ng-controller="FeedController as ctrl">
   <div class="row">
-    <!-- Newsfeed Common Side Bar Left
+    <!-- Newsfeed Common Side Bar Right
     ================================================= -->
+    <div class="col-md-3 col-md-push-9">
+      
+      <div class="suggestions" id="sticky-sidebar">
+
+        <div class="profile-card">
+          <img src="images/user-default.png" alt="user" class="profile-photo" />
+          <h5><a href="timeline" class="text-white">{{ $user->name }}</a></h5>
+          <p class="text-white">Administrator</p>
+        </div><!--profile card ends-->
+
+        {{--  <div class="ui card">
+          <ul class="nav-news-feed">
+            <li><i class="icon ion-ios-paper"></i><div><a href="timeline">My Timeline</a></div></li>
+            <li><i class="icon ion-ios-paper"></i><div><a href="#">Profile</a></div></li>
+          </ul><!--news-feed links ends-->
+        </div>  --}}
+
+        <div class="ui card">
+          <h4 class="grey">Recent Activities</h4>
+          <div class="follow-user">
+            <img src="http://placehold.it/300x300" alt="" class="profile-photo-sm pull-left" />
+            <div>
+              <h5><a href="timeline">Diana Amber</a></h5>
+              <p class="text-muted">Posted a new photo</p>
+            </div>
+          </div>
+          <div class="follow-user">
+            <img src="http://placehold.it/300x300" alt="" class="profile-photo-sm pull-left" />
+            <div>
+              <h5><a href="timeline">Cris Haris</a></h5>
+              <p href="#" class="text-muted">Added a new post</p>
+            </div>
+          </div>
+          <div class="follow-user">
+            <img src="http://placehold.it/300x300" alt="" class="profile-photo-sm pull-left" />
+            <div>
+              <h5><a href="timeline">Brian Walton</a></h5>
+              <p class="text-muted">Commented a post</p>
+            </div>
+          </div>
+          <div class="follow-user">
+            <img src="http://placehold.it/300x300" alt="" class="profile-photo-sm pull-left" />
+            <div>
+              <h5><a href="timeline">Olivia Steward</a></h5>
+              <p class="text-muted">Profile updated</p>
+            </div>
+          </div>
+          <div class="follow-user">
+            <img src="http://placehold.it/300x300" alt="" class="profile-photo-sm pull-left" />
+            <div>
+              <h5><a href="timeline">Sophia Page</a></h5>
+              <p class="text-muted">Commented a post</p>
+            </div>
+          </div>
+        </div>
+          
+      </div>
+    </div>
     
-    <div class="col-md-9">
+    <div class="col-md-9 col-md-pull-3">
 
       <!-- Post Create Box
       ================================================= -->
@@ -374,59 +432,6 @@
 
     </div>
 
-    <!-- Newsfeed Common Side Bar Right
-    ================================================= -->
-    <div class="col-md-3 static">
-      
-      <div class="suggestions" id="sticky-sidebar">
-
-        <div class="profile-card">
-          <img src="images/user-default.png" alt="user" class="profile-photo" />
-          <h5><a href="timeline" class="text-white">{{ $user->name }}</a></h5>
-          <p class="text-white">Administrator</p>
-        </div><!--profile card ends-->
-        <ul class="nav-news-feed">
-          <li><i class="icon ion-ios-paper"></i><div><a href="timeline">My Timeline</a></div></li>
-        </ul><!--news-feed links ends-->
-
-        <h4 class="grey">Recent Activities</h4>
-        <div class="follow-user">
-          <img src="http://placehold.it/300x300" alt="" class="profile-photo-sm pull-left" />
-          <div>
-            <h5><a href="timeline">Diana Amber</a></h5>
-            <p class="text-muted">Posted a new photo</p>
-          </div>
-        </div>
-        <div class="follow-user">
-          <img src="http://placehold.it/300x300" alt="" class="profile-photo-sm pull-left" />
-          <div>
-            <h5><a href="timeline">Cris Haris</a></h5>
-            <p href="#" class="text-muted">Added a new post</p>
-          </div>
-        </div>
-        <div class="follow-user">
-          <img src="http://placehold.it/300x300" alt="" class="profile-photo-sm pull-left" />
-          <div>
-            <h5><a href="timeline">Brian Walton</a></h5>
-            <p class="text-muted">Commented a post</p>
-          </div>
-        </div>
-        <div class="follow-user">
-          <img src="http://placehold.it/300x300" alt="" class="profile-photo-sm pull-left" />
-          <div>
-            <h5><a href="timeline">Olivia Steward</a></h5>
-            <p class="text-muted">Profile updated</p>
-          </div>
-        </div>
-        <div class="follow-user">
-          <img src="http://placehold.it/300x300" alt="" class="profile-photo-sm pull-left" />
-          <div>
-            <h5><a href="timeline">Sophia Page</a></h5>
-            <p class="text-muted">Commented a post</p>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 </div>
 @endsection
