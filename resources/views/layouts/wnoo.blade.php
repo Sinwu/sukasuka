@@ -59,6 +59,16 @@
                 <input type="text" class="form-control" placeholder="Search people">
               </div>
             </form>  --}}
+            <ul class="nav navbar-nav navbar-right main-menu">
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Action  <span><img src="images/down-arrow.png" alt="" /></span></a>
+                <ul class="dropdown-menu newsfeed-home">
+                  <li><a href="feed">Newsfeed</a></li>
+                  <li><a href="timeline">My Timeline</a></li>
+                  <li><a href="logout">Logout</a></li>
+                </ul>
+              </li>
+            </ul>
           </div><!-- /.navbar-collapse -->
         </div><!-- /.container -->
       </nav>
