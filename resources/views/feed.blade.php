@@ -10,8 +10,32 @@
 
       <!-- Post Create Box
       ================================================= -->
-      <div class="ui segment create-post">
-        <div class="ui inverted dimmer loader-post">
+      <div class="ui card segment create-post">
+        <div class="ui steps">
+          <a class="step">
+            <i class="quote right blue icon"></i>
+            <div class="content">
+              <div class="title blue">Write</div>
+              <div class="description">Share your thoughts</div>
+            </div>
+          </a>
+          <a class="step">
+            <i class="camera retro orange icon"></i>
+            <div class="content">
+              <div class="title orange">Upload</div>
+              <div class="description">Upload an image or video</div>
+            </div>
+          </a>
+          <a class="step">
+            <i class="clone purple icon"></i>
+            <div class="content">
+              <div class="title purple">Share</div>
+              <div class="description">Publish a file</div>
+            </div>
+          </a>
+        </div>
+
+        {{--  <div class="ui inverted dimmer loader-post">
           <div ng-show="showProgress">
             <h5 class="Uploading your post"></h5>
             <div class="ui teal progress loader-progress">
@@ -62,7 +86,7 @@
               <span ng-show="postForm.image.$error.maxSize">Please upload an image with size below 5MB</span>
             </div>
           </div>
-        </form>
+        </form>  --}}
       </div><!-- Post Create Box End-->
 
       {{--  <form name="myForm">
@@ -95,7 +119,8 @@
       <!-- Post Content
       ================================================= -->
       <div infinite-scroll='feed.nextPage()' infinite-scroll-disabled='feed.busy' infinite-scroll-distance='2'>
-        <div class="post-content" ng-repeat="post in feed.posts">
+        
+        <div class="ui card post-content" ng-repeat="post in feed.posts">
           <img ng-show="post.isImage()" ng-src="@{{ post.image }}" alt="post-image" class="img-responsive post-image" />
           <div class="post-container">
             <img ng-src="http://placehold.it/300x300" alt="user" class="profile-photo-md pull-left" />
