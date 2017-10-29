@@ -5,18 +5,8 @@
   <div class="row">
     <!-- Newsfeed Common Side Bar Left
     ================================================= -->
-    <div class="col-md-3 static">
-      <div class="profile-card">
-        <img src="images/user-default.png" alt="user" class="profile-photo" />
-        <h5><a href="timeline" class="text-white">{{ $user->name }}</a></h5>
-        <p class="text-white">Administrator</p>
-      </div><!--profile card ends-->
-      <ul class="nav-news-feed">
-        <li><i class="icon ion-ios-paper"></i><div><a href="timeline">My Timeline</a></div></li>
-      </ul><!--news-feed links ends-->
-    </div>
     
-    <div class="col-md-7">
+    <div class="col-md-9">
 
       <!-- Post Create Box
       ================================================= -->
@@ -361,8 +351,19 @@
 
     <!-- Newsfeed Common Side Bar Right
     ================================================= -->
-    <div class="col-md-2 static">
+    <div class="col-md-3 static">
+      
       <div class="suggestions" id="sticky-sidebar">
+
+        <div class="profile-card">
+          <img src="images/user-default.png" alt="user" class="profile-photo" />
+          <h5><a href="timeline" class="text-white">{{ $user->name }}</a></h5>
+          <p class="text-white">Administrator</p>
+        </div><!--profile card ends-->
+        <ul class="nav-news-feed">
+          <li><i class="icon ion-ios-paper"></i><div><a href="timeline">My Timeline</a></div></li>
+        </ul><!--news-feed links ends-->
+
         <h4 class="grey">Recent Activities</h4>
         <div class="follow-user">
           <img src="http://placehold.it/300x300" alt="" class="profile-photo-sm pull-left" />
