@@ -8,8 +8,6 @@ angular.module('wnoo')
   $scope.media = new Media();
 
   $scope.postCreate = function() {
-    showPostLoader()
-
     var post = {
       content: $scope.postContent,
       type: getFileTypeCategory(),
@@ -71,6 +69,12 @@ angular.module('wnoo')
   $scope.clearPostWidget = function() {
     $scope.postContent = null
     $scope.image = null
+  }
+
+  $scope.shareWrite = function() {
+    $('.post.shape')
+      .shape('set next side', '.write.side')
+      .shape('flip left')
   }
 
   function getPostMediaObject() {

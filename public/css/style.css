@@ -6,10 +6,6 @@
   background-color: #E6E9EC;
 }
 
-.ui.feed.load {
-  background: none;
-}
-
 .ui.card.post-content {
   width: 100%;
 }
@@ -25,27 +21,8 @@
   box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
 }
 
-.ui.card.segment.create-post > .steps {
-  border: none;
-  min-height: 90px;
-}
-
-.feed.container .profile-card {
-  margin-bottom: 1rem;
-}
-
-.feed.container .ui.card.internal {
-  padding: 1rem;
-}
-
 .timeline.container .ui.segment > .ui.steps > a.step {
   padding: .5rem;
-}
-
-.feed.container img.profile-photo-sm{
-	height: 40px;
-	width: 40px;
-	border-radius: 10%;
 }
 
 /* Colors */

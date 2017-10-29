@@ -24,7 +24,7 @@
           </div>  --}}
 
           <div class="ui card internal">
-            <h4 class="grey">Recent Activities</h4>
+            <h4 class="grey">Internal Applications</h4>
             <div class="follow-user">
               <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmGeXZFpV7Cmd0izh7f_nkBb-N2zFD7lC1sHpej_Foho_BeRir" alt="" class="profile-photo-sm pull-left" />
               <div>
@@ -63,28 +63,59 @@
         <!-- Post Create Box
         ================================================= -->
         <div class="ui card segment create-post">
-          <div class="ui steps">
-            <a class="step">
-              <i class="quote right blue icon"></i>
-              <div class="content">
-                <div class="title blue">Write</div>
-                <div class="description">Share your thoughts</div>
+
+          {{--  Loader  --}}
+          <div class="ui inverted dimmer loader-post">
+            <div ng-show="showProgress">
+              <h5 class="Uploading your post"></h5>
+              <div class="ui teal progress loader-progress">
+                <div class="bar"></div>
+                <div class="label"><span class="counter"></span>22%</div>
               </div>
-            </a>
-            <a class="step">
-              <i class="camera retro orange icon"></i>
-              <div class="content">
-                <div class="title orange">Upload</div>
-                <div class="description">Upload an image or video</div>
+            </div>
+            <div ng-hide="showProgress">
+              <div class="ui text loader">Posting</div>
+            </div>
+          </div>
+
+          <div class="ui post text shape">
+            <div class="sides" style="position: relative">
+
+              {{--  Choice side  --}}
+              <div class="active main side">
+                <div class="ui steps">
+                  <a class="step" ng-click="shareWrite()">
+                    <i class="quote right blue icon"></i>
+                    <div class="content">
+                      <div class="title blue">Write</div>
+                      <div class="description">Share your thoughts</div>
+                    </div>
+                  </a>
+                  <a class="step">
+                    <i class="camera retro orange icon"></i>
+                    <div class="content">
+                      <div class="title orange">Upload</div>
+                      <div class="description">Upload an image or video</div>
+                    </div>
+                  </a>
+                  <a class="step">
+                    <i class="clone purple icon"></i>
+                    <div class="content">
+                      <div class="title purple">Share</div>
+                      <div class="description">Publish a file</div>
+                    </div>
+                  </a>
+                </div>
               </div>
-            </a>
-            <a class="step">
-              <i class="clone purple icon"></i>
-              <div class="content">
-                <div class="title purple">Share</div>
-                <div class="description">Publish a file</div>
+
+              <div class="write side">
+                <textarea ng-model="postContent" name="content" id="contentTextArea" cols="50" rows="2" class="form-control" placeholder="Share your thought"></textarea>
+                <button ng-click="postCreate()" class="ui mini blue button post">
+                  Publish
+                </button>
               </div>
-            </a>
+
+            </div>
           </div>
 
           {{--  <div class="ui inverted dimmer loader-post">
@@ -182,7 +213,23 @@
                   <p class="text-muted">Published a @{{ post.type }} about 3 mins ago</p>
                 </div>
                 <div class="reaction">
-                  <a class="btn text-green"><i class="icon ion-thumbsup"></i> 13</a>
+                  {{--  <div class="ui labeled mini button" tabindex="0">
+                    <div class="ui orange mini active button">
+                      <i class="comments icon"></i> Comment
+                    </div>
+                    <a class="ui basic orange left pointing label">
+                      2
+                    </a>
+                  </div>  --}}
+                  <div class="ui labeled mini button" tabindex="0">
+                    <div class="ui white mini button">
+                      <i class="heart icon"></i> Like
+                    </div>
+                    <a class="ui basic white left pointing label">
+                      508
+                    </a>
+                  </div>
+                  {{--  <a class="btn text-green"><i class="ui icon blue user"></i> 13</a>  --}}
                   {{--  <a class="btn text-red"><i class="fa fa-thumbs-down"></i> 0</a>  --}}
                 </div>
                 <div class="line-divider"></div>
