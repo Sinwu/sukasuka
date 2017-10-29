@@ -119,8 +119,8 @@ function attachSticky() {
 
     // Sticky Right Sidebar
     $('#sticky-sidebar').stick_in_parent({
-        parent: '#page-contents',
-        offset_top: 70
+        parent: '#wnoo-contents',
+        offset_top: 80
     });
 
 }
