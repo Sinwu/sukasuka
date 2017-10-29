@@ -1,4 +1,56 @@
 /*==================================================
+  Custom
+==================================================*/
+#page-contents {
+  background-color: #E6E9EC;
+}
+
+.ui.feed.load {
+  background: none;
+}
+
+.ui.card.post-content {
+  width: 100%;
+}
+
+.ui.card.timeline {
+  margin-top: 0;
+  width: 100%;
+}
+
+.ui.card.segment.create-post {
+  min-height: 90px;
+  width: 100%;
+  box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
+}
+
+.ui.card.segment.create-post > .steps {
+  border: none;
+  min-height: 90px;
+}
+
+.timeline.container .ui.segment > .ui.steps > a.step {
+  padding: .5rem;
+}
+
+/* Colors */
+div.title.blue {
+  color: #1678c2;
+}
+
+div.title.red {
+  color: #db2828;
+}
+
+div.title.purple {
+  color: #dc73ff;
+}
+
+div.title.orange {
+  color: #ff851b;
+}
+
+/*==================================================
   Template Name: Friend Finder
   Description: A Social Network Template
   Author: thunder-team
@@ -53,7 +105,8 @@ body{
 	font-family: 'Lato', sans-serif;
   line-height: 26px;
 	color: #6d6e71;
-	font-size: 13px;
+  font-size: 13px;
+  background-color: #E6E9EC;
 }
 
 
