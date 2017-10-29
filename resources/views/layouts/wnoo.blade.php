@@ -65,7 +65,7 @@
     </header>
     <!--Header End-->
 
-    <div id="page-contents">
+    <div id="wnoo-contents">
     	@yield('content')
     </div>
     
