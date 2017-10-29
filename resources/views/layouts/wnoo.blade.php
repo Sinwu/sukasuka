@@ -4,7 +4,7 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="description" content="Description" />
-		<meta name="keywords" content="Social Network, Social Media, Make Friends, Newsfeed, Profile Page" />
+		<meta name="keywords" content="Social Network, Social Media, EDII" />
 		<meta name="robots" content="index, follow" />
 
     <!-- CSRF Token -->
@@ -53,12 +53,12 @@
 
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <form class="navbar-form navbar-right hidden-sm">
+            {{--  <form class="navbar-form navbar-right hidden-sm">
               <div class="form-group">
                 <i class="icon ion-android-search"></i>
                 <input type="text" class="form-control" placeholder="Search people">
               </div>
-            </form>
+            </form>  --}}
           </div><!-- /.navbar-collapse -->
         </div><!-- /.container -->
       </nav>
