@@ -71,7 +71,12 @@ angular.module('wnoo')
         for (var i = 0; i < posts.length; i++) {
           // Define functions
           posts[i].isPost = getType(posts[i].type, 'post')
-          posts[i].isImage = getType(posts[i].type, 'photo')
+          posts[i].isImage = getType(posts[i].type, 'image')
+          posts[i].isVideo = getType(posts[i].type, 'video')
+          posts[i].like = postLike(posts[i])
+          posts[i].likes = Math.floor((Math.random() * 100))
+          posts[i].comments = []
+          posts[i].comment = postComment(posts[i])
 
           this.posts.push(posts[i]);
         }
@@ -88,6 +93,34 @@ angular.module('wnoo')
   var getType = function(type, expected) {
     return function() {
       return type == expected
+    }
+  }
+
+  var postComment = function(post) {
+    return function(content) {
+      var c = {
+        user: {
+          name: 'Stevie'
+        },
+        content: content
+      }
+
+      post.comments.push(c)
+      console.log(post.comments)
+    }
+  }
+
+  var postLike = function(post) {
+    return function() {
+      post.liked = !post.liked
+
+      if (post.liked) {
+        post.likes++
+      } else {
+        post.likes--
+      }
+      console.log(post.liked)
+      console.log(post.likes)
     }
   }
 

@@ -3,9 +3,12 @@ angular.module('wnoo')
 .controller('FeedController', ['$scope', '$timeout', 'Feed', 'Post', 'Media', function($scope, $timeout, Feed, Post, Media) {
   $scope.showProgress = false
 
-  $scope.feed = new Feed();
-  $scope.post = new Post();
-  $scope.media = new Media();
+  $scope.feed = new Feed()
+  $scope.post = new Post()
+  $scope.media = new Media()
+
+  $scope.image = null
+  $scope.video = null
 
   $scope.postCreate = function() {
     var post = {
@@ -61,12 +64,37 @@ angular.module('wnoo')
         }
         
         hidePostLoader()
+        $scope.cancelPost()
       },
       function(error) {
         alert('Something is wrong, please try again')
         hidePostLoader()
+        $scope.cancelPost()
       }
     );
+  }
+
+  $scope.postMediaImage = function(file) {
+    // VALIDATION HERE
+
+    $scope.image = file
+    $scope.shareMediaImage()
+    console.log(file)
+  }
+
+  $scope.postMediaVideo = function(file) {
+    // VALIDATION HERE
+
+    $scope.video = file
+    $scope.shareMediaVideo()
+    console.log(file)
+  }
+
+  $scope.postComment = function(post) {
+    if(!post || !post.commentContent) return
+
+    post.comment(post.commentContent)
+    post.commentContent = null
   }
 
   $scope.clearPostWidget = function() {
@@ -74,27 +102,35 @@ angular.module('wnoo')
     $scope.image = null
   }
 
-  $scope.shareWrite = function() {
+  $scope.cancelPost = function() {
+    $scope.clearPostWidget()
+
+    $('.post.write').transition('hide')
+    $('.post.media.image').transition('hide')
+    $('.post.media.video').transition('hide')
+
     $('.post.choice')
-      .hide()
+      .transition('fade', '0ms')
+  }
+
+  $scope.shareWrite = function() {
+    $('.post.choice').transition('hide')
 
     $('.post.write')
       .transition('fade', '500ms')
   }
 
-  $scope.shareMedia = function() {
-    $('.post.choice')
-      .hide()
+  $scope.shareMediaImage = function() {
+    $('.post.choice').transition('hide')
 
-    $('.post.media')
+    $('.post.media.image')
       .transition('fade', '500ms')
   }
 
-  $scope.shareFile = function() {
-    $('.post.choice')
-      .hide()
+  $scope.shareMediaVideo = function() {
+    $('.post.choice').transition('hide')
 
-    $('.post.file')
+    $('.post.media.video')
       .transition('fade', '500ms')
   }
 
@@ -103,13 +139,15 @@ angular.module('wnoo')
 
     if(!hasMedia) return null
     if($scope.image) return $scope.image
+    if($scope.video) return $scope.video
   }
 
   function getFileTypeCategory() {
-    var hasMedia = $scope.image || false
+    var hasMedia = $scope.image || $scope.video || false
     
     if(!hasMedia) return 'post'
     if($scope.image) return 'image'
+    if($scope.video) return 'video'
   }
 
   function showPostLoader(isFile) {

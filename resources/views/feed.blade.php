@@ -78,40 +78,89 @@
             </div>
           </div>
 
-          {{--  Choice side  --}}
-          <div class="post choice">
-            <div class="ui steps">
-              <a class="step" ng-click="shareWrite()">
-                <i class="quote right blue icon"></i>
-                <div class="content">
-                  <div class="title blue">Write</div>
-                  <div class="description">Share your thoughts</div>
-                </div>
-              </a>
-              <a class="step">
-                <i class="camera retro orange icon"></i>
-                <div class="content">
-                  <div class="title orange">Upload</div>
-                  <div class="description">Upload an image or video</div>
-                </div>
-              </a>
-              <a class="step">
-                <i class="clone purple icon"></i>
-                <div class="content">
-                  <div class="title purple">Share</div>
-                  <div class="description">Publish a file</div>
-                </div>
-              </a>
+          <form name="postForm">
+            {{--  Choice side  --}}
+            <div class="post choice">
+              <div class="ui steps">
+                <a class="step" ng-click="shareWrite()">
+                  <i class="quote right blue icon"></i>
+                  <div class="content">
+                    <div class="title blue">Write</div>
+                    <div class="description">Share your thoughts</div>
+                  </div>
+                </a>
+                <a class="step" href="#" ngf-select="postMediaImage($file)" ng-model="image" name="image" ngf-pattern="'image/*'"
+                  ngf-accept="'image/*'" ngf-max-size="5MB" ngf-min-height="100"
+                  ngf-model-invalid="errorImage">
+                  <i class="camera retro orange icon"></i>
+                  <div class="content">
+                    <div class="title orange">Upload</div>
+                    <div class="description">Upload an image</div>
+                  </div>
+                </a>
+                <a class="step" href="#" ngf-select="postMediaVideo($file)" ng-model="video" name="video" ngf-pattern="'video/*'"
+                  ngf-accept="'video/*'" ngf-max-size="20MB"
+                  ngf-model-invalid="errorVideo">
+                  <i class="film purple icon"></i>
+                  <div class="content">
+                    <div class="title purple">Video</div>
+                    <div class="description">Publish your videos</div>
+                  </div>
+                </a>
+              </div>
+
             </div>
 
-          </div>
+            <div class="post write" style="display: none">
+              <textarea ng-model="postContent" name="content" id="contentTextArea" rows="2" class="form-control textarea" placeholder="Write your thought"></textarea>
+              
+              <button ng-click="cancelPost()" class="ui mini red button cancel">
+                Cancel
+              </button>
+              <button ng-click="postCreate()" class="ui mini blue button post">
+                Publish
+              </button>
+            </div>
 
-          <div class="post write" style="display: none">
-            <textarea ng-model="postContent" name="content" id="contentTextArea" rows="2" class="form-control textarea" placeholder="Write your thought"></textarea>
-            <button ng-click="postCreate()" class="ui mini blue button post">
-              Publish
-            </button>
-          </div>
+            <div class="post media image" style="display: none">
+              <div class="row">
+                <div class="col-md-2">
+                  <div class="thumbnail">
+                    <img ngf-thumbnail="image" class="thumbnail" />
+                  </div>
+                </div>
+                <div class="col-md-10 content">
+                  <textarea ng-model="postContent" name="content" id="contentTextArea" rows="2" class="form-control textarea" placeholder="Tell something about your image"></textarea>
+                </div>
+              </div>
+
+              <button ng-click="cancelPost()" class="ui mini red button cancel">
+                Cancel
+              </button>
+              <button ng-click="postCreate()" class="ui mini blue button post">
+                Publish
+              </button>
+            </div>
+
+            <div class="post media video" style="display: none">
+              <div class="row">
+                <div class="col-md-2 video-description">
+                  <i class="ui film purple icon huge"></i>
+                  <h6>@{{ video.name }}</h6>
+                </div>
+                <div class="col-md-10 content">
+                  <textarea ng-model="postContent" name="content" id="contentTextArea" rows="2" class="form-control textarea" placeholder="Tell something about your video"></textarea>
+                </div>
+              </div>
+
+              <button ng-click="cancelPost()" class="ui mini red button cancel">
+                Cancel
+              </button>
+              <button ng-click="postCreate()" class="ui mini blue button post">
+                Publish
+              </button>
+            </div>
+          </form>
 
           {{--  <div class="ui inverted dimmer loader-post">
             <div ng-show="showProgress">
@@ -199,13 +248,14 @@
         <div infinite-scroll='feed.nextPage()' infinite-scroll-disabled='feed.busy' infinite-scroll-distance='2'>
           
           <div class="ui card post-content" ng-repeat="post in feed.posts">
-            <img ng-show="post.isImage()" ng-src="@{{ post.image }}" alt="post-image" class="img-responsive post-image" />
+            <video  ng-show="post.isVideo()" class="post-video" controls><source src="videos/1.mp4" type="video/mp4"></video>
+            <img ng-show="post.isImage()" ng-src="https://cdn.wallpapersafari.com/62/47/v1xIER.jpg" alt="post-image" class="img-responsive post-image" />
             <div class="post-container">
               <img ng-src="images/user-default.png" alt="user" class="profile-photo-md pull-left" />
               <div class="post-detail">
                 <div class="user-info">
                   <h5><a href="timeline" class="profile-link">@{{ post.user.name }}</a></h5>
-                  <p class="text-muted">Published a @{{ post.type }} about 3 mins ago</p>
+                  <p class="text-muted">Published @{{post.type == 'image' ? 'an' : 'a'}} @{{ post.type }} about 3 mins ago</p>
                 </div>
                 <div class="reaction">
                   {{--  <div class="ui labeled mini button" tabindex="0">
@@ -216,12 +266,12 @@
                       2
                     </a>
                   </div>  --}}
-                  <div class="ui labeled mini button" tabindex="0">
-                    <div class="ui white mini button">
+                  <div ng-click="post.like()" class="ui labeled mini button" tabindex="0">
+                    <div ng-class="{white: !post.liked, red: post.liked}" class="ui mini button">
                       <i class="heart icon"></i> Like
                     </div>
-                    <a class="ui basic white left pointing label">
-                      508
+                    <a ng-class="{white: !post.liked, red: post.liked}" class="ui basic left pointing label">
+                      @{{ post.likes }}
                     </a>
                   </div>
                   {{--  <a class="btn text-green"><i class="ui icon blue user"></i> 13</a>  --}}
@@ -233,17 +283,18 @@
                 </div>
                 <div class="line-divider"></div>
 
-                <div ng-repeat="comment in post.comments" class="post-comment">
-                  <img ng-src="@{{ comment.user.image }}" alt="" class="profile-photo-sm" />
-                  <p><a href="timeline" class="profile-link">@{{ comment.user.name }} </a><i class="em em-laughing"></i> @{{ comment.content }} </p>
-                </div>
                 <div class="post-comment">
                   <img src="images/user-default.png" alt="" class="profile-photo-sm" />
                   <p><a href="timeline" class="profile-link">Diana </a>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud </p>
                 </div>
+                <div ng-repeat="comment in post.comments" class="post-comment">
+                  <img ng-src="images/user-default_female.png" alt="" class="profile-photo-sm" />
+                  <p><a href="timeline" class="profile-link">@{{ comment.user.name }} </a> @{{ comment.content }} </p>
+                </div>
                 <div class="post-comment">
-                  <img ng-src="images/user-default.png" alt="" class="profile-photo-sm" />
-                  <input type="text" class="form-control" placeholder="Post a comment">
+                  <img ng-src="images/user-default_female.png" alt="" class="profile-photo-sm" />
+                  <input ng-model="post.commentContent" type="text" class="form-control comment" placeholder="Post a comment">
+                  <button ng-click="postComment(post)" class="ui mini blue button comment"> Comment </button>
                 </div>
 
               </div>

@@ -61,11 +61,21 @@
             </form>  --}}
             <ul class="nav navbar-nav navbar-right main-menu">
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Action  <span><img src="images/down-arrow.png" alt="" /></span></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="sidebar icon"></i></a>
                 <ul class="dropdown-menu newsfeed-home">
                   <li><a href="feed">Newsfeed</a></li>
                   <li><a href="timeline">My Timeline</a></li>
-                  <li><a href="logout">Logout</a></li>
+                  <li>
+                    <a href="{{ route('logout') }}"
+                      onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">
+                      Logout
+                    </a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                      {{ csrf_field() }}
+                    </form>
+                  </li>
                 </ul>
               </li>
             </ul>

@@ -6,13 +6,41 @@
   background-color: #E6E9EC;
 }
 
+.navbar.menu {
+  background: linear-gradient(to bottom, rgba(39,170,225,.8), rgba(28,117,188,.8)), url("https://i.pinimg.com/736x/d3/2f/a4/d32fa422fbbeb1d4663c01b037fddd81.jpg") repeat-x;
+}
+
 .ui.card.post-content {
   width: 100%;
+}
+
+.ui.card.post-content .button.comment {
+  padding-left: .5rem;
+  padding-right: .5rem;
+  height: 2rem;
+  margin-top: .5rem;
+  margin-left: 1rem;
+}
+
+.ui.card.post-content input.comment {
+  max-width: 80% !important;
 }
 
 .ui.card.timeline {
   margin-top: 0;
   width: 100%;
+}
+
+#sticky-sidebar .live-activity .description {
+  font-size: .9rem;
+}
+
+#sticky-sidebar .live-activity p:first-child {
+  margin-bottom: .3rem;
+}
+
+#sticky-sidebar .live-activity p.text-muted {
+  font-size: .9rem;
 }
 
 .ui.card.segment.create-post {
@@ -1505,7 +1533,7 @@ ul.online-users li span.online-dot{
   ==================================================*/
 
 .timeline-cover{
-  background: url("../images/timeline-default.jpg") no-repeat;
+  background: url("https://wallpapersite.com/images/wallpapers/swiss-alps-1920x1200-mountains-town-switzerland-5k-4045.jpg") no-repeat;
   background-position: center;
   background-size: cover;
   min-height: 360px;

@@ -7,6 +7,7 @@ angular.module('wnoo-login',[])
   $scope.loginError = false
   $scope.registerError = false
   $scope.registerErrorMessage = ''
+  $scope.registerSuccess = false
 
   $scope.dates = [
     1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
@@ -75,7 +76,10 @@ angular.module('wnoo-login',[])
     .then(
       function(success) {
         if(success && success.statusText == 'OK') {
-          $window.location.href = '/feed'
+          // $window.location.href = '/feed'
+
+          $scope.registerSuccess = true
+          hideLoader()
         } else {
           hideLoader()
           alert('need to handle this success error')

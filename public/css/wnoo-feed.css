@@ -59,6 +59,12 @@
   margin-bottom: .2rem;
 }
 
+.create-post.ui.segment .ui.mini.button.cancel {
+  margin-left: .2rem;
+  margin-top: .2rem;
+  margin-bottom: .2rem;
+}
+
 .ui.feed.load {
   background: none;
 }
@@ -69,8 +75,54 @@
 	border-radius: 10%;
 }
 
-.ui.card.segment.create-post .side {
-  min-height: 90px;
+.ui.card.segment.create-post .post.media {
+  margin-top: 0;
+  min-height: 120px;
+}
+
+.ui.card.segment.create-post .post.media .content {
+  padding-right: 8px;
+}
+
+.ui.card.segment.create-post .post.media div.thumbnail {
+  margin-right: -10px;
+  margin-left: 10px;
+  margin-bottom: 5px;
+  height: 85px;
+  background: #e0e1e2;
+}
+
+@media (max-width: 992px) {
+  .ui.card.segment.create-post .post.media div.thumbnail {
+    margin-right: 0;
+    margin-left: 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+}
+
+.ui.card.segment.create-post .post.media img.thumbnail {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.ui.card.segment.create-post .post.media textarea {
+  min-height: 85px;
+}
+
+.ui.card.segment.create-post .post.media.video .video-description {
+  text-align: center;
+}
+
+.ui.card.segment.create-post .post.media.video .icon.huge {
+  font-size: 5em;
+}
+
+.ui.card.segment.create-post .post.media.video h6 {
+  margin-top: .1rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  color: #a333c8;
 }
 
 .ui.card.segment.create-post > .steps {

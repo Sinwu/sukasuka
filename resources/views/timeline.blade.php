@@ -24,7 +24,7 @@
               <li><a href="timeline" class="active">Timeline</a></li>
             </ul>
             <ul class="follow-me list-inline">
-              <li><button class="btn-primary">Edit Profile</button></li>
+              <li><a href="editbasic"><button class="btn-primary">Edit Profile</button></a></li>
             </ul>
           </div>
         </div>
@@ -71,9 +71,9 @@
                 </div>
               </a>
               <a class="step">
-                <i class="clone purple icon"></i>
+                <i class="film purple icon"></i>
                 <div class="content">
-                  <div class="title purple">Share</div>
+                  <div class="title purple">Video</div>
                   {{--  <div class="description">Publish a file</div>  --}}
                 </div>
               </a>
@@ -102,12 +102,12 @@
 
             <!--Post Date-->
             <div class="post-date hidden-xs hidden-sm">
-              <h5>Sarah</h5>
+              <h5>{{ $user->name }}</h5>
               <p class="text-grey">Sometimes ago</p>
             </div><!--Post Date End-->
 
             <div class="ui card timeline">
-              <img src="http://placehold.it/1920x1280" alt="post-image" class="img-responsive post-image" />
+              <img src="https://wallpapersite.com/images/wallpapers/swiss-alps-1920x1200-mountains-town-switzerland-5k-4045.jpg" alt="post-image" class="img-responsive post-image" />
               <div class="post-container">
                 <img src="http://placehold.it/300x300" alt="user" class="profile-photo-md pull-left" />
                 <div class="post-detail">
@@ -147,12 +147,12 @@
 
             <!--Post Date-->
             <div class="post-date hidden-xs hidden-sm">
-              <h5>Sarah</h5>
+              <h5>{{ $user->name }}</h5>
               <p class="text-grey">10/22/2016</p>
             </div><!--Post Date End-->
 
             <div class="ui card timeline">
-              <img src="http://placehold.it/1920x1280" alt="post-image" class="img-responsive post-image" />
+              <img src="https://wallpapersite.com/images/wallpapers/swiss-alps-1920x1200-mountains-town-switzerland-5k-4045.jpg" alt="post-image" class="img-responsive post-image" />
               <div class="post-container">
                 <img src="http://placehold.it/300x300" alt="user" class="profile-photo-md pull-left" />
                 <div class="post-detail">
@@ -161,8 +161,16 @@
                     <p class="text-muted">Yesterday</p>
                   </div>
                   <div class="reaction">
-                    <a class="btn text-green"><i class="icon ion-thumbsup"></i> 49</a>
-                    <a class="btn text-red"><i class="fa fa-thumbs-down"></i> 0</a>
+                    <div ng-click="post.like()" class="ui labeled mini button" tabindex="0">
+                      <div ng-class="{white: !post.liked, red: post.liked}" class="ui mini button">
+                        <i class="heart icon"></i> Like
+                      </div>
+                      <a ng-class="{white: !post.liked, red: post.liked}" class="ui basic left pointing label">
+                        @{{ post.likes }}
+                      </a>
+                    </div>
+                    {{--  <a class="btn text-green"><i class="icon ion-thumbsup"></i> 49</a>
+                    <a class="btn text-red"><i class="fa fa-thumbs-down"></i> 0</a>  --}}
                   </div>
                   <div class="line-divider"></div>
                   <div class="post-text">
@@ -193,13 +201,13 @@
 
             <!--Post Date-->
             <div class="post-date hidden-xs hidden-sm">
-              <h5>Sarah</h5>
+              <h5>{{ $user->name }}</h5>
               <p class="text-grey">10/21/2016</p>
             </div><!--Post Date End-->
 
             <div class="ui card timeline">
               <div class="post-container">
-                <img src="http://placehold.it/300x300" alt="user" class="profile-photo-md pull-left" />
+                <img src="https://wallpapersite.com/images/wallpapers/swiss-alps-1920x1200-mountains-town-switzerland-5k-4045.jpg" alt="user" class="profile-photo-md pull-left" />
                 <div class="post-detail">
                   <div class="user-info">
                     <h5><a href="timeline" class="profile-link">Sarah Cruiz</a> <span class="following">following</span></h5>
@@ -235,28 +243,28 @@
         </div>
         <div class="col-md-2 static">
           <div id="sticky-sidebar">
-            <h4 class="grey">Sarah's activity</h4>
+            <h4 class="grey">{{ $user->name }}'s activity</h4>
             <div class="feed-item">
               <div class="live-activity">
-                <p><a href="#" class="profile-link">Sarah</a> Commended on a Photo</p>
+                <p><a href="#" class="profile-link">{{ $user->name }}</a> <span class="description">commented on a photo</span></p>
                 <p class="text-muted">5 mins ago</p>
               </div>
             </div>
             <div class="feed-item">
               <div class="live-activity">
-                <p><a href="#" class="profile-link">Sarah</a> Has posted a photo</p>
+                <p><a href="#" class="profile-link">{{ $user->name }}</a> <span class="description">has posted a photo</span></p>
                 <p class="text-muted">an hour ago</p>
               </div>
             </div>
             <div class="feed-item">
               <div class="live-activity">
-                <p><a href="#" class="profile-link">Sarah</a> Liked her friend's post</p>
+                <p><a href="#" class="profile-link">{{ $user->name }}</a> <span class="description">liked her friend's post</span></p>
                 <p class="text-muted">4 hours ago</p>
               </div>
             </div>
             <div class="feed-item">
               <div class="live-activity">
-                <p><a href="#" class="profile-link">Sarah</a> has shared an album</p>
+                <p><a href="#" class="profile-link">{{ $user->name }}</a> <span class="description">has shared a video</span></p>
                 <p class="text-muted">a day ago</p>
               </div>
             </div>
