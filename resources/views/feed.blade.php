@@ -78,44 +78,39 @@
             </div>
           </div>
 
-          <div class="ui post text shape">
-            <div class="sides" style="position: relative">
-
-              {{--  Choice side  --}}
-              <div class="active main side">
-                <div class="ui steps">
-                  <a class="step" ng-click="shareWrite()">
-                    <i class="quote right blue icon"></i>
-                    <div class="content">
-                      <div class="title blue">Write</div>
-                      <div class="description">Share your thoughts</div>
-                    </div>
-                  </a>
-                  <a class="step">
-                    <i class="camera retro orange icon"></i>
-                    <div class="content">
-                      <div class="title orange">Upload</div>
-                      <div class="description">Upload an image or video</div>
-                    </div>
-                  </a>
-                  <a class="step">
-                    <i class="clone purple icon"></i>
-                    <div class="content">
-                      <div class="title purple">Share</div>
-                      <div class="description">Publish a file</div>
-                    </div>
-                  </a>
+          {{--  Choice side  --}}
+          <div class="post choice">
+            <div class="ui steps">
+              <a class="step" ng-click="shareWrite()">
+                <i class="quote right blue icon"></i>
+                <div class="content">
+                  <div class="title blue">Write</div>
+                  <div class="description">Share your thoughts</div>
                 </div>
-              </div>
-
-              <div class="write side">
-                <textarea ng-model="postContent" name="content" id="contentTextArea" cols="50" rows="2" class="form-control" placeholder="Share your thought"></textarea>
-                <button ng-click="postCreate()" class="ui mini blue button post">
-                  Publish
-                </button>
-              </div>
-
+              </a>
+              <a class="step">
+                <i class="camera retro orange icon"></i>
+                <div class="content">
+                  <div class="title orange">Upload</div>
+                  <div class="description">Upload an image or video</div>
+                </div>
+              </a>
+              <a class="step">
+                <i class="clone purple icon"></i>
+                <div class="content">
+                  <div class="title purple">Share</div>
+                  <div class="description">Publish a file</div>
+                </div>
+              </a>
             </div>
+
+          </div>
+
+          <div class="post write" style="display: none">
+            <textarea ng-model="postContent" name="content" id="contentTextArea" rows="2" class="form-control textarea" placeholder="Write your thought"></textarea>
+            <button ng-click="postCreate()" class="ui mini blue button post">
+              Publish
+            </button>
           </div>
 
           {{--  <div class="ui inverted dimmer loader-post">
@@ -243,7 +238,11 @@
                   <p><a href="timeline" class="profile-link">@{{ comment.user.name }} </a><i class="em em-laughing"></i> @{{ comment.content }} </p>
                 </div>
                 <div class="post-comment">
-                  <img ng-src="http://placehold.it/300x300" alt="" class="profile-photo-sm" />
+                  <img src="images/user-default.png" alt="" class="profile-photo-sm" />
+                  <p><a href="timeline" class="profile-link">Diana </a>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud </p>
+                </div>
+                <div class="post-comment">
+                  <img ng-src="images/user-default.png" alt="" class="profile-photo-sm" />
                   <input type="text" class="form-control" placeholder="Post a comment">
                 </div>
 

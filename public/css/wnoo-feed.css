@@ -88,10 +88,14 @@
   width: 100%;
 }
 
-.create-post.ui.segment .side > .ui.steps {
+.create-post.ui.segment .ui.steps {
   border: none;
   min-height: 90px;
   width: 100%;
+}
+
+.create-post.ui.segment {
+  min-height: 90px;
 }
 
 .create-post .image.preview {

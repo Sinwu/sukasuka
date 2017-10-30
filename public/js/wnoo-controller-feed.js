@@ -14,6 +14,9 @@ angular.module('wnoo')
       destination: 'normal'
     }
 
+    // Return if nothing to post
+    if(post.type == 'post' && !post.content) return
+
     var file = getPostMediaObject()
     showPostLoader(file != null)
 
@@ -72,9 +75,27 @@ angular.module('wnoo')
   }
 
   $scope.shareWrite = function() {
-    $('.post.shape')
-      .shape('set next side', '.write.side')
-      .shape('flip left')
+    $('.post.choice')
+      .hide()
+
+    $('.post.write')
+      .transition('fade', '500ms')
+  }
+
+  $scope.shareMedia = function() {
+    $('.post.choice')
+      .hide()
+
+    $('.post.media')
+      .transition('fade', '500ms')
+  }
+
+  $scope.shareFile = function() {
+    $('.post.choice')
+      .hide()
+
+    $('.post.file')
+      .transition('fade', '500ms')
   }
 
   function getPostMediaObject() {
