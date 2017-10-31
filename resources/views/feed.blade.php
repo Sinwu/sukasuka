@@ -284,15 +284,15 @@
                 <div class="line-divider"></div>
 
                 <div class="post-comment">
-                  <img src="images/user-default.png" alt="" class="profile-photo-sm" />
-                  <p><a href="timeline" class="profile-link">Diana </a>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud </p>
+                  <img src="images/user-default_female.png" alt="" class="profile-photo-sm" />
+                  <p><a href="timeline" class="profile-link">Diana </a> An example of comment created and published by another user. </p>
                 </div>
                 <div ng-repeat="comment in post.comments" class="post-comment">
-                  <img ng-src="images/user-default_female.png" alt="" class="profile-photo-sm" />
+                  <img ng-src="images/user-default.png" alt="" class="profile-photo-sm" />
                   <p><a href="timeline" class="profile-link">@{{ comment.user.name }} </a> @{{ comment.content }} </p>
                 </div>
                 <div class="post-comment">
-                  <img ng-src="images/user-default_female.png" alt="" class="profile-photo-sm" />
+                  <img ng-src="images/user-default.png" alt="" class="profile-photo-sm" />
                   <input ng-model="post.commentContent" type="text" class="form-control comment" placeholder="Post a comment">
                   <button ng-click="postComment(post)" class="ui mini blue button comment"> Comment </button>
                 </div>

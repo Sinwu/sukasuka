@@ -109,10 +109,10 @@
             <div class="ui card timeline">
               <img src="https://wallpapersite.com/images/wallpapers/swiss-alps-1920x1200-mountains-town-switzerland-5k-4045.jpg" alt="post-image" class="img-responsive post-image" />
               <div class="post-container">
-                <img src="http://placehold.it/300x300" alt="user" class="profile-photo-md pull-left" />
+                <img src="images/user-default.png" alt="user" class="profile-photo-md pull-left" />
                 <div class="post-detail">
                   <div class="user-info">
-                    <h5><a href="timeline" class="profile-link">Sarah Cruiz</a> <span class="following">following</span></h5>
+                    <h5><a href="timeline" class="profile-link">Sinwu</a> <span class="following">following</span></h5>
                     <p class="text-muted">Published a photo about 15 mins ago</p>
                   </div>
                   <div class="reaction">
@@ -121,19 +121,19 @@
                   </div>
                   <div class="line-divider"></div>
                   <div class="post-text">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. <i class="em em-anguished"></i> <i class="em em-anguished"></i> <i class="em em-anguished"></i></p>
+                    <p> An astonishing view from somewhere in your beautiful earth <i class="em em-anguished"></i> <i class="em em-anguished"></i> <i class="em em-anguished"></i></p>
                   </div>
                   <div class="line-divider"></div>
                   <div class="post-comment">
-                    <img src="http://placehold.it/300x300" alt="" class="profile-photo-sm" />
-                    <p><a href="timeline" class="profile-link">Diana </a><i class="em em-laughing"></i> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud </p>
+                    <img src="images/user-default_female.png" alt="" class="profile-photo-sm" />
+                    <p><a href="timeline" class="profile-link">Diana </a><i class="em em-laughing"></i> Where is it? I really want to go there. </p>
                   </div>
                   <div class="post-comment">
-                    <img src="http://placehold.it/300x300" alt="" class="profile-photo-sm" />
-                    <p><a href="timeline" class="profile-link">John</a> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud </p>
+                    <img src="images/user-default_ori.png" alt="" class="profile-photo-sm" />
+                    <p><a href="timeline" class="profile-link">John</a> Such a beautiful place  </p>
                   </div>
                   <div class="post-comment">
-                    <img src="http://placehold.it/300x300" alt="" class="profile-photo-sm" />
+                    <img src="images/user-default.png" alt="" class="profile-photo-sm" />
                     <input type="text" class="form-control" placeholder="Post a comment">
                   </div>
                 </div>
@@ -154,10 +154,10 @@
             <div class="ui card timeline">
               <img src="https://wallpapersite.com/images/wallpapers/swiss-alps-1920x1200-mountains-town-switzerland-5k-4045.jpg" alt="post-image" class="img-responsive post-image" />
               <div class="post-container">
-                <img src="http://placehold.it/300x300" alt="user" class="profile-photo-md pull-left" />
+                <img src="images/user-default.png" alt="user" class="profile-photo-md pull-left" />
                 <div class="post-detail">
                   <div class="user-info">
-                    <h5><a href="timeline" class="profile-link">Sarah Cruiz</a> <span class="following">following</span></h5>
+                    <h5><a href="timeline" class="profile-link">Sinwu</a> <span class="following">following</span></h5>
                     <p class="text-muted">Yesterday</p>
                   </div>
                   <div class="reaction">
@@ -174,19 +174,19 @@
                   </div>
                   <div class="line-divider"></div>
                   <div class="post-text">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. <i class="em em-anguished"></i> <i class="em em-anguished"></i> <i class="em em-anguished"></i></p>
+                    <p> An astonishing view from somewhere in your beautiful earth <i class="em em-anguished"></i> <i class="em em-anguished"></i> <i class="em em-anguished"></i></p>
                   </div>
                   <div class="line-divider"></div>
                   <div class="post-comment">
-                    <img src="http://placehold.it/300x300" alt="" class="profile-photo-sm" />
-                    <p><a href="timeline" class="profile-link">Diana </a><i class="em em-laughing"></i> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud </p>
+                    <img src="images/user-default_female.png" alt="" class="profile-photo-sm" />
+                    <p><a href="timeline" class="profile-link">Diana </a><i class="em em-laughing"></i> Where is it? I really want to go there. </p>
                   </div>
                   <div class="post-comment">
-                    <img src="http://placehold.it/300x300" alt="" class="profile-photo-sm" />
-                    <p><a href="timeline" class="profile-link">John</a> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud </p>
+                    <img src="images/user-default_ori.png" alt="" class="profile-photo-sm" />
+                    <p><a href="timeline" class="profile-link">John</a> Such a beautiful place  </p>
                   </div>
                   <div class="post-comment">
-                    <img src="http://placehold.it/300x300" alt="" class="profile-photo-sm" />
+                    <img src="images/user-default.png" alt="" class="profile-photo-sm" />
                     <input type="text" class="form-control" placeholder="Post a comment">
                   </div>
                 </div>
@@ -207,10 +207,10 @@
 
             <div class="ui card timeline">
               <div class="post-container">
-                <img src="https://wallpapersite.com/images/wallpapers/swiss-alps-1920x1200-mountains-town-switzerland-5k-4045.jpg" alt="user" class="profile-photo-md pull-left" />
+                <img src="images/user-default.png" alt="user" class="profile-photo-md pull-left" />
                 <div class="post-detail">
                   <div class="user-info">
-                    <h5><a href="timeline" class="profile-link">Sarah Cruiz</a> <span class="following">following</span></h5>
+                    <h5><a href="timeline" class="profile-link">Sinwu</a> <span class="following">following</span></h5>
                     <p class="text-muted">2 days ago</p>
                   </div>
                   <div class="reaction">
@@ -219,19 +219,19 @@
                   </div>
                   <div class="line-divider"></div>
                   <div class="post-text">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. <i class="em em-anguished"></i> <i class="em em-anguished"></i> <i class="em em-anguished"></i></p>
+                    <p> An astonishing view from somewhere in your beautiful earth <i class="em em-anguished"></i> <i class="em em-anguished"></i> <i class="em em-anguished"></i></p>
                   </div>
                   <div class="line-divider"></div>
                   <div class="post-comment">
-                    <img src="http://placehold.it/300x300" alt="" class="profile-photo-sm" />
-                    <p><a href="timeline" class="profile-link">Diana </a><i class="em em-laughing"></i> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud </p>
+                    <img src="images/user-default_female.png" alt="" class="profile-photo-sm" />
+                    <p><a href="timeline" class="profile-link">Diana </a><i class="em em-laughing"></i> Where is it? I really want to go there. </p>
                   </div>
                   <div class="post-comment">
                     <img src="http://placehold.it/300x300" alt="" class="profile-photo-sm" />
-                    <p><a href="timeline" class="profile-link">John</a> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud </p>
+                    <p><a href="timeline" class="profile-link">John</a> Such a beautiful place  </p>
                   </div>
                   <div class="post-comment">
-                    <img src="http://placehold.it/300x300" alt="" class="profile-photo-sm" />
+                    <img src="images/user-default.png" alt="" class="profile-photo-sm" />
                     <input type="text" class="form-control" placeholder="Post a comment">
                   </div>
                 </div>

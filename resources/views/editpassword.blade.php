@@ -37,7 +37,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index-register"><img src="images/logo.png" alt="logo" /></a>
+            <a class="navbar-brand" href="index-register"><img style="max-height: 30px; max-width: 168px;" src="images/logo.png" alt="logo" /></a>
           </div>
 
           <!-- Collect the nav links, forms, and other content for toggling -->
@@ -66,8 +66,8 @@
             <div class="row">
               <div class="col-md-3">
                 <div class="profile-info">
-                  <img src="http://placehold.it/300x300" alt="" class="img-responsive profile-photo" />
-                  <h3>Sarah Cruiz</h3>
+                  <img src="images/user-default.png" alt="" class="img-responsive profile-photo" />
+                  <h3>John Doe</h3>
                   <p class="text-muted">Creative Director</p>
                 </div>
               </div>
@@ -85,8 +85,8 @@
           <!--Timeline Menu for Small Screens-->
           <div class="navbar-mobile hidden-lg hidden-md">
             <div class="profile-info">
-              <img src="http://placehold.it/300x300" alt="" class="img-responsive profile-photo" />
-              <h4>Sarah Cruiz</h4>
+              <img src="images/user-default.png" alt="" class="img-responsive profile-photo" />
+              <h4>John Doe</h4>
               <p class="text-muted">Creative Director</p>
             </div>
             <div class="mobile-menu">

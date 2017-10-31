@@ -3,7 +3,7 @@
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="description" content="EDII Soscial Hub" />
+		<meta name="description" content="EDII Soscial   Hub" />
 		<meta name="keywords" content="Social Network, Social Media, EDII" />
 		<meta name="robots" content="index, follow" />
 		<title>EDIISH | Social Hub</title>
@@ -71,89 +71,75 @@
               <!--Registration Form Contents-->
               <div class="tab-content">
                 <div class="tab-pane" id="register">
-                  <div ng-show="registerSuccess" class="register prompt">
-                    <div class="ui icon success message">
-                      <i class="notched circle loading icon"></i>
-                      <div class="content">
-                        <div class="header">
-                          Your registration request has been received
-                        </div>
-                        <p>Please wait for moderation process, if you have any question please send and email to cms&commat;email.here or please try to login <a href="/">here</a></p>
+                  <h3>Register</h3>
+                  <p class="text-muted">Be cool and join today.</p>
+                  <div class="ui divider"></div>
+                  
+                  <!--Register Form-->
+                  <form name="registration_form" id='registration_form' ng-submit="register()"  class="form-inline">
+                    <div class="row">
+                      <div class="form-group col-xs-12">
+                        <label for="fullname" class="sr-only">Full Name</label>
+                        <input ng-model="regName" id="fullname" class="form-control input-group-lg" type="text" name="fullname" title="Enter full name" placeholder="Full Name"/>
                       </div>
                     </div>
-                  </div>
+                    <div class="row">
+                      <div class="form-group col-xs-12">
+                        <label for="email" class="sr-only">Email</label>
+                        <input ng-model="regEmail" id="email" class="form-control input-group-lg" type="email" name="Email" title="Enter Email" placeholder="Your Email" required />
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="form-group col-xs-12">
+                        <label for="password" class="sr-only">Password</label>
+                        <input ng-model="regPass" id="password" class="form-control input-group-lg" type="password" name="password" title="Enter password" placeholder="Password" required/>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="form-group col-xs-12">
+                        <label for="password-confirm" class="sr-only">Confirm Password</label>
+                        <input ng-model="regConfirm" id="password-confirm" class="form-control input-group-lg" type="password" name="password_confirmation" title="Confirm password" placeholder="Confirm Password" required/>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <p class="sub header"><strong>Gender</strong></p>
+                      <div class="form-group gender col-xs-12">
+                        <label class="radio-inline">
+                          <input ng-model="regGender" type="radio" name="optradio" value="m">Male
+                        </label>
+                        <label class="radio-inline">
+                          <input ng-model="regGender" type="radio" name="optradio" value="f">Female
+                        </label>
+                      </div>
+                    </div> 
+                    <div class="row">
+                      <p class="sub header"><strong>Date of Birth</strong></p>
+                      <div class="form-group col-sm-3 col-xs-6">
+                        <label for="month" class="sr-only"></label>
+                        <select ng-model="regBirthDate" class="form-control" id="day">
+                          <option value="Day" disabled selected>Day</option>
+                          <option ng-repeat="date in dates" value="@{{date}}">@{{ date }}</option>
+                        </select>
+                      </div>
+                      <div class="form-group col-sm-6 col-xs-12">
+                        <label for="month" class="sr-only"></label>
+                        <select ng-model="regBirthMonth" class="form-control" id="month">
+                          <option value="month" disabled selected>Month</option>
+                          <option ng-repeat="month in months" value="@{{month}}">@{{ month }}</option>
+                        </select>
+                      </div>
+                      <div class="form-group col-sm-3 col-xs-6">
+                        <label for="year" class="sr-only"></label>
+                        <select ng-model="regBirthYear" class="form-control" id="year">
+                          <option value="year" disabled selected>Year</option>
+                          <option ng-repeat="year in years()" value="@{{year}}">@{{ year }}</option>
+                        </select>
+                      </div>
+                    </div>
 
-                  <div ng-hide="registerSuccess" class="register form">
-                    <h3>Register</h3>
-                    <p class="text-muted">Be cool and join today.</p>
-                    <div class="ui divider"></div>
-                    
-                    <!--Register Form-->
-                    <form name="registration_form" id='registration_form' ng-submit="register()"  class="form-inline">
-                      <div class="row">
-                        <div class="form-group col-xs-12">
-                          <label for="fullname" class="sr-only">Full Name</label>
-                          <input ng-model="regName" id="fullname" class="form-control input-group-lg" type="text" name="fullname" title="Enter full name" placeholder="Full Name"/>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="form-group col-xs-12">
-                          <label for="email" class="sr-only">Email</label>
-                          <input ng-model="regEmail" id="email" class="form-control input-group-lg" type="email" name="Email" title="Enter Email" placeholder="Your Email" required />
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="form-group col-xs-12">
-                          <label for="password" class="sr-only">Password</label>
-                          <input ng-model="regPass" id="password" class="form-control input-group-lg" type="password" name="password" title="Enter password" placeholder="Password" required/>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="form-group col-xs-12">
-                          <label for="password-confirm" class="sr-only">Confirm Password</label>
-                          <input ng-model="regConfirm" id="password-confirm" class="form-control input-group-lg" type="password" name="password_confirmation" title="Confirm password" placeholder="Confirm Password" required/>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <p class="sub header"><strong>Gender</strong></p>
-                        <div class="form-group gender col-xs-12">
-                          <label class="radio-inline">
-                            <input ng-model="regGender" type="radio" name="optradio" value="m">Male
-                          </label>
-                          <label class="radio-inline">
-                            <input ng-model="regGender" type="radio" name="optradio" value="f">Female
-                          </label>
-                        </div>
-                      </div> 
-                      <div class="row">
-                        <p class="sub header"><strong>Date of Birth</strong></p>
-                        <div class="form-group col-sm-3 col-xs-6">
-                          <label for="month" class="sr-only"></label>
-                          <select ng-model="regBirthDate" class="form-control" id="day">
-                            <option value="Day" disabled selected>Day</option>
-                            <option ng-repeat="date in dates" value="@{{date}}">@{{ date }}</option>
-                          </select>
-                        </div>
-                        <div class="form-group col-sm-6 col-xs-12">
-                          <label for="month" class="sr-only"></label>
-                          <select ng-model="regBirthMonth" class="form-control" id="month">
-                            <option value="month" disabled selected>Month</option>
-                            <option ng-repeat="month in months" value="@{{month}}">@{{ month }}</option>
-                          </select>
-                        </div>
-                        <div class="form-group col-sm-3 col-xs-6">
-                          <label for="year" class="sr-only"></label>
-                          <select ng-model="regBirthYear" class="form-control" id="year">
-                            <option value="year" disabled selected>Year</option>
-                            <option ng-repeat="year in years()" value="@{{year}}">@{{ year }}</option>
-                          </select>
-                        </div>
-                      </div>
-
-                      <div ng-show="registerError" class="ui negative message">@{{ registerErrorMessage }}</div>
-                      <button type="submit" class="btn btn-primary" hidefocus="hidefocus">Register</button>
-                    </form><!--Register Now Form Ends-->
-                  </div>  
+                    <div ng-show="registerError" class="ui negative message">@{{ registerErrorMessage }}</div>
+                    <button type="submit" class="btn btn-primary" hidefocus="hidefocus">Register</button>
+                  </form><!--Register Now Form Ends-->
                 </div><!--Registration Form Contents Ends-->
                 
                 <!--Login-->
