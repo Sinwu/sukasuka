@@ -26,4 +26,9 @@ class TimelineController extends Controller
     {
         return view('timeline');
     }
+
+    public function about()
+    {
+        return view('about');
+    }
 }
