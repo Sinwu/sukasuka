@@ -20,8 +20,9 @@
           </div>
           <div class="col-md-9">
             <ul class="list-inline profile-menu">
-              <li><a href="feed" class="active">Feed</a></li>
-              <li><a href="timeline" class="active">Timeline</a></li>
+              <li><a href="feed">Feed</a></li>
+              <li><a href="timeline">Timeline</a></li>
+              <li><a href="Profile">Profile</a></li>
             </ul>
             <ul class="follow-me list-inline">
               <li><a href="editbasic"><button class="btn-primary">Edit Profile</button></a></li>
@@ -39,8 +40,9 @@
         </div>
         <div class="mobile-menu">
           <ul class="list-inline">
-            <li><a href="feed" class="active">Feed</a></li>
-            <li><a href="timeline" class="active">Timeline</a></li>
+            <li><a href="feed">Feed</a></li>
+            <li><a href="timeline">Timeline</a></li>
+            <li><a href="Profile">Profile</a></li>
           </ul>
           <button class="btn-primary">Edit Profile</button>
         </div>
