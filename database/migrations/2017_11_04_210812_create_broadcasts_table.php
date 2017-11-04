@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePostsTable extends Migration
+class CreateBroadcastsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +13,17 @@ class CreatePostsTable extends Migration
      */
     public function up()
     {
-        Schema::create('posts', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::create('broadcasts', function (Blueprint $table) {
+            $table->increments('id');
 
             // Foreign key 
             $table->uuid('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->uuid('wall_id')->nullable();
-            $table->foreign('wall_id')->references('id')->on('users');
+            $table->uuid('recipient_id');
+            $table->foreign('recipient_id')->references('id')->on('users');
+            $table->bigInteger('post_id');
+            $table->foreign('post_id')->references('id')->on('posts');
 
-            $table->text('content')->nullable();
-            $table->text('src')->nullable();
-            $table->string('type');
-            $table->string('destination')->nullable();
             $table->timestamps();
         });
     }
@@ -37,6 +35,6 @@ class CreatePostsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('broadcasts');
     }
 }

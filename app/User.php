@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Ramsey\Uuid\Uuid;
@@ -9,7 +10,7 @@ use Ramsey\Uuid\Exception\UnsatisfiedDependencyException;
 
 class User extends Authenticatable
 {
-	use Notifiable;
+	use HasApiTokens, Notifiable;
 
 	public $incrementing = false;
 
