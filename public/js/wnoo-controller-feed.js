@@ -100,6 +100,7 @@ angular.module('wnoo')
   $scope.clearPostWidget = function() {
     $scope.postContent = null
     $scope.image = null
+    $scope.video = null
   }
 
   $scope.cancelPost = function() {
