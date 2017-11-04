@@ -167,18 +167,18 @@
 @endsection
 
 @section('script')
-<script src="../cms_assets/js/libs/flot/jquery.flot.min.js"></script>
-<script src="../cms_assets/js/libs/flot/jquery.flot.time.min.js"></script>
-<script src="../cms_assets/js/libs/flot/jquery.flot.resize.min.js"></script>
-<script src="../cms_assets/js/libs/flot/jquery.flot.orderBars.js"></script>
-<script src="../cms_assets/js/libs/flot/jquery.flot.pie.js"></script>
-<script src="../cms_assets/js/libs/flot/curvedLines.js"></script>
-<script src="../cms_assets/js/libs/jquery-knob/jquery.knob.min.js"></script>
-<script src="../cms_assets/js/libs/sparkline/jquery.sparkline.min.js"></script>
-<script src="../cms_assets/js/libs/nanoscroller/jquery.nanoscroller.min.js"></script>
-<script src="../cms_assets/js/libs/d3/d3.min.js"></script>
-<script src="../cms_assets/js/libs/d3/d3.v3.js"></script>
-<script src="../cms_assets/js/libs/rickshaw/rickshaw.min.js"></script>
-<script src="../cms_assets/js/core/demo/Demo.js"></script>
-<script src="../cms_assets/js/core/demo/DemoDashboard.js"></script>
+<script src="cms_assets/js/libs/flot/jquery.flot.min.js"></script>
+<script src="cms_assets/js/libs/flot/jquery.flot.time.min.js"></script>
+<script src="cms_assets/js/libs/flot/jquery.flot.resize.min.js"></script>
+<script src="cms_assets/js/libs/flot/jquery.flot.orderBars.js"></script>
+<script src="cms_assets/js/libs/flot/jquery.flot.pie.js"></script>
+<script src="cms_assets/js/libs/flot/curvedLines.js"></script>
+<script src="cms_assets/js/libs/jquery-knob/jquery.knob.min.js"></script>
+<script src="cms_assets/js/libs/sparkline/jquery.sparkline.min.js"></script>
+<script src="cms_assets/js/libs/nanoscroller/jquery.nanoscroller.min.js"></script>
+<script src="cms_assets/js/libs/d3/d3.min.js"></script>
+<script src="cms_assets/js/libs/d3/d3.v3.js"></script>
+<script src="cms_assets/js/libs/rickshaw/rickshaw.min.js"></script>
+<script src="cms_assets/js/core/demo/Demo.js"></script>
+<script src="cms_assets/js/core/demo/DemoDashboard.js"></script>
 @endsection

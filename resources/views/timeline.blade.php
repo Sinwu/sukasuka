@@ -22,7 +22,7 @@
             <ul class="list-inline profile-menu">
               <li><a href="feed">Feed</a></li>
               <li><a href="timeline">Timeline</a></li>
-              <li><a href="Profile">Profile</a></li>
+              <li><a href="about">About Me</a></li>
             </ul>
             <ul class="follow-me list-inline">
               <li><a href="editbasic"><button class="btn-primary">Edit Profile</button></a></li>
@@ -42,7 +42,7 @@
           <ul class="list-inline">
             <li><a href="feed">Feed</a></li>
             <li><a href="timeline">Timeline</a></li>
-            <li><a href="Profile">Profile</a></li>
+            <li><a href="about">About Me</a></li>
           </ul>
           <button class="btn-primary">Edit Profile</button>
         </div>

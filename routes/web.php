@@ -20,13 +20,11 @@ Route::get('/feed', 'FeedController@index');
 
 Route::get('/timeline', 'TimelineController@index');
 
-Route::middleware('auth:web')->get('/editbasic',function (){
-	return view('editbasic');
-});
+Route::get('/about', 'TimelineController@about');
 
-Route::middleware('auth:web')->get('/editpassword',function (){
-	return view('editpassword');
-});
+Route::get('/editbasic', 'UserController@editbasic');
+
+Route::get('/editpassword', 'UserController@editpassword');
 
 Auth::routes();
 
@@ -37,10 +35,27 @@ Route::get('/api/post/{before}', 'PostController@index');
 
 Route::post('/api/post', 'PostController@store');
 
+// CMS Routes
 Route::get('/mod', function(){
 	return view('/mod/index');
 });
 
-Route::get('/dashboard', function(){
+Route::get('/mod/dashboard', function(){
 	return view('/mod/dashboard');
+});
+
+Route::get('/mod/shuser', function(){
+	return view('/mod/shuser');
+});
+
+Route::get('/mod/cmsuser', function(){
+	return view('/mod/cmsuser');
+});
+
+Route::get('/mod/shinterface', function(){
+	return view('/mod/shinterface');
+});
+
+Route::get('/mod/shapi', function(){
+	return view('/mod/shapi');
 });

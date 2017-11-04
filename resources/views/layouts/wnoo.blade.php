@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="css/semantic.min.css" />
     <link rel="stylesheet" href="css/emoji.css">
     <link rel="stylesheet" href="css/wnoo-feed.css">
+    <link rel="stylesheet" href="css/wnoo-timeline.css">
 
     <!-- Angular Material -->
     <link rel="stylesheet" href="css/angular-material.min.css">

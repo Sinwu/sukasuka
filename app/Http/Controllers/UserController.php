@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class TimelineController extends Controller
+class UserController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -22,13 +22,15 @@ class TimelineController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+
+    public function editbasic()
     {
-        return view('timeline');
+        return view('editbasic');
     }
 
-    public function about()
+    public function editpassword()
     {
-        return view('about');
+        return view('editpassword');
     }
+
 }
