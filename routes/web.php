@@ -38,26 +38,14 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 // CMS Routes
-Route::get('/mod', function(){
-	return view('/mod/index');
-});
+Route::prefix('mod')->group(function(){
+	Route::get('/', function(){ return view('/mod/index'); });	
+	Route::get('/dashboard', function(){ return view('/mod/dashboard'); });
 
-Route::get('/mod/dashboard', function(){
-	return view('/mod/dashboard');
-});
+	Route::get('/shuser', 'UserController@modShUser');
+	Route::get('/updateActive', 'UserController@updateActive');
 
-Route::get('/mod/shuser', function(){
-	return view('/mod/shuser');
-});
-
-Route::get('/mod/cmsuser', function(){
-	return view('/mod/cmsuser');
-});
-
-Route::get('/mod/shinterface', function(){
-	return view('/mod/shinterface');
-});
-
-Route::get('/mod/shapi', function(){
-	return view('/mod/shapi');
+	Route::get('/cmsuser', function(){ return view('/mod/cmsuser'); });
+	Route::get('/shinterface', function(){ return view('/mod/shinterface'); });
+	Route::get('/shapi', function(){ return view('/mod/shapi'); });	
 });
