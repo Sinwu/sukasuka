@@ -248,8 +248,8 @@
         <div infinite-scroll='feed.nextPage()' infinite-scroll-disabled='feed.busy' infinite-scroll-distance='2'>
           
           <div class="ui card post-content" ng-repeat="post in feed.posts">
-            <video  ng-show="post.isVideo()" class="post-video" controls><source src="videos/1.mp4" type="video/mp4"></video>
-            <img ng-show="post.isImage()" ng-src="https://cdn.wallpapersafari.com/62/47/v1xIER.jpg" alt="post-image" class="img-responsive post-image" />
+            <video  ng-show="post.isVideo()" class="post-video" controls><source ng-src="@{{post.src}}" type="video/mp4"></video>
+            <img ng-show="post.isImage()" ng-src="@{{post.src}}" alt="post-image" class="img-responsive post-image" />
             <div class="post-container">
               <img ng-src="images/user-default.png" alt="user" class="profile-photo-md pull-left" />
               <div class="post-detail">

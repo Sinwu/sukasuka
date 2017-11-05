@@ -26,12 +26,16 @@ angular.module('wnoo')
     if(file) {
       $scope.media.upload(file)
       .then(function (success) {
-        $timeout(function () {
-          post.src = success.data.result[0].name
-          file.result = success.data
-
-          $scope.postSave(post)
-        });
+        if(success.data.ok) {
+          $timeout(function () {
+            post.src = success.data.src
+            file.result = success.data
+            
+            $scope.postSave(post)
+          });
+        } else {
+          alert('Something is wrong, please try again')
+        }
       }, function (error) {
         alert('Something is wrong, please try again')
         return
@@ -136,7 +140,7 @@ angular.module('wnoo')
   }
 
   function getPostMediaObject() {
-    var hasMedia = $scope.image || false
+    var hasMedia = $scope.image || $scope.video || false
 
     if(!hasMedia) return null
     if($scope.image) return $scope.image

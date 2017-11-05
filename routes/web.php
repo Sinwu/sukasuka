@@ -29,6 +29,8 @@ Route::middleware(['auth:web', 'logged'])->group(function () {
 Route::prefix('api/internal')->middleware(['auth:web'])->group(function () {
 	Route::get('/post/{before}', 'PostController@index');
 	Route::post('/post', 'PostController@store');
+
+	Route::post('/media', 'PostController@media');
 });
 
 // Vendor's Routes

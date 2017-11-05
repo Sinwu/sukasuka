@@ -13,3 +13,5 @@ yarn-error.log
 .DS_Store
 
 /config/database.php
+/public/post-images
+/public/post-videos

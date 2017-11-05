@@ -12,9 +12,9 @@ class Post extends Model
  	* @var array
  	*/
 	protected $fillable = [
-		'content', 'type', 'destination'
-	];
-	
+		'content', 'type', 'destination', 'src'
+  ];
+    
 	public function user()
 	{
 		return $this->belongsTo('App\User');
