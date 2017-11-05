@@ -17,7 +17,7 @@ use Illuminate\Http\Request;
 //     return $request->user();
 // });
 
-Route::group(['middleware' => ['auth:api']], function () {
+Route::middleware(['auth:api'])->group(function () {
 
     // Testing Echo URL
     Route::post('/test', function (Request $request) {
@@ -25,6 +25,5 @@ Route::group(['middleware' => ['auth:api']], function () {
             'ok' => 'true'
         ]);
     });
-
 
 });

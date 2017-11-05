@@ -9,7 +9,7 @@ angular.module('wnoo')
     if (this.busy) return
     this.busy = true
 
-    var url = "api/post"
+    var url = "api/internal/post"
 
     return $http.post(url, post)
   };
