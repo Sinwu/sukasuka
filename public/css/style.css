@@ -1,6 +1,10 @@
 /*==================================================
   Custom
 ==================================================*/
+body {
+  background-color: #E6E9EC !important;
+}
+
 #wnoo-contents {
   padding-top: 0;
   background-color: #E6E9EC;

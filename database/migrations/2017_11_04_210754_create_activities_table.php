@@ -19,11 +19,11 @@ class CreateActivitiesTable extends Migration
             // Foreign key 
             $table->uuid('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->bigInteger('post_id');
+            $table->bigInteger('post_id')->nullable();
             $table->foreign('post_id')->references('id')->on('posts');
-            $table->bigInteger('comment_id');
+            $table->bigInteger('comment_id')->nullable();
             $table->foreign('comment_id')->references('id')->on('comments');
-            $table->bigInteger('like_id');
+            $table->bigInteger('like_id')->nullable();
             $table->foreign('like_id')->references('id')->on('likes');
 
             $table->string('type');

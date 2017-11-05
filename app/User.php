@@ -37,6 +37,11 @@ class User extends Authenticatable
 			return $this->hasMany('App\Post');
 	}
 
+	public function activities()
+	{
+			return $this->hasMany('App\Activity');
+	}
+
 	protected static function boot()
 	{
 		parent::boot();

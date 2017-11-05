@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Post;
+use App\Activity;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
@@ -16,7 +18,6 @@ class PostController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:web');
     }
 
     /**
@@ -73,11 +74,18 @@ class PostController extends Controller
             'destination' => $data['destination'],
         ]);
 
-        $userPost = $user->posts()->save($post);
+        DB::transaction(function () use ($user, $post) {
+            $userPost = $user->posts()->save($post);
+
+            $activity = new Activity([
+                'type' => 'posted',
+                'post_id' => $userPost->id
+            ]);
+            $user->activities()->save($activity);
+        });
 
         return response()->json([
-            'ok' => 'true',
-            'post' => $userPost
+            'ok' => 'true'
         ]);
     }
 

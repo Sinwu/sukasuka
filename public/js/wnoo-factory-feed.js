@@ -56,7 +56,7 @@ angular.module('wnoo')
     this.init = false;
     this.busy = true;
 
-    var url = `api/post/${this.after}`;
+    var url = `api/internal/post/${this.after}`;
 
     $http.get(url)
     .then(

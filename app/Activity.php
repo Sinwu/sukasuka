@@ -4,15 +4,15 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Post extends Model
+class Activity extends Model
 {
-  /**
+    /**
  	* The attributes that are mass assignable.
  	*
  	* @var array
  	*/
 	protected $fillable = [
-		'content', 'type', 'destination'
+		'post_id', 'comment_id', 'like_id', 'type'
     ];
     
     public function user()
