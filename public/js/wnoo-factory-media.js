@@ -5,11 +5,13 @@ angular.module('wnoo')
     this.busy = false
   };
 
+  var url = `api/internal/media`;
+
   Media.prototype.upload = function(file) {
     if (this.busy) return
 
     file.upload = Upload.upload({
-      url: 'https://angular-file-upload-cors-srv.appspot.com/upload',
+      url: url,
       data: {file: file},
     });
 

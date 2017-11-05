@@ -38,7 +38,6 @@ class PostController extends Controller
             })
             ->take(5)
             ->get();
-        \Log::info($posts);
 
         return response()->json([
             'ok' => 'true',
@@ -72,6 +71,7 @@ class PostController extends Controller
             'type' => $data['type'],
             'content' => $data['content'],
             'destination' => $data['destination'],
+            'src' => $data['src'] ?? null
         ]);
 
         DB::transaction(function () use ($user, $post) {
@@ -132,5 +132,44 @@ class PostController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function media(Request $request)
+    {
+        $directory = 'post-images';
+
+        $file = $request->file('file');
+        $mime = \File::mimeType($file);
+
+        $type = explode("/", $mime)[0];
+        if($type == 'video') {
+            $directory = 'post-videos';
+        }
+
+        $path = $file->store($directory);
+
+        if($path) {
+            return response()->json([
+                'ok' => true,
+                'src' => $path
+            ]);
+        } else {
+            return response()->json([
+                'ok' => false
+            ]);
+        }
+    }
+
+    protected function validator(array $data, $mime)
+    {
+        if($mime == 'image') {
+            return Validator::make($data, [
+                'file' => 'required|image|mimes:jpeg,png,jpg|max:5120'
+            ]);
+        } else {
+            return Validator::make($data, [
+                'file' => 'required|mimes:mp4,m3u8,ts,3gp,mov,avi,wmv|max:20971520'
+            ]);
+        }
     }
 }
