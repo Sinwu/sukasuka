@@ -42,11 +42,11 @@ class User extends Authenticatable
 		parent::boot();
 		
 		static::creating(function ($model) {
-				try {
-						$model->id = Uuid::uuid4()->toString();
-				} catch (UnsatisfiedDependencyException $e) {
-						abort(500, $e->getMessage());
-				}
+			try {
+					$model->id = Uuid::uuid4()->toString();
+			} catch (UnsatisfiedDependencyException $e) {
+					abort(500, $e->getMessage());
+			}
 		});
 	}
 }
