@@ -103,11 +103,30 @@ class UserController extends Controller
     public function updateActive(Request $request)
     {
         $data = $request->all();
-        $id = $data["id"];
+        $id = $data['id'];
+        $curr = $data['state'];
+
+        switch($curr){
+            case 1:
+                $next = 0;
+                break;
+            case 0:
+                $next = 1;
+                break;
+            default:
+                "Unknown current state, can't update active state.";
+        }
+
+        $user = User::where('id',$id)->first();
+        $user->active = $next;
+        $user->save();
 
         return response()->json([
             'ok' => 'true',
-            'id' => $id
+            'id' => $id,
+            'currState' => $curr,
+            'nextState' => $next,
+            'userdata' => $user
         ]);
     }
 }
