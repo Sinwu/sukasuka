@@ -30,7 +30,10 @@ class PostController extends Controller
         // Get logged user
         $user = User::find(Auth::user()->id);
         
-        $posts = Post::with('user')
+        $posts = Post::with([
+                'user',
+                'likes' => function ($q) { $q->where('liked', true); }
+            ])
             ->orderBy('created_at', 'desc')
             ->where('destination', 'normal')
             ->when($before > 0, function($query) use ($before){
@@ -41,7 +44,8 @@ class PostController extends Controller
 
         return response()->json([
             'ok' => 'true',
-            'posts' => $posts
+            'posts' => $posts,
+            'requester' => Auth::user()->id
         ]);
     }
 

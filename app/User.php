@@ -34,12 +34,12 @@ class User extends Authenticatable
 
 	public function posts()
 	{
-			return $this->hasMany('App\Post');
+		return $this->hasMany('App\Post');
 	}
 
 	public function activities()
 	{
-			return $this->hasMany('App\Activity');
+		return $this->hasMany('App\Activity');
 	}
 
 	protected static function boot()
@@ -47,11 +47,11 @@ class User extends Authenticatable
 		parent::boot();
 		
 		static::creating(function ($model) {
-				try {
-						$model->id = Uuid::uuid4()->toString();
-				} catch (UnsatisfiedDependencyException $e) {
-						abort(500, $e->getMessage());
-				}
+			try {
+				$model->id = Uuid::uuid4()->toString();
+			} catch (UnsatisfiedDependencyException $e) {
+				abort(500, $e->getMessage());
+			}
 		});
 	}
 }

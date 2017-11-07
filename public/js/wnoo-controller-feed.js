@@ -1,10 +1,9 @@
 angular.module('wnoo')
 
-.controller('FeedController', ['$scope', '$timeout', 'Feed', 'Post', 'Media', function($scope, $timeout, Feed, Post, Media) {
+.controller('FeedController', ['$scope', '$timeout', 'Post', 'Media', function($scope, $timeout, Post, Media) {
   $scope.showProgress = false
 
-  $scope.feed = new Feed()
-  $scope.post = new Post()
+  $scope.post = new Post('feed')
   $scope.media = new Media()
 
   $scope.image = null
@@ -57,7 +56,7 @@ angular.module('wnoo')
           $scope.clearPostWidget()
 
           // Reload feeds
-          $scope.feed.reload()
+          $scope.post.reload()
           setTimeout(function() {
             $(window).scroll()
           }, 500)

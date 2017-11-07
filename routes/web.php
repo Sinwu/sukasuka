@@ -27,10 +27,11 @@ Route::middleware(['auth:web', 'logged'])->group(function () {
 
 // Internal API Routes
 Route::prefix('api/internal')->middleware(['auth:web'])->group(function () {
-	Route::get('/post/{before}', 'PostController@index');
+	Route::get('/feed/{before}', 'PostController@index');
 	Route::post('/post', 'PostController@store');
 
 	Route::post('/media', 'PostController@media');
+	Route::post('/like', 'LikeController@index');
 });
 
 // Vendor's Routes

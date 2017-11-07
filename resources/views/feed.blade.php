@@ -245,9 +245,9 @@
 
         <!-- Post Content
         ================================================= -->
-        <div infinite-scroll='feed.nextPage()' infinite-scroll-disabled='feed.busy' infinite-scroll-distance='2'>
+        <div infinite-scroll='post.nextPage()' infinite-scroll-disabled='post.load' infinite-scroll-distance='2'>
           
-          <div class="ui card post-content" ng-repeat="post in feed.posts">
+          <div class="ui card post-content" ng-repeat="post in post.posts">
             <video  ng-show="post.isVideo()" class="post-video" controls><source ng-src="@{{post.src}}" type="video/mp4"></video>
             <img ng-show="post.isImage()" ng-src="@{{post.src}}" alt="post-image" class="img-responsive post-image" />
             <div class="post-container">
@@ -268,7 +268,7 @@
                   </div>  --}}
                   <div ng-click="post.like()" class="ui labeled mini button" tabindex="0">
                     <div ng-class="{white: !post.liked, red: post.liked}" class="ui mini button">
-                      <i class="heart icon"></i> Like
+                      <i class="heart icon"></i> Like@{{ post.liked ? 'd' : '' }}
                     </div>
                     <a ng-class="{white: !post.liked, red: post.liked}" class="ui basic left pointing label">
                       @{{ post.likes }}
@@ -511,13 +511,13 @@
           </div>
         </div>  --}}
 
-        <div ng-show="feed.init || (feed.busy && !feed.stop)" class="ui feed load segment">
+        <div ng-show="post.init || (post.load && !post.stop)" class="ui feed load segment">
           <div class="ui active feed text loader">
             Getting your feed
           </div>
         </div>
 
-        <div ng-show="feed.stop" class="ui feed stop segment">
+        <div ng-show="post.stop" class="ui feed stop segment">
           <h5>End of your feed</h5>
         </div>
 
@@ -530,8 +530,5 @@
 
 @section('script')
 <script src="js/ng-file-upload.min.js"></script>
-<script src="js/wnoo-factory-post.js"></script>
-<script src="js/wnoo-factory-feed.js"></script>
-<script src="js/wnoo-factory-media.js"></script>
 <script src="js/wnoo-controller-feed.js"></script>
 @endsection
