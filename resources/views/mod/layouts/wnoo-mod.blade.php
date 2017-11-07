@@ -132,7 +132,7 @@
               </a>
               <!--start submenu -->
               <ul>
-                <li><a href="/mod/shapi" ><span class="title">Internal Apps</span></a></li>
+                <li><a href="/mod/apps" ><span class="title">Internal Apps</span></a></li>
               </ul><!--end /submenu -->
             </li><!--end /menu-li -->
             <!-- END FORMS -->

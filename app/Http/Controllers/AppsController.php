@@ -38,32 +38,18 @@ class AppsController extends Controller
      */
     public function store(Request $request)
     {
-        //
         $data = $request->all();
+        $path = $request->file('icon_url')->store('icon-apps');
 
-        $directory = 'icons';
+        Apps::create(array(
+            'url'           => $data['url'],
+            'name'          => $data['name'],
+            'description'   => $data['description'],
+            'shown'         => $data['shown'],
+            'icon_url'      => $path
+        ));
 
-        $file = $request->file('file');
-        $mime = \File::mimeType($file);
-
-        $type = explode("/", $mime)[0];
-        if($type == 'video') {
-            $directory = 'post-videos';
-        }
-
-        $path = $file->store($directory);
-
-        if($path) {
-            return response()->json([
-                'ok' => true,
-                'src' => $path
-            ]);
-        } else {
-            return response()->json([
-                'ok' => false
-            ]);
-        }
-        // return redirect()->action('AppsController@index');
+        return redirect()->action('AppsController@index');
     }
 
     /**
@@ -109,5 +95,41 @@ class AppsController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function delete(Request $request)
+    {
+        $data = $request->all();
+        // dd($data);
+        $app = Apps::where('id',$data['id'])->first();
+
+        $app->delete();
+
+        return redirect()->action('AppsController@index');        
+    }
+
+    public function updShown(Request $request)
+    {
+        $data = $request->all();
+        // dd($data);
+        $id = $data['id'];
+        $curr = $data['state'];
+
+        switch($curr){
+            case 1:
+                $next = 0;
+                break;
+            case 0:
+                $next = 1;
+                break;
+            default:
+                "Unknown current state, can't update active state.";
+        }
+
+        $app = Apps::where('id',$id)->first();
+        $app->shown = $next;
+        $app->save();
+
+        return redirect()->action('AppsController@index');  
     }
 }

@@ -53,5 +53,7 @@ Route::prefix('mod')->group(function(){
 	Route::get('/cmsuser', function(){ return view('/mod/cmsuser'); });
 	
 	Route::get('/apps', 'AppsController@index');
-	Route::post('/apps', 'AppsController@store');	
+	Route::post('/apps', 'AppsController@store');
+	Route::post('/delApp', 'AppsController@delete');	
+	Route::post('/updShownApp', 'AppsController@updShown');
 });

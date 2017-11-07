@@ -41,19 +41,33 @@
                   </tr>
                 </thead>
                 <tbody>
-                  {{--  @foreach ($users as $user)
-                  {{--  <tr>  --}}
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-										<td></td>
+                  @foreach ($apps as $app)
+                  <tr>
+                    <td><img style="max-width:30px; max-height:30px;" src="{{ URL::to('/') . '/' . $app->icon_url }}" alt="appIcon"></td>
+                    <td>{{ $app->name }}</td>
+                    <td>{{ $app->description }}</td>
+                    <td><a href="{{ $app->url }}" target="_blank">{{ $app->url }}</a></td>
+										<td>
+											@if ( $app->shown == 0)
+                        <b> {{ "Disabled" }} </b>
+                      @elseif ( $app->shown == 1)
+                        <b> {{ "Enabled"}} </b>
+                      @endif
+										</td>
                     <td>
-                      <button id="actButton" type="button" class="btn ink-reaction btn-raised btn-info" data-toggle="modal" data-target="#actModal">
-                      Activate
+                      <button id="actButton" type="button" class="btn ink-reaction btn-raised btn-info" data-toggle="modal" data-target="#actModal" data-id="{{ $app->id }}" data-active="{{ $app->shown }}">
+                      @if ($app->shown == 1)
+												{{ "Disable" }}
+											@elseif ($app->shown == 0)
+												{{ "Enable" }}
+											@endif
                       </button>
+											<button id="delButton" type="button" class="btn ink-reaction btn-raised btn-danger" data-toggle="modal" data-target="#delModal" data-id="{{ $app->id }}">
+											Delete
+											</button>
                     </td>
                   </tr>
+									@endforeach
                 </tbody>
               </table>
             </div><!--end .table-responsive -->
@@ -74,17 +88,21 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="simpleModalLabel">Update Activation Status</h4>
-        <input type="hidden" id="hiddenID"></input>
+        <h4 class="modal-title" id="simpleModalLabel">Enable / Disable App</h4>
       </div>
       <div class="modal-body">
-        <p>Current activation status is <b id="currState"></b></p>
+        <p>Current status is <b id="currState"></b></p>
         <br>
-        <p>Are you sure to set this user to <b id="nextState"></b> ?</p>
+        <p>Are you sure to set this app to <b id="nextState"></b> ?</p>
       </div>
       <div class="modal-footer">
+			<form method="POST" action="/mod/updShownApp">
+				{{ csrf_field() }}
+				<input type="hidden" id="hiddenID" name="id"/>
+				<input type="hidden" id="hiddenState" name="state"/>
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-        <button id="actConf" type="button" class="btn btn-danger">Confirm</button>
+        <input type="submit" class="btn btn-danger" value="Confirm"/>
+			</form>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
@@ -102,7 +120,7 @@
       </div>
       <div class="modal-body">
 			<p>
-        <form class="form" role="form" method="POST" action="/mod/apps">
+        <form class="form" role="form" method="POST" action="/mod/apps" enctype="multipart/form-data">
 					{{ csrf_field() }}
 					<div class="form-group floating-label">
 						<input type="text" class="form-control" id="appname" required="required" name="name">
@@ -147,6 +165,30 @@
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 <!-- END CREATE MODAL MARKUP -->
+
+<!-- BEGIN DELETE MODAL MARKUP -->
+<div class="modal fade" id="delModal" tabindex="-1" role="dialog" aria-labelledby="simpleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="simpleModalLabel">Delete App</h4>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure to delete this app ??</p>
+      </div>
+      <div class="modal-footer">
+      <form method="POST" action="/mod/delApp">
+        {{ csrf_field() }}
+        <input type="hidden" id="hiddenID2" name="id"/>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <input type="submit" class="btn btn-danger" value="Confirm"/>
+      </form>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- END DELETE MODAL MARKUP -->
 @endsection
 
 @section('script')
@@ -157,5 +199,5 @@
 <script src="../cms_assets/js/core/demo/Demo.js"></script>
 <script src="../cms_assets/js/core/demo/DemoTableDynamic.js"></script>
 
-<script src="../cms_assets/js/addtional/modal/shuser.js"></script>
+<script src="../cms_assets/js/addtional/modal/shapps.js"></script>
 @endsection
