@@ -26,11 +26,12 @@ Route::middleware(['auth:api'])->group(function () {
         ]);
     });
 
-    // Testing Echo URL
-    Route::post('/test', function (Request $request) {
-        return response()->json([
-            'ok' => 'true'
-        ]);
-    });
+    Route::get('/feed/{before}', 'PostController@index');
+	Route::get('/timeline/{tID}/{before}', 'PostController@timeline');
+	Route::post('/post', 'PostController@store');
+	Route::post('/user/update', 'UserController@update');
 
+	Route::post('/media', 'PostController@media');
+	Route::post('/like', 'LikeController@index');
+	Route::post('/comment', 'CommentController@index');
 });

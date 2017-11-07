@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -67,9 +68,24 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        // Get logged user
+        $user = User::find(Auth::user()->id);
+
+        $data = $request->all();
+        \Log::Info($data);
+
+        if(isset($data['name'])) $user->name = $data['name'];
+        if(isset($data['gender'])) $user->gender = $data['gender'];
+        if(isset($data['birthday'])) $user->birthday = $data['birthday'];
+        if(isset($data['about'])) $user->about = $data['about'];
+
+        $user->save();
+
+        return response()->json([
+            'ok' => 'true'
+        ]);
     }
 
     /**

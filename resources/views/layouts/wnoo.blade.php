@@ -64,8 +64,8 @@
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="sidebar icon"></i></a>
                 <ul class="dropdown-menu newsfeed-home">
-                  <li><a href="/feed">Newsfeed</a></li>
-                  <li><a href="/timeline">My Timeline</a></li>
+                  <li><a href="/feed">Feed</a></li>
+                  <li><a href="/timeline/{{ $user->id }}">My Timeline</a></li>
                   <li>
                     <a href="{{ route('logout') }}"
                       onclick="event.preventDefault();

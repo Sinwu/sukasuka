@@ -1,6 +1,8 @@
 angular.module('wnoo')
 
 .controller('FeedController', ['$scope', '$timeout', 'Post', 'Media', function($scope, $timeout, Post, Media) {
+  $scope.userImage = $('#userImage').val()
+  $scope.userGender = $('#userGender').val()
   $scope.showProgress = false
 
   $scope.post = new Post('feed')
@@ -137,6 +139,26 @@ angular.module('wnoo')
 
     $('.post.media.video')
       .transition('show', '500ms')
+  }
+
+  $scope.getHostUserImage = function() {
+    if($scope.userImage) return $scope.userImage
+
+    if($scope.userGender == 'm') {
+      return '/images/user-default.png'
+    } else {
+      return '/images/user-default_female.png'
+    }
+  }
+
+  $scope.getUserImage = function(user) {
+    if(user.src) return user.src
+
+    if(user.gender == 'm') {
+      return '/images/user-default.png'
+    } else {
+      return '/images/user-default_female.png'
+    }
   }
 
   function getPostMediaObject() {

@@ -5,7 +5,11 @@
 }
 
 .post-date h5 {
-  margin-bottom: .2rem;
+  margin-bottom: 0;
+}
+
+.post-date .text-muted {
+  font-size: .8rem;
 }
 
 .timeline.container .post-content {

@@ -89,7 +89,7 @@
                     <div class="ui divider"></div>
                     
                     <!--Register Form-->
-                    <form name="registration_form" id='registration_form' ng-submit="register()"  class="form-inline">
+                    <form name="registration_form" id='registration_form' ng-submit="register()" class="form-inline">
                       <div class="row">
                         <div class="form-group col-xs-12">
                           <label for="fullname" class="sr-only">Full Name</label>

@@ -1,11 +1,15 @@
 @extends('layouts.wnoo')
 
 @section('content')
-<div class="edit profile container">
+<div class="edit profile container" ng-controller="EditProfileController as ctrl">
+  <input id="userName" type="hidden" value="{{ $user->name }}">
+  <input id="userGender" type="hidden" value="{{ $user->gender }}">
+  <input id="userBirthday" type="hidden" value="{{ $user->birthday }}">
+  <input id="userAbout" type="hidden" value="{{ $user->about }}">
 
   <!-- Timeline
   ================================================= -->
-  <div class="timeline">
+  <div class="edit-profile">
     <div class="timeline-cover">
 
       <!--Timeline Menu for Large Screens-->
@@ -25,7 +29,7 @@
               <li><a href="about">About Me</a></li>
             </ul>
             <ul class="follow-me list-inline">
-              <li><a href="editbasic"><button class="btn-primary">Edit Profile</button></a></li>
+              {{--  <li><a href="editbasic"><button class="btn-primary">Edit Profile</button></a></li>  --}}
             </ul>
           </div>
         </div>
@@ -61,7 +65,7 @@
                 <li><i class="icon ion-ios-locked-outline"></i><a href="editpassword">Change Password</a></li>
               </ul>
             </div>
-            <div class="col-md-7">
+            <div class="col-md-9">
 
               <!-- Basic Information
               ================================================= -->
@@ -71,149 +75,65 @@
                   <div class="line"></div>
                 </div>
                 <div class="edit-block">
-                  <form name="basic-info" id="basic-info" class="form-inline">
+                  <form name="basic-info" ng-submit="update()" id="basic-info" class="form-inline">
                     <div class="row">
                       <div class="form-group col-xs-6">
                         <label for="firstname">Fullname</label>
-                        <input id="firstname" class="form-control input-group-lg" type="text" name="fullname" title="Enter your full name" placeholder="{{ $user->name }}" />
+                        <input ng-model="name" id="firstname" class="form-control input-group-lg" type="text" name="fullname" required title="Enter your full name" />
                       </div>
                       <div class="form-group col-xs-6">
                         <label for="email">My email</label>
-                        <input id="email" class="form-control input-group-lg" type="text" name="Email" title="Enter Email" placeholder="{{ $user->email }}" />
+                        <input id="email" class="form-control input-group-lg" type="text" name="Email" title="Enter Email" value="{{ $user->email }}" disabled />
                       </div>
                     </div>
                     <div class="row">
                       <p class="custom-label"><strong>Date of Birth</strong></p>
                       <div class="form-group col-sm-3 col-xs-3">
                         <label for="month" class="sr-only"></label>
-                        <select class="form-control" id="day">
-                          <option value="Day">Day</option>
-                          <option>1</option>
-                          <option>2</option>
-                          <option>3</option>
-                          <option>4</option>
-                          <option>5</option>
-                          <option>6</option>
-                          <option>7</option>
-                          <option>8</option>
-                          <option>9</option>
-                          <option>10</option>
-                          <option>11</option>
-                          <option>12</option>
-                          <option>13</option>
-                          <option>14</option>
-                          <option>15</option>
-                          <option>16</option>
-                          <option>17</option>
-                          <option>18</option>
-                          <option selected>19</option>
-                          <option>20</option>
-                          <option>21</option>
-                          <option>22</option>
-                          <option>23</option>
-                          <option>24</option>
-                          <option>25</option>
-                          <option>26</option>
-                          <option>27</option>
-                          <option>28</option>
-                          <option>29</option>
-                          <option>30</option>
-                          <option>31</option>
+                        <select ng-model="birthDate" ng-options="d for d in dates" class="form-control">
                         </select>
                       </div>
                       <div class="form-group col-sm-6 col-xs-6">
                         <label for="month" class="sr-only"></label>
-                        <select class="form-control" id="month">
-                          <option value="month">Month</option>
-                          <option>Jan</option>
-                          <option>Feb</option>
-                          <option>Mar</option>
-                          <option>Apr</option>
-                          <option>May</option>
-                          <option>Jun</option>
-                          <option>Jul</option>
-                          <option>Aug</option>
-                          <option>Sep</option>
-                          <option>Oct</option>
-                          <option>Nov</option>
-                          <option selected>Dec</option>
+                        <select ng-model="birthMonth" ng-options="m for m in months" class="form-control">
                         </select>
                       </div>
                       <div class="form-group col-sm-3 col-xs-3">
                         <label for="year" class="sr-only"></label>
-                        <select class="form-control" id="year">
-                          <option value="year">Year</option>
-                          <option selected>2000</option>
-                          <option>2001</option>
-                          <option>2002</option>
-                          <option>2004</option>
-                          <option>2005</option>
-                          <option>2006</option>
-                          <option>2007</option>
-                          <option>2008</option>
-                          <option>2009</option>
-                          <option>2010</option>
-                          <option>2011</option>
-                          <option>2012</option>
+                        <select ng-model="birthYear" ng-options="y for y in years()" class="form-control">
                         </select>
                       </div>
                     </div>
                     <div class="form-group gender">
                       <span class="custom-label"><strong>I am a: </strong></span>
                       <label class="radio-inline">
-                        <input type="radio" name="optradio" checked>Male
+                        <input ng-model="gender" type="radio" name="optradio" value="m">Male
                       </label>
                       <label class="radio-inline">
-                        <input type="radio" name="optradio">Female
+                        <input ng-model="gender" type="radio" name="optradio" value="f">Female
                       </label>
                     </div>
                     <div class="row">
                       <div class="form-group col-xs-12">
                         <label for="my-info">About me</label>
-                        <textarea id="my-info" name="information" class="form-control" placeholder="Some texts about me" rows="4" cols="400">Some short description about myself..
-                        </textarea>
+                        <textarea ng-model="about" name="information" class="form-control" placeholder="Some texts about me" rows="4" cols="400"></textarea>
                       </div>
                     </div>                    
-                    <button class="btn btn-primary">Save Changes</button>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
                   </form>
                 </div>
               </div>
             </div>
-            <div class="col-md-2 static">
-              
-              <!--Sticky Timeline Activity Sidebar-->
-              <div id="sticky-sidebar">
-                <h4 class="grey">Sinwu's activity</h4>
-                <div class="feed-item">
-                  <div class="live-activity">
-                    <p><a href="#" class="profile-link">Sinwu</a> Commended on a Photo</p>
-                    <p class="text-muted">5 mins ago</p>
-                  </div>
-                </div>
-                <div class="feed-item">
-                  <div class="live-activity">
-                    <p><a href="#" class="profile-link">Sinwu</a> Has posted a photo</p>
-                    <p class="text-muted">an hour ago</p>
-                  </div>
-                </div>
-                <div class="feed-item">
-                  <div class="live-activity">
-                    <p><a href="#" class="profile-link">Sinwu</a> Liked her friend's post</p>
-                    <p class="text-muted">4 hours ago</p>
-                  </div>
-                </div>
-                <div class="feed-item">
-                  <div class="live-activity">
-                    <p><a href="#" class="profile-link">Sinwu</a> has shared an album</p>
-                    <p class="text-muted">a day ago</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+@endsection
+
+@section('script')
+<script src="/js/ng-file-upload.min.js"></script>
+<script src="/js/wnoo-controller-edit-profile.js"></script>
 @endsection
