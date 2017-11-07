@@ -50,7 +50,7 @@ Route::prefix('mod')->group(function(){
 	Route::get('/shuser', 'UserController@modShUser');
 	Route::get('/updateActive', 'UserController@updateActive');
 
-	Route::get('/cmsuser', function(){ return view('/mod/cmsuser'); });
+	Route::get('/cmsuser', 'UserController@modCmsUser' );
 	
 	Route::get('/apps', 'AppsController@index');
 	Route::post('/apps', 'AppsController@store');
