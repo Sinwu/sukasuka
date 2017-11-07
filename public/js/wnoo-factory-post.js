@@ -1,7 +1,8 @@
 angular.module('wnoo')
 
 .factory('Post', ['$http', 'Like', 'Comment', function($http, Like, Comment) {
-  var Post = function(type) {
+  var Post = function(type, tID) {
+    this.tID = tID
     this.type = type
     this.after = 0;
     this.posts = [];
@@ -27,7 +28,7 @@ angular.module('wnoo')
     if (this.busy) return
     this.busy = true
 
-    var url = "api/internal/post"
+    var url = "/api/internal/post"
 
     return $http.post(url, post)
   };
@@ -37,7 +38,7 @@ angular.module('wnoo')
     this.init = false;
     this.load = true;
 
-    var url = `api/internal/${this.type}/${this.after}`;
+    var url = `/api/internal/${this.type}/${this.after}`;
 
     $http.get(url)
     .then(
@@ -65,13 +66,75 @@ angular.module('wnoo')
         }
         
         this.after = this.posts[this.posts.length - 1].id;
-        if(this.posts.length < 5) this.stop = true
+        if(posts.length < 5) this.stop = true
         this.load = false;
       }.bind(this),
       function(error) {
       }
     );
   };
+
+  Post.prototype.nextTimelinePage = function() {
+    if (this.load || this.stop) return;
+    this.init = false;
+    this.load = true;
+
+    var url = `/api/internal/${this.type}/${this.tID}/${this.after}`;
+
+    $http.get(url)
+    .then(
+      function(success) {
+        var posts = success.data.posts;
+
+        if(posts.length < 1) {
+          this.stop = true
+          return
+        }
+        
+        for (var i = 0; i < posts.length; i++) {
+          // Define functions
+          posts[i].isPost = getType(posts[i].type, 'post')
+          posts[i].isImage = getType(posts[i].type, 'image')
+          posts[i].isVideo = getType(posts[i].type, 'video')
+          
+          posts[i].like = postLike(posts[i])
+          posts[i].liked = isLiked(posts[i].likes, success.data.requester)
+          posts[i].likes = posts[i].likes.length
+          
+          posts[i].comment = postComment(posts[i])
+
+          // Different
+          organizeTimeline(this.posts, posts[i])
+          // this.posts.push(posts[i]);
+        }
+        
+        this.after = this.posts[this.posts.length - 1].posts[this.posts[this.posts.length - 1].posts.length - 1].id;
+        if(posts.length < 5) this.stop = true
+        this.load = false;
+      }.bind(this),
+      function(error) {
+      }
+    );
+  };
+
+  var organizeTimeline = function(posts, post) {
+    var postDate = new Date(post.created_at)
+    var postDateFormatted = `${postDate.getDate()}-${postDate.getMonth() + 1}-${postDate.getFullYear()}`
+
+    var found = posts.find(function(p) { return p.dateString == postDateFormatted })
+    if(found) {
+      found.posts.push(post)
+    } else {
+      var tl = {
+        dateString: postDateFormatted,
+        posts: [
+          post
+        ]
+      }
+
+      posts.push(tl)
+    }
+  }
 
   var isLiked = function(likes, user) {
     var found = likes.find(function(l) { return l.user_id == user })

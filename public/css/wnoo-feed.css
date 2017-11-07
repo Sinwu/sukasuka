@@ -4,6 +4,15 @@
   margin-top: 2.5rem;
 }
 
+.post-date h5 {
+  margin-bottom: .2rem;
+}
+
+.timeline.container .post-content {
+  background-color: #E6E9EC;
+  border: none;
+}
+
 #uploadProgress {
   margin: 2.5rem 1rem 1rem 1rem;
 }

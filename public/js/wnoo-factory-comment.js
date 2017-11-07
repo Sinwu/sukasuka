@@ -5,7 +5,7 @@ angular.module('wnoo')
     this.busy = false
   };
 
-  var url = `api/internal/comment`;
+  var url = `/api/internal/comment`;
 
   Comment.prototype.send = function(post, content) {
     if (this.busy) return

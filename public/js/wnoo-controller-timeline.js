@@ -1,9 +1,10 @@
 angular.module('wnoo')
 
 .controller('TimelineController', ['$scope', '$timeout', 'Post', 'Media', function($scope, $timeout, Post, Media) {
+  $scope.pageID = $('#pageID').val()
   $scope.showProgress = false
 
-  $scope.post = new Post('feed')
+  $scope.post = new Post('timeline', $scope.pageID)
   $scope.media = new Media()
 
   $scope.image = null

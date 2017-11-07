@@ -51,6 +51,37 @@ class PostController extends Controller
     }
 
     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function timeline($tID, $before)
+    {
+        // Get logged user
+        $tUser = User::find($tID);
+        
+        $posts = Post::with([
+                'user',
+                'comments', 'comments.user',
+                'likes' => function ($q) { $q->where('liked', true); }
+            ])
+            ->orderBy('created_at', 'desc')
+            ->where('destination', 'normal')
+            ->where('user_id', $tID)
+            ->when($before > 0, function($query) use ($before){
+                return $query->where('id', '<', $before);
+            })
+            ->take(5)
+            ->get();
+
+        return response()->json([
+            'ok' => 'true',
+            'posts' => $posts,
+            'requester' => Auth::user()->id
+        ]);
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
