@@ -50,6 +50,7 @@ Route::prefix('mod')->group(function(){
 	Route::get('/updateActive', 'UserController@updateActive');
 
 	Route::get('/cmsuser', function(){ return view('/mod/cmsuser'); });
-	Route::get('/shinterface', function(){ return view('/mod/shinterface'); });
-	Route::get('/shapi', function(){ return view('/mod/shapi'); });	
+	
+	Route::get('/apps', 'AppsController@index');
+	Route::post('/apps', 'AppsController@store');	
 });

@@ -52,7 +52,7 @@
 				</div>
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="headerbar-right">
-					<ul class="header-nav header-nav-options">
+					{{--  <ul class="header-nav header-nav-options">
 						<li class="dropdown hidden-xs">
 							<a href="javascript:void(0);" class="btn btn-icon-toggle btn-default" data-toggle="dropdown">
 								<i class="fa fa-bell"></i><sup class="badge style-danger">!</sup>
@@ -68,7 +68,7 @@
 								</li>
 							</ul><!--end .dropdown-menu -->
 						</li><!--end .dropdown -->
-					</ul><!--end .header-nav-options -->
+					</ul><!--end .header-nav-options -->  --}}
 					<ul class="header-nav header-nav-profile">
 						<li class="dropdown">
 							<a href="javascript:void(0);" class="dropdown-toggle ink-reaction" data-toggle="dropdown">

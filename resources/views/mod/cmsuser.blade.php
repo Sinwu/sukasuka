@@ -52,7 +52,7 @@
                       <button id="actButton" type="button" class="btn ink-reaction btn-raised btn-info" data-toggle="modal" data-target="#actModal" data-id="{{ $user->id }}" data-active="{{ $user->active }}">
                       Activate
                       </button>
-                       @elseif ( $user->active == '1')
+                      @elseif ( $user->active == '1')
                       <button id="actButton" type="button" class="btn ink-reaction btn-raised btn-info" data-toggle="modal" data-target="#actModal" data-id="{{ $user->id }}" data-active="{{ $user->active }}">
                       De-Activate
                       </button>

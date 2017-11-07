@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Apps;
 use Illuminate\Http\Request;
 
 class AppsController extends Controller
@@ -14,6 +15,9 @@ class AppsController extends Controller
     public function index()
     {
         //
+        $apps = Apps::all();
+        
+        return view('mod.shapi',['apps' => $apps]);
     }
 
     /**
@@ -35,6 +39,31 @@ class AppsController extends Controller
     public function store(Request $request)
     {
         //
+        $data = $request->all();
+
+        $directory = 'icons';
+
+        $file = $request->file('file');
+        $mime = \File::mimeType($file);
+
+        $type = explode("/", $mime)[0];
+        if($type == 'video') {
+            $directory = 'post-videos';
+        }
+
+        $path = $file->store($directory);
+
+        if($path) {
+            return response()->json([
+                'ok' => true,
+                'src' => $path
+            ]);
+        } else {
+            return response()->json([
+                'ok' => false
+            ]);
+        }
+        // return redirect()->action('AppsController@index');
     }
 
     /**

@@ -19,6 +19,7 @@ class CreateAppsTable extends Migration
             $table->string('name');
             $table->string('description');
             $table->string('icon_url');
+            $table->boolean('shown');
             $table->timestamps();
         });
     }

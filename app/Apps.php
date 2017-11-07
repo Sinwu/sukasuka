@@ -12,7 +12,7 @@ class Apps extends Model
  	* @var array
  	*/
 	protected $fillable = [
-		'url', 'icon_url', 'name', 'description'
+		'url', 'icon_url', 'name', 'description','shown'
     ];
     
 }

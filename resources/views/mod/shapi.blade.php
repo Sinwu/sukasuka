@@ -13,53 +13,47 @@
   <div id="content">
     <section class="style-default-bright">
       <div class="section-header">
-        <h2 class="text-primary">Social Hub User</h2>
+        <h2 class="text-primary">Internal Application</h2>
       </div>
       <div class="section-body">
 
         <!-- BEGIN DATATABLE 1 -->
         <div class="row">
           <div class="col-md-12">
-            <p>You can manage social hub user data and approve new registration on this page.</p>
+            <p>You can manage internal application shown on the newsfeed page here.</p>
           </div><!--end .col -->
+					<div class="col-md-12">
+						<button id="createButton" type="button" class="btn ink-reaction btn-raised btn-primary" data-toggle="modal" data-target="#createModal">
+						Add New Internal App
+						</button>
+					</div>
           <div class="col-lg-12">
             <div class="table-responsive">
               <table id="datatable1" class="table table-striped table-hover">
                 <thead>
                   <tr>
-                    <th>Fullname</th>
-                    <th>Email</th>
-                    <th>Birthday</th>
-                    <th>Status</th>
+                    <th>Icon</th>
+                    <th>App Name</th>
+                    <th>App Description</th>
+                    <th>App Url</th>
+										<th>Status</th>
                     <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
                   {{--  @foreach ($users as $user)
-                  <tr>
-                    <td>{{ $user->name }}</td>
-                    <td>{{ $user->email }}</td>
-                    <td>{{ $user->birthday }}</td>
+                  {{--  <tr>  --}}
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+										<td></td>
                     <td>
-                      @if ( $user->active == 0)
-                        <b> {{ "Not Active" }} </b>
-                      @elseif ( $user->active == 1)
-                        <b> {{ "Active"}} </b>
-                      @endif
-                    </td>
-                    <td>
-                      @if ( $user->active == '0')
-                      <button id="actButton" type="button" class="btn ink-reaction btn-raised btn-info" data-toggle="modal" data-target="#actModal" data-id="{{ $user->id }}" data-active="{{ $user->active }}">
+                      <button id="actButton" type="button" class="btn ink-reaction btn-raised btn-info" data-toggle="modal" data-target="#actModal">
                       Activate
                       </button>
-                       @elseif ( $user->active == '1')
-                      <button id="actButton" type="button" class="btn ink-reaction btn-raised btn-info" data-toggle="modal" data-target="#actModal" data-id="{{ $user->id }}" data-active="{{ $user->active }}">
-                      De-Activate
-                      </button>
-                      @endif
                     </td>
                   </tr>
-                  @endforeach  --}}
                 </tbody>
               </table>
             </div><!--end .table-responsive -->
@@ -96,6 +90,63 @@
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 <!-- END SIMPLE MODAL MARKUP -->
+
+<!-- BEGIN CREATE MODAL MARKUP -->
+<div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="simpleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="simpleModalLabel">Create New Internal Apps</h4>
+        <input type="hidden" id="hiddenID"></input>
+      </div>
+      <div class="modal-body">
+			<p>
+        <form class="form" role="form" method="POST" action="/mod/apps">
+					{{ csrf_field() }}
+					<div class="form-group floating-label">
+						<input type="text" class="form-control" id="appname" required="required" name="name">
+						<label for="appname">App Name</label>
+					</div>
+					<div class="form-group floating-label">
+						<input type="text" class="form-control" id="appdesc" required="required" name="description">
+						<label for="appdesc">App Description</label>
+					</div>
+					<div class="form-group floating-label">
+						<input type="text" class="form-control" id="appurl" required="required" name="url">
+						<label for="appurl">App Url</label>
+						<p class="help-block">ex: http://your-internal-application.com</p>
+					</div>
+					<div class="form-group floating-label">
+						<div class="row">
+							<div class="col-md-12">
+								<label class="radio-inline radio-styled">
+									<input type="radio" name="shown" value="1"><span>Enable</span>
+								</label>
+								<label class="radio-inline radio-styled">
+									<input type="radio" name="shown" value="0"><span>Disable</span>
+								</label>
+							</div>
+						</div>
+					</div>
+					<div class="form-group floating-label">
+						<label for="file_url">Upload Icon</label>
+						<input type="file" class="form-control" name="icon_url" id="file_url" required="required">
+						<p class="help-block">Max file size is 5MB</p>
+					</div>
+				
+			</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <input type="submit" class="btn btn-primary" value="Submit"/>
+      </div>
+				</form>
+
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- END CREATE MODAL MARKUP -->
 @endsection
 
 @section('script')
