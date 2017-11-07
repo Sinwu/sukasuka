@@ -120,6 +120,7 @@
     <script src="js/ng-file-upload.min.js"></script>
     <script src="js/wnoo-factory-post.js"></script>
     <script src="js/wnoo-factory-media.js"></script>
+    <script src="js/wnoo-factory-comment.js"></script>
     <script src="js/wnoo-factory-like.js"></script>
     @yield('script')
     

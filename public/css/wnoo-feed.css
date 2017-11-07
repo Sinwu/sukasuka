@@ -4,6 +4,21 @@
   margin-top: 2.5rem;
 }
 
+#uploadProgress {
+  margin: 2.5rem 1rem 1rem 1rem;
+}
+
+#uploadProgress div.progress {
+  margin-top: -.6rem;
+  background: none;
+}
+
+h5.prgrs.label {
+  margin-top: 0;
+  color: black;
+  font-size: 1rem;
+}
+
 .user-info h5 {
   margin-bottom: 5px;
 }

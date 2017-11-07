@@ -16,13 +16,9 @@ angular.module('wnoo')
       liked: post.liked
     }
 
-    console.log(like)
-
-    return $http.post(url, like)
+    $http.post(url, like)
     .then(
       function(success){
-        console.log(success)
-
         if(success.data.liked) {
           post.likes++
         } else {

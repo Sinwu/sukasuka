@@ -1,6 +1,6 @@
 angular.module('wnoo')
 
-.factory('Post', ['$http', 'Like', function($http, Like) {
+.factory('Post', ['$http', 'Like', 'Comment', function($http, Like, Comment) {
   var Post = function(type) {
     this.type = type
     this.after = 0;
@@ -13,6 +13,7 @@ angular.module('wnoo')
   };
 
   var likeFactory = new Like()
+  var commentFactory = new Comment()
 
   Post.prototype.reload = function() {
     this.after = 0;
@@ -58,7 +59,6 @@ angular.module('wnoo')
           posts[i].liked = isLiked(posts[i].likes, success.data.requester)
           posts[i].likes = posts[i].likes.length
           
-          posts[i].comments = []
           posts[i].comment = postComment(posts[i])
 
           this.posts.push(posts[i]);
@@ -86,14 +86,8 @@ angular.module('wnoo')
 
   var postComment = function(post) {
     return function(content) {
-      var c = {
-        user: {
-          name: 'Stevie'
-        },
-        content: content
-      }
-
-      post.comments.push(c)
+      if(!content) return
+      commentFactory.send(post, content)
     }
   }
 

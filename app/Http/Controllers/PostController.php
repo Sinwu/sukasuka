@@ -32,6 +32,7 @@ class PostController extends Controller
         
         $posts = Post::with([
                 'user',
+                'comments', 'comments.user',
                 'likes' => function ($q) { $q->where('liked', true); }
             ])
             ->orderBy('created_at', 'desc')

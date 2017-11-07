@@ -32,6 +32,7 @@ Route::prefix('api/internal')->middleware(['auth:web'])->group(function () {
 
 	Route::post('/media', 'PostController@media');
 	Route::post('/like', 'LikeController@index');
+	Route::post('/comment', 'CommentController@index');
 });
 
 // Vendor's Routes
