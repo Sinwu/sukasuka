@@ -19,7 +19,7 @@ Route::middleware('guest')->get('/', function () {
 // Page Routes
 Route::middleware(['auth:web', 'logged'])->group(function () {	
 	Route::get('/feed', 'FeedController@index');
-	Route::get('/timeline', 'TimelineController@index');
+	Route::get('/timeline/{id}', 'TimelineController@index');
 	Route::get('/about', 'TimelineController@about');
 	Route::get('/editbasic', 'UserController@editbasic');
 	Route::get('/editpassword', 'UserController@editpassword');
@@ -27,10 +27,12 @@ Route::middleware(['auth:web', 'logged'])->group(function () {
 
 // Internal API Routes
 Route::prefix('api/internal')->middleware(['auth:web'])->group(function () {
-	Route::get('/post/{before}', 'PostController@index');
+	Route::get('/feed/{before}', 'PostController@index');
 	Route::post('/post', 'PostController@store');
 
 	Route::post('/media', 'PostController@media');
+	Route::post('/like', 'LikeController@index');
+	Route::post('/comment', 'CommentController@index');
 });
 
 // Vendor's Routes

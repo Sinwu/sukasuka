@@ -1,10 +1,9 @@
 angular.module('wnoo')
 
-.controller('FeedController', ['$scope', '$timeout', 'Feed', 'Post', 'Media', function($scope, $timeout, Feed, Post, Media) {
+.controller('FeedController', ['$scope', '$timeout', 'Post', 'Media', function($scope, $timeout, Post, Media) {
   $scope.showProgress = false
 
-  $scope.feed = new Feed()
-  $scope.post = new Post()
+  $scope.post = new Post('feed')
   $scope.media = new Media()
 
   $scope.image = null
@@ -31,6 +30,8 @@ angular.module('wnoo')
             post.src = success.data.src
             file.result = success.data
             
+            // Switch loader
+            $scope.showProgress = false
             $scope.postSave(post)
           });
         } else {
@@ -40,7 +41,8 @@ angular.module('wnoo')
         alert('Something is wrong, please try again')
         return
       }, function (evt) {
-        file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+        $scope.uploadProgress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+        $('#uploadProgress').progress({ percent: $scope.uploadProgress });
       })
     } else {
       $scope.postSave(post)
@@ -57,7 +59,7 @@ angular.module('wnoo')
           $scope.clearPostWidget()
 
           // Reload feeds
-          $scope.feed.reload()
+          $scope.post.reload()
           setTimeout(function() {
             $(window).scroll()
           }, 500)
@@ -96,9 +98,7 @@ angular.module('wnoo')
 
   $scope.postComment = function(post) {
     if(!post || !post.commentContent) return
-
     post.comment(post.commentContent)
-    post.commentContent = null
   }
 
   $scope.clearPostWidget = function() {
@@ -115,28 +115,28 @@ angular.module('wnoo')
     $('.post.media.video').transition('hide')
 
     $('.post.choice')
-      .transition('fade', '0ms')
+      .transition('show', '0ms')
   }
 
   $scope.shareWrite = function() {
     $('.post.choice').transition('hide')
 
     $('.post.write')
-      .transition('fade', '500ms')
+      .transition('show', '500ms')
   }
 
   $scope.shareMediaImage = function() {
     $('.post.choice').transition('hide')
 
     $('.post.media.image')
-      .transition('fade', '500ms')
+      .transition('show', '500ms')
   }
 
   $scope.shareMediaVideo = function() {
     $('.post.choice').transition('hide')
 
     $('.post.media.video')
-      .transition('fade', '500ms')
+      .transition('show', '500ms')
   }
 
   function getPostMediaObject() {
@@ -157,11 +157,17 @@ angular.module('wnoo')
 
   function showPostLoader(isFile) {
     $('.loader-post').addClass('active')
+    if(isFile) {
+      $('#uploadProgress').progress();
+      $scope.uploadProgress = 0;
+    }
+
     $scope.showProgress = isFile
   }
 
   function hidePostLoader() {
     $('.loader-post').removeClass('active')
+    $scope.uploadProgress = 0;
     $scope.post.busy = false;
   }
   

@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Activity extends Model
+class Comment extends Model
 {
   /**
  	* The attributes that are mass assignable.
@@ -12,11 +12,16 @@ class Activity extends Model
  	* @var array
  	*/
 	protected $fillable = [
-		'post_id', 'comment_id', 'like_id', 'type'
+		'user_id', 'post_id', 'content'
   ];
-    
+
   public function user()
+  {
+    return $this->belongsTo('App\User');
+  }
+    
+  public function post()
 	{
-		return $this->belongsTo('App\User');
+		return $this->belongsTo('App\Post');
 	}
 }

@@ -12,16 +12,9 @@
 
           <div class="profile-card">
             <img src="images/user-default.png" alt="user" class="profile-photo" />
-            <h5><a href="timeline" class="text-white">{{ $user->name }}</a></h5>
+            <h5><a href="timeline/{{ $user->id }}" class="text-white">{{ $user->name }}</a></h5>
             <p class="text-white">Administrator</p>
           </div><!--profile card ends-->
-
-          {{--  <div class="ui card">
-            <ul class="nav-news-feed">
-              <li><i class="icon ion-ios-paper"></i><div><a href="timeline">My Timeline</a></div></li>
-              <li><i class="icon ion-ios-paper"></i><div><a href="#">Profile</a></div></li>
-            </ul><!--news-feed links ends-->
-          </div>  --}}
 
           <div class="ui card internal">
             <h4 class="grey">Internal Applications</h4>
@@ -67,11 +60,12 @@
           {{--  Loader  --}}
           <div class="ui inverted dimmer loader-post">
             <div ng-show="showProgress">
-              <h5 class="Uploading your post"></h5>
-              <div class="ui teal progress loader-progress">
-                <div class="bar"></div>
-                <div class="label"><span class="counter"></span>22%</div>
+              <div class="ui blue progress" id="uploadProgress">
+                <div class="bar">
+                  <div class="progress"></div>
+                </div>
               </div>
+              <h5 class="prgrs label">Uploading your files</h5>
             </div>
             <div ng-hide="showProgress">
               <div class="ui text loader">Posting</div>
@@ -90,7 +84,7 @@
                   </div>
                 </a>
                 <a class="step" href="#" ngf-select="postMediaImage($file)" ng-model="image" name="image" ngf-pattern="'image/*'"
-                  ngf-accept="'image/*'" ngf-max-size="5MB" ngf-min-height="100"
+                  ngf-accept="'image/*'" ngf-max-size="5MB"
                   ngf-model-invalid="errorImage">
                   <i class="camera retro orange icon"></i>
                   <div class="content">
@@ -245,37 +239,28 @@
 
         <!-- Post Content
         ================================================= -->
-        <div infinite-scroll='feed.nextPage()' infinite-scroll-disabled='feed.busy' infinite-scroll-distance='2'>
+        <div infinite-scroll='post.nextPage()' infinite-scroll-disabled='post.load' infinite-scroll-distance='2'>
           
-          <div class="ui card post-content" ng-repeat="post in feed.posts">
+          <div class="ui card post-content" ng-repeat="post in post.posts">
             <video  ng-show="post.isVideo()" class="post-video" controls><source ng-src="@{{post.src}}" type="video/mp4"></video>
             <img ng-show="post.isImage()" ng-src="@{{post.src}}" alt="post-image" class="img-responsive post-image" />
             <div class="post-container">
               <img ng-src="images/user-default.png" alt="user" class="profile-photo-md pull-left" />
               <div class="post-detail">
+
                 <div class="user-info">
-                  <h5><a href="timeline" class="profile-link">@{{ post.user.name }}</a></h5>
+                  <h5><a href="/timeline/@{{ post.user.id }}" class="profile-link">@{{ post.user.name }}</a></h5>
                   <p class="text-muted">Published @{{post.type == 'image' ? 'an' : 'a'}} @{{ post.type }} about 3 mins ago</p>
                 </div>
                 <div class="reaction">
-                  {{--  <div class="ui labeled mini button" tabindex="0">
-                    <div class="ui orange mini active button">
-                      <i class="comments icon"></i> Comment
-                    </div>
-                    <a class="ui basic orange left pointing label">
-                      2
-                    </a>
-                  </div>  --}}
                   <div ng-click="post.like()" class="ui labeled mini button" tabindex="0">
                     <div ng-class="{white: !post.liked, red: post.liked}" class="ui mini button">
-                      <i class="heart icon"></i> Like
+                      <i class="heart icon"></i> Like@{{ post.liked ? 'd' : '' }}
                     </div>
                     <a ng-class="{white: !post.liked, red: post.liked}" class="ui basic left pointing label">
                       @{{ post.likes }}
                     </a>
                   </div>
-                  {{--  <a class="btn text-green"><i class="ui icon blue user"></i> 13</a>  --}}
-                  {{--  <a class="btn text-red"><i class="fa fa-thumbs-down"></i> 0</a>  --}}
                 </div>
                 <div class="line-divider"></div>
                 <div class="post-text">
@@ -283,18 +268,14 @@
                 </div>
                 <div class="line-divider"></div>
 
-                <div class="post-comment">
-                  <img src="images/user-default_female.png" alt="" class="profile-photo-sm" />
-                  <p><a href="timeline" class="profile-link">Diana </a> An example of comment created and published by another user. </p>
-                </div>
                 <div ng-repeat="comment in post.comments" class="post-comment">
                   <img ng-src="images/user-default.png" alt="" class="profile-photo-sm" />
-                  <p><a href="timeline" class="profile-link">@{{ comment.user.name }} </a> @{{ comment.content }} </p>
+                  <p><a href="/timeline/@{{ comment.user.id }}" class="profile-link">@{{ comment.user.name }} </a> @{{ comment.content }} </p>
                 </div>
                 <div class="post-comment">
                   <img ng-src="images/user-default.png" alt="" class="profile-photo-sm" />
-                  <input ng-model="post.commentContent" type="text" class="form-control comment" placeholder="Post a comment">
-                  <button ng-click="postComment(post)" class="ui mini blue button comment"> Comment </button>
+                  <input ng-disabled="post.busy" ng-model="post.commentContent" type="text" class="form-control comment" placeholder="Post a comment">
+                  <button ng-disabled="post.busy" ng-click="postComment(post)" class="ui mini blue button comment"> Comment </button>
                 </div>
 
               </div>
@@ -511,13 +492,13 @@
           </div>
         </div>  --}}
 
-        <div ng-show="feed.init || (feed.busy && !feed.stop)" class="ui feed load segment">
+        <div ng-show="post.init || (post.load && !post.stop)" class="ui feed load segment">
           <div class="ui active feed text loader">
             Getting your feed
           </div>
         </div>
 
-        <div ng-show="feed.stop" class="ui feed stop segment">
+        <div ng-show="post.stop" class="ui feed stop segment">
           <h5>End of your feed</h5>
         </div>
 
@@ -529,9 +510,6 @@
 @endsection
 
 @section('script')
-<script src="js/ng-file-upload.min.js"></script>
-<script src="js/wnoo-factory-post.js"></script>
-<script src="js/wnoo-factory-feed.js"></script>
-<script src="js/wnoo-factory-media.js"></script>
-<script src="js/wnoo-controller-feed.js"></script>
+<script src="/js/ng-file-upload.min.js"></script>
+<script src="/js/wnoo-controller-feed.js"></script>
 @endsection
