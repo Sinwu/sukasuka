@@ -103,7 +103,7 @@
 
             <!-- BEGIN DASHBOARD -->
             <li>
-              <a href="mod/dashboard">
+              <a href="/mod/dashboard">
                 <div class="gui-icon"><i class="md md-home"></i></div>
                 <span class="title">Dashboard</span>
               </a>
@@ -118,8 +118,8 @@
               </a>
               <!--start submenu -->
               <ul>
-                <li><a href="mod/shuser" ><span class="title">Social Hub User</span></a></li>
-                <li><a href="mod/cmsuser" ><span class="title">CMS User</span></a></li>
+                <li><a href="/mod/shuser" ><span class="title">Social Hub User</span></a></li>
+                <li><a href="/mod/cmsuser" ><span class="title">CMS User</span></a></li>
               </ul><!--end /submenu -->
             </li><!--end /menu-li -->
             <!-- END FORMS -->
@@ -132,8 +132,7 @@
               </a>
               <!--start submenu -->
               <ul>
-                <li><a href="mod/shinterface" ><span class="title">Social Hub Interface</span></a></li>
-                <li><a href="mod/shapi" ><span class="title">API Management</span></a></li>
+                <li><a href="/mod/shapi" ><span class="title">Internal Apps</span></a></li>
               </ul><!--end /submenu -->
             </li><!--end /menu-li -->
             <!-- END FORMS -->

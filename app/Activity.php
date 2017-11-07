@@ -13,10 +13,6 @@ class Activity extends Model
  	*/
 	protected $fillable = [
 		'post_id', 'comment_id', 'like_id', 'type'
-    ];
-    
-    public function user()
-	{
-		return $this->belongsTo('App\User');
-	}
+	];
+	
 }
