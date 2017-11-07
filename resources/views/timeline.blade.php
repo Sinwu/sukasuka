@@ -1,7 +1,7 @@
 @extends('layouts.wnoo')
 
 @section('content')
-<div class="timeline container">
+<div class="timeline container" ng-controller="TimelineController as ctrl">
 
   <!-- Timeline
   ================================================= -->
@@ -13,19 +13,19 @@
         <div class="row">
           <div class="col-md-3">
             <div class="profile-info">
-              <img src="images/user-default.png" alt="" class="img-responsive profile-photo" />
+              <img src="/images/user-default.png" alt="" class="img-responsive profile-photo" />
               <h3>{{ $user->name }}</h3>
               <p class="text-muted">Administrator</p>
             </div>
           </div>
           <div class="col-md-9">
             <ul class="list-inline profile-menu">
-              <li><a href="feed">Feed</a></li>
-              <li><a href="timeline">Timeline</a></li>
-              <li><a href="about">About Me</a></li>
+              <li><a href="/feed">Feed</a></li>
+              <li><a href="/timeline">Timeline</a></li>
+              <li><a href="/about">About Me</a></li>
             </ul>
             <ul class="follow-me list-inline">
-              <li><a href="editbasic"><button class="btn-primary">Edit Profile</button></a></li>
+              <li><a href="/editbasic"><button class="btn-primary">Edit Profile</button></a></li>
             </ul>
           </div>
         </div>
@@ -34,15 +34,15 @@
       <!--Timeline Menu for Small Screens-->
       <div class="navbar-mobile hidden-lg hidden-md">
         <div class="profile-info">
-          <img src="images/user-default.png" alt="" class="img-responsive profile-photo" />
+          <img src="/images/user-default.png" alt="" class="img-responsive profile-photo" />
           <h4>{{ $user->name }}</h4>
           <p class="text-muted">Creative Director</p>
         </div>
         <div class="mobile-menu">
           <ul class="list-inline">
-            <li><a href="feed">Feed</a></li>
-            <li><a href="timeline">Timeline</a></li>
-            <li><a href="about">About Me</a></li>
+            <li><a href="/feed">Feed</a></li>
+            <li><a href="/timeline">Timeline</a></li>
+            <li><a href="/about">About Me</a></li>
           </ul>
           <button class="btn-primary">Edit Profile</button>
         </div>
@@ -111,7 +111,7 @@
             <div class="ui card timeline">
               <img src="https://wallpapersite.com/images/wallpapers/swiss-alps-1920x1200-mountains-town-switzerland-5k-4045.jpg" alt="post-image" class="img-responsive post-image" />
               <div class="post-container">
-                <img src="images/user-default.png" alt="user" class="profile-photo-md pull-left" />
+                <img src="/images/user-default.png" alt="user" class="profile-photo-md pull-left" />
                 <div class="post-detail">
                   <div class="user-info">
                     <h5><a href="timeline" class="profile-link">Sinwu</a> <span class="following">following</span></h5>
@@ -279,5 +279,6 @@
 @endsection
 
 @section('script')
-<script src="js/wnoo-controller-feed.js"></script>
+<script src="/js/ng-file-upload.min.js"></script>
+<script src="/js/wnoo-controller-timeline.js"></script>
 @endsection

@@ -12,7 +12,7 @@
 
           <div class="profile-card">
             <img src="images/user-default.png" alt="user" class="profile-photo" />
-            <h5><a href="timeline" class="text-white">{{ $user->name }}</a></h5>
+            <h5><a href="timeline/{{ $user->id }}" class="text-white">{{ $user->name }}</a></h5>
             <p class="text-white">Administrator</p>
           </div><!--profile card ends-->
 
@@ -249,7 +249,7 @@
               <div class="post-detail">
 
                 <div class="user-info">
-                  <h5><a href="timeline" class="profile-link">@{{ post.user.name }}</a></h5>
+                  <h5><a href="/timeline/@{{ post.user.id }}" class="profile-link">@{{ post.user.name }}</a></h5>
                   <p class="text-muted">Published @{{post.type == 'image' ? 'an' : 'a'}} @{{ post.type }} about 3 mins ago</p>
                 </div>
                 <div class="reaction">
@@ -270,7 +270,7 @@
 
                 <div ng-repeat="comment in post.comments" class="post-comment">
                   <img ng-src="images/user-default.png" alt="" class="profile-photo-sm" />
-                  <p><a href="timeline" class="profile-link">@{{ comment.user.name }} </a> @{{ comment.content }} </p>
+                  <p><a href="/timeline/@{{ comment.user.id }}" class="profile-link">@{{ comment.user.name }} </a> @{{ comment.content }} </p>
                 </div>
                 <div class="post-comment">
                   <img ng-src="images/user-default.png" alt="" class="profile-photo-sm" />
@@ -510,6 +510,6 @@
 @endsection
 
 @section('script')
-<script src="js/ng-file-upload.min.js"></script>
-<script src="js/wnoo-controller-feed.js"></script>
+<script src="/js/ng-file-upload.min.js"></script>
+<script src="/js/wnoo-controller-feed.js"></script>
 @endsection

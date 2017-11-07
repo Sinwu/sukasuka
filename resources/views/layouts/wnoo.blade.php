@@ -15,23 +15,23 @@
 
     <!-- Stylesheets
     ================================================= -->
-		<link rel="stylesheet" href="css/bootstrap.min.css" />
-		<link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/ionicons.min.css" />
-    <link rel="stylesheet" href="css/font-awesome.min.css" />
-    <link rel="stylesheet" href="css/semantic.min.css" />
-    <link rel="stylesheet" href="css/emoji.css">
-    <link rel="stylesheet" href="css/wnoo-feed.css">
-    <link rel="stylesheet" href="css/wnoo-timeline.css">
+		<link rel="stylesheet" href="/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/ionicons.min.css" />
+    <link rel="stylesheet" href="/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="/css/semantic.min.css" />
+    <link rel="stylesheet" href="/css/emoji.css">
+    <link rel="stylesheet" href="/css/wnoo-feed.css">
+    <link rel="stylesheet" href="/css/wnoo-timeline.css">
 
     <!-- Angular Material -->
-    <link rel="stylesheet" href="css/angular-material.min.css">
+    <link rel="stylesheet" href="/css/angular-material.min.css">
     
     <!--Google Font-->
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700,700i" rel="stylesheet">
     
     <!--Favicon-->
-    <link rel="shortcut icon" type="image/png" href="images/fav.png"/>
+    <link rel="shortcut icon" type="image/png" href="/images/fav.png"/>
 	</head>
   <body ng-app="wnoo">
 
@@ -49,7 +49,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index-register"><img style="max-height: 30px; max-width: 168px;" src="images/logo.png" alt="logo" /></a>
+            <a class="navbar-brand" href="#"><img style="max-height: 30px; max-width: 168px;" src="/images/logo.png" alt="logo" /></a>
           </div>
 
           <!-- Collect the nav links, forms, and other content for toggling -->
@@ -64,8 +64,8 @@
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="sidebar icon"></i></a>
                 <ul class="dropdown-menu newsfeed-home">
-                  <li><a href="feed">Newsfeed</a></li>
-                  <li><a href="timeline">My Timeline</a></li>
+                  <li><a href="/feed">Newsfeed</a></li>
+                  <li><a href="/timeline">My Timeline</a></li>
                   <li>
                     <a href="{{ route('logout') }}"
                       onclick="event.preventDefault();
@@ -97,31 +97,31 @@
     
     <!-- Scripts
     ================================================= -->
-    <script src="js/jquery-3.1.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.sticky-kit.min.js"></script>
-    <script src="js/jquery.scrollbar.min.js"></script>
-    <script src="js/script.js"></script>
+    <script src="/js/jquery-3.1.1.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/jquery.sticky-kit.min.js"></script>
+    <script src="/js/jquery.scrollbar.min.js"></script>
+    <script src="/js/script.js"></script>
     {{--  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCTMXfmDn0VlqWIyoOxK8997L-amWbUPiQ&callback=initMap"></script>  --}}
   
 
     <!--  Semantic  -->
-    <script src="js/semantic.min.js"></script>
+    <script src="/js/semantic.min.js"></script>
 
      <!-- Angulars
     ================================================= -->
-    <script src="js/angular.min.js"></script>
+    <script src="/js/angular.min.js"></script>
 
     <!--  Infinite Scroll  -->
-    <script src="js/ng-infinite-scroll.min.js"></script>
+    <script src="/js/ng-infinite-scroll.min.js"></script>
 
     <!--  Angular Modules  -->
-    <script src="js/wnoo-app.js"></script>
-    <script src="js/ng-file-upload.min.js"></script>
-    <script src="js/wnoo-factory-post.js"></script>
-    <script src="js/wnoo-factory-media.js"></script>
-    <script src="js/wnoo-factory-comment.js"></script>
-    <script src="js/wnoo-factory-like.js"></script>
+    <script src="/js/wnoo-app.js"></script>
+    <script src="/js/ng-file-upload.min.js"></script>
+    <script src="/js/wnoo-factory-post.js"></script>
+    <script src="/js/wnoo-factory-media.js"></script>
+    <script src="/js/wnoo-factory-comment.js"></script>
+    <script src="/js/wnoo-factory-like.js"></script>
     @yield('script')
     
   </body>
