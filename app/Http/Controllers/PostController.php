@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Post;
 use App\Activity;
+use Westsworld\TimeAgo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -29,6 +30,7 @@ class PostController extends Controller
     {
         // Get logged user
         $user = User::find(Auth::user()->id);
+        $timeAgo = new TimeAgo();
         
         $posts = Post::with([
                 'user',
@@ -36,16 +38,27 @@ class PostController extends Controller
                 'likes' => function ($q) { $q->where('liked', true); }
             ])
             ->orderBy('created_at', 'desc')
-            ->where('destination', 'normal')
+            ->where(function ($query) use ($user){
+                $query->where('destination', 'normal')
+                ->orWhere(function ($query) use ($user) {
+                    $query->where('destination', 'wall')
+                        ->where('wall_id', '=', $user->id);
+                });
+            })
             ->when($before > 0, function($query) use ($before){
                 return $query->where('id', '<', $before);
             })
             ->take(5)
             ->get();
 
+        $results = array_map(function($p) use ($timeAgo) {
+            $p['timeago'] = $timeAgo->inWords($p['created_at']);
+            return $p;
+        }, $posts->toArray());
+
         return response()->json([
             'ok' => 'true',
-            'posts' => $posts,
+            'posts' => $results,
             'requester' => Auth::user()->id
         ]);
     }
@@ -59,6 +72,7 @@ class PostController extends Controller
     {
         // Get logged user
         $tUser = User::find($tID);
+        $timeAgo = new TimeAgo();
         
         $posts = Post::with([
                 'user',
@@ -66,17 +80,28 @@ class PostController extends Controller
                 'likes' => function ($q) { $q->where('liked', true); }
             ])
             ->orderBy('created_at', 'desc')
-            ->where('destination', 'normal')
-            ->where('user_id', $tID)
+            ->where(function ($query) use ($tUser){
+                $query->where('destination', 'normal')
+                ->where('user_id', $tUser->id)
+                ->orWhere(function ($query) use ($tUser) {
+                    $query->where('destination', 'wall')
+                        ->where('wall_id', '=', $tUser->id);
+                });
+            })
             ->when($before > 0, function($query) use ($before){
                 return $query->where('id', '<', $before);
             })
             ->take(5)
             ->get();
 
+        $results = array_map(function($p) use ($timeAgo) {
+            $p['timeago'] = $timeAgo->inWords($p['created_at']);
+            return $p;
+        }, $posts->toArray());
+
         return response()->json([
             'ok' => 'true',
-            'posts' => $posts,
+            'posts' => $results,
             'requester' => Auth::user()->id
         ]);
     }
@@ -103,10 +128,12 @@ class PostController extends Controller
         $user = User::find(Auth::user()->id);
         
         $data = $request->all();
+        \Log::Info($data);
         $post = new Post([
             'type' => $data['type'],
             'content' => $data['content'],
             'destination' => $data['destination'],
+            'wall_id' => $data['wallid'] ?? null,
             'src' => $data['src'] ?? null
         ]);
 
@@ -187,7 +214,7 @@ class PostController extends Controller
         if($path) {
             return response()->json([
                 'ok' => true,
-                'src' => $path
+                'src' => "/" . $path
             ]);
         } else {
             return response()->json([

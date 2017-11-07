@@ -2,6 +2,11 @@ angular.module('wnoo')
 
 .controller('TimelineController', ['$scope', '$timeout', 'Post', 'Media', function($scope, $timeout, Post, Media) {
   $scope.pageID = $('#pageID').val()
+  $scope.userID = $('#userID').val()
+  $scope.tUserImage = $('#tUserImage').val()
+  $scope.tUserGender = $('#tUserGender').val()
+  $scope.userImage = $('#userImage').val()
+  $scope.userGender = $('#userGender').val()
   $scope.showProgress = false
 
   $scope.post = new Post('timeline', $scope.pageID)
@@ -14,8 +19,11 @@ angular.module('wnoo')
     var post = {
       content: $scope.postContent,
       type: getFileTypeCategory(),
-      destination: 'normal'
+      destination: 'wall',
+      wallid: $scope.pageID
     }
+
+    console.log(post)
 
     // Return if nothing to post
     if(post.type == 'post' && !post.content) return
@@ -138,6 +146,40 @@ angular.module('wnoo')
 
     $('.post.media.video')
       .transition('show', '500ms')
+  }
+
+  $scope.selfTimeline = function () {
+    return $scope.userID == $scope.pageID
+  }
+
+  $scope.getTimelineUserImage = function() {
+    if($scope.tUserImage) return $scope.tUserImage
+
+    if($scope.tUserGender == 'm') {
+      return '/images/user-default.png'
+    } else {
+      return '/images/user-default_female.png'
+    }
+  }
+
+  $scope.getHostUserImage = function() {
+    if($scope.userImage) return $scope.userImage
+
+    if($scope.userGender == 'm') {
+      return '/images/user-default.png'
+    } else {
+      return '/images/user-default_female.png'
+    }
+  }
+
+  $scope.getUserImage = function(user) {
+    if(user.src) return user.src
+
+    if(user.gender == 'm') {
+      return '/images/user-default.png'
+    } else {
+      return '/images/user-default_female.png'
+    }
   }
 
   function getPostMediaObject() {

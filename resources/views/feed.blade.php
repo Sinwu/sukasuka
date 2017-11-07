@@ -3,6 +3,9 @@
 @section('content')
 <div id="page-contents">
   <div class="feed container" ng-controller="FeedController as ctrl">
+    <input id="userImage" type="hidden" value="{{ $user->src }}">
+    <input id="userGender" type="hidden" value="{{ $user->gender }}">
+
     <div class="row">
       <!-- Newsfeed Common Side Bar Right
       ================================================= -->
@@ -11,7 +14,7 @@
         <div class="suggestions" id="sticky-sidebar">
 
           <div class="profile-card">
-            <img src="images/user-default.png" alt="user" class="profile-photo" />
+            <img ng-src="@{{getHostUserImage()}}" alt="user" class="profile-photo" />
             <h5><a href="timeline/{{ $user->id }}" class="text-white">{{ $user->name }}</a></h5>
             <p class="text-white">Administrator</p>
           </div><!--profile card ends-->
@@ -156,86 +159,7 @@
             </div>
           </form>
 
-          {{--  <div class="ui inverted dimmer loader-post">
-            <div ng-show="showProgress">
-              <h5 class="Uploading your post"></h5>
-              <div class="ui teal progress loader-progress">
-                <div class="bar"></div>
-                <div class="label"><span class="counter"></span>22%</div>
-              </div>
-            </div>
-            <div ng-hide="showProgress">
-              <div class="ui text loader">Posting</div>
-            </div>
-          </div>
-
-          <form name="postForm">
-            <div class="row preview">
-              <div ng-show="image" class="image preview">
-                <img ngf-thumbnail="image" class="img-responsive">
-                <button class="circular ui icon mini negative button" ng-click="image = null" ng-show="image">
-                  <i class="icon close"></i>
-                </button>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-8 col-sm-8">
-                <div class="form-group">
-                  <textarea ng-model="postContent" name="texts" id="exampleTextarea" cols="50" rows="2" class="form-control" placeholder="Write what you wish"></textarea>
-                  
-                </div>
-              </div>
-              <div class="col-md-4 col-sm-4">
-                <div class="tools">
-                  <ul class="publishing-tools list-inline">
-                    <li>
-                      <a href="#" ngf-select ng-model="image" name="image" ngf-pattern="'image/*'"
-                        ngf-accept="'image/*'" ngf-max-size="5MB" ngf-min-height="100"
-                        ngf-model-invalid="errorImage">
-                        <i class="ion-images"></i>
-                      </a>
-                    </li>
-                    <li><a href="#"><i class="ion-paperclip"></i></a></li>
-                  </ul>
-                  <button ng-click="postCreate()" class="btn btn-primary pull-right">Publish</button>
-                </div>
-              </div>
-            </div>
-
-            <div class="row">
-              <div ng-show="postForm.image.$error.maxSize" class="ui negative message">
-                <span ng-show="postForm.image.$error.maxSize">Please upload an image with size below 5MB</span>
-              </div>
-            </div>
-          </form>  --}}
         </div><!-- Post Create Box End-->
-
-        {{--  <form name="myForm">
-          <fieldset>
-            <legend>Upload on form submit</legend>
-            Username:
-            <input type="text" name="userName" ng-model="username" size="31" required>
-            <i ng-show="myForm.userName.$error.required">*required</i>
-            <br>Photo:
-            <input type="file" ngf-select ng-model="picFile" name="file"    
-                  accept="image/*" ngf-max-size="2MB" required
-                  ngf-model-invalid="errorFile">
-            <i ng-show="myForm.file.$error.required">*required</i><br>
-            <i ng-show="myForm.file.$error.maxSize">File too large 
-                {{errorFile.size / 1000000|number:1}}MB: max 2M</i>
-            <img ng-show="myForm.file.$valid" ngf-thumbnail="picFile" class="thumb"> <button ng-click="picFile = null" ng-show="picFile">Remove</button>
-            <br>
-            <button ng-disabled="!myForm.$valid" 
-                    ng-click="uploadPic(picFile)">Submit</button>
-            <span class="progress" ng-show="picFile.progress >= 0">
-              <div style="width:{{picFile.progress}}%" 
-                  ng-bind="picFile.progress + '%'"></div>
-            </span>
-            <span ng-show="picFile.result">Upload Successful</span>
-            <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
-          </fieldset>
-          <br>
-        </form>  --}}
 
         <!-- Post Content
         ================================================= -->
@@ -245,12 +169,12 @@
             <video  ng-show="post.isVideo()" class="post-video" controls><source ng-src="@{{post.src}}" type="video/mp4"></video>
             <img ng-show="post.isImage()" ng-src="@{{post.src}}" alt="post-image" class="img-responsive post-image" />
             <div class="post-container">
-              <img ng-src="images/user-default.png" alt="user" class="profile-photo-md pull-left" />
+              <img ng-src="@{{getUserImage(post.user)}}" alt="user" class="profile-photo-md pull-left" />
               <div class="post-detail">
 
                 <div class="user-info">
                   <h5><a href="/timeline/@{{ post.user.id }}" class="profile-link">@{{ post.user.name }}</a></h5>
-                  <p class="text-muted">Published @{{post.type == 'image' ? 'an' : 'a'}} @{{ post.type }} about 3 mins ago</p>
+                  <p class="text-muted">Published @{{post.type == 'image' ? 'an' : 'a'}} @{{ post.type }} @{{ post.timeago }}</p>
                 </div>
                 <div class="reaction">
                   <div ng-click="post.like()" class="ui labeled mini button" tabindex="0">
@@ -269,11 +193,11 @@
                 <div class="line-divider"></div>
 
                 <div ng-repeat="comment in post.comments" class="post-comment">
-                  <img ng-src="images/user-default.png" alt="" class="profile-photo-sm" />
+                  <img ng-src="@{{getUserImage(comment.user)}}" alt="" class="profile-photo-sm" />
                   <p><a href="/timeline/@{{ comment.user.id }}" class="profile-link">@{{ comment.user.name }} </a> @{{ comment.content }} </p>
                 </div>
                 <div class="post-comment">
-                  <img ng-src="images/user-default.png" alt="" class="profile-photo-sm" />
+                  <img ng-src="@{{getHostUserImage()}}" alt="" class="profile-photo-sm" />
                   <input ng-disabled="post.busy" ng-model="post.commentContent" type="text" class="form-control comment" placeholder="Post a comment">
                   <button ng-disabled="post.busy" ng-click="postComment(post)" class="ui mini blue button comment"> Comment </button>
                 </div>

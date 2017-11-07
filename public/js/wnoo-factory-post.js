@@ -127,6 +127,7 @@ angular.module('wnoo')
     } else {
       var tl = {
         dateString: postDateFormatted,
+        timeago: post.timeago,
         posts: [
           post
         ]
