@@ -18,7 +18,7 @@ body {
   width: 100%;
 }
 
-.ui.card.post-content .button.comment {
+.post-content .button.comment {
   padding-left: .5rem;
   padding-right: .5rem;
   height: 2rem;

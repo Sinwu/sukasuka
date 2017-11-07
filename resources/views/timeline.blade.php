@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="timeline container" ng-controller="TimelineController as ctrl">
+  <input id="pageID" type="hidden" value="{{ $tUser->id }}">
 
   <!-- Timeline
   ================================================= -->
@@ -100,7 +101,59 @@
 
           <!-- Post Content
           ================================================= -->
-          <div class="post-content">
+          <div infinite-scroll='post.nextTimelinePage()' infinite-scroll-disabled='post.load' infinite-scroll-distance='2'>
+          
+            <div class="post-content" ng-repeat="time in post.posts">
+              <!--Post Date-->
+              <div class="post-date hidden-xs hidden-sm">
+                <h5>{{ $tUser->name }}</h5>
+                <p class="text-grey">@{{ time.dateString }}</p>
+              </div><!--Post Date End-->
+
+              <div class="ui card timeline" ng-repeat="post in time.posts">
+                <video  ng-show="post.isVideo()" class="post-video" controls><source ng-src="@{{post.src}}" type="video/mp4"></video>
+                <img ng-show="post.isImage()" ng-src="@{{post.src}}" alt="post-image" class="img-responsive post-image" />
+                <div class="post-container">
+                  <img ng-src="/images/user-default.png" alt="user" class="profile-photo-md pull-left" />
+                  <div class="post-detail">
+                    <div class="user-info">
+                      <h5><a href="/timeline/@{{ post.user.id }}" class="profile-link">@{{ post.user.name }}</a></h5>
+                      <p class="text-muted">Published @{{post.type == 'image' ? 'an' : 'a'}} @{{ post.type }} about 3 mins ago</p>
+                    </div>
+                    <div class="reaction">
+                      <div ng-click="post.like()" class="ui labeled mini button" tabindex="0">
+                        <div ng-class="{white: !post.liked, red: post.liked}" class="ui mini button">
+                          <i class="heart icon"></i> Like@{{ post.liked ? 'd' : '' }}
+                        </div>
+                        <a ng-class="{white: !post.liked, red: post.liked}" class="ui basic left pointing label">
+                          @{{ post.likes }}
+                        </a>
+                      </div>
+                    </div>
+                    <div class="line-divider"></div>
+                    <div class="post-text">
+                      <p> @{{ post.content }} </p>
+                    </div>
+                    <div class="line-divider"></div>
+
+                    <div ng-repeat="comment in post.comments" class="post-comment">
+                      <img ng-src="/images/user-default.png" alt="" class="profile-photo-sm" />
+                      <p><a href="/timeline/@{{ comment.user.id }}" class="profile-link">@{{ comment.user.name }} </a> @{{ comment.content }} </p>
+                    </div>
+                    <div class="post-comment">
+                      <img ng-src="/images/user-default.png" alt="" class="profile-photo-sm" />
+                      <input ng-disabled="post.busy" ng-model="post.commentContent" type="text" class="form-control comment" placeholder="Post a comment">
+                      <button ng-disabled="post.busy" ng-click="postComment(post)" class="ui mini blue button comment"> Comment </button>
+                    </div>
+                  </div>
+                </div>
+              </div><!--Post Card End-->
+
+            </div>
+          </div>
+
+
+          {{--  <div class="post-content">
 
             <!--Post Date-->
             <div class="post-date hidden-xs hidden-sm">
@@ -171,8 +224,8 @@
                         @{{ post.likes }}
                       </a>
                     </div>
-                    {{--  <a class="btn text-green"><i class="icon ion-thumbsup"></i> 49</a>
-                    <a class="btn text-red"><i class="fa fa-thumbs-down"></i> 0</a>  --}}
+                    <a class="btn text-green"><i class="icon ion-thumbsup"></i> 49</a>
+                    <a class="btn text-red"><i class="fa fa-thumbs-down"></i> 0</a>
                   </div>
                   <div class="line-divider"></div>
                   <div class="post-text">
@@ -240,6 +293,16 @@
               </div>
             </div>
 
+          </div>  --}}
+
+          <div ng-show="post.init || (post.load && !post.stop)" class="ui feed load segment">
+            <div class="ui active feed text loader">
+              Getting timeline
+            </div>
+          </div>
+
+          <div ng-show="post.stop" class="ui feed stop segment">
+            <h5>End of timeline</h5>
           </div>
 
         </div>

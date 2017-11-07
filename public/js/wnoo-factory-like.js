@@ -5,7 +5,7 @@ angular.module('wnoo')
     this.busy = false
   };
 
-  var url = `api/internal/like`;
+  var url = `/api/internal/like`;
 
   Like.prototype.send = function(post) {
     if (this.busy) return
