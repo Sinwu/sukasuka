@@ -26,4 +26,11 @@ Route::middleware(['auth:api'])->group(function () {
         ]);
     });
 
+    // Testing Echo URL
+    Route::post('/test', function (Request $request) {
+        return response()->json([
+            'ok' => 'true'
+        ]);
+    });
+
 });

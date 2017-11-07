@@ -52,7 +52,7 @@
 				</div>
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="headerbar-right">
-					<ul class="header-nav header-nav-options">
+					{{--  <ul class="header-nav header-nav-options">
 						<li class="dropdown hidden-xs">
 							<a href="javascript:void(0);" class="btn btn-icon-toggle btn-default" data-toggle="dropdown">
 								<i class="fa fa-bell"></i><sup class="badge style-danger">!</sup>
@@ -68,7 +68,7 @@
 								</li>
 							</ul><!--end .dropdown-menu -->
 						</li><!--end .dropdown -->
-					</ul><!--end .header-nav-options -->
+					</ul><!--end .header-nav-options -->  --}}
 					<ul class="header-nav header-nav-profile">
 						<li class="dropdown">
 							<a href="javascript:void(0);" class="dropdown-toggle ink-reaction" data-toggle="dropdown">
@@ -103,7 +103,7 @@
 
             <!-- BEGIN DASHBOARD -->
             <li>
-              <a href="mod/dashboard">
+              <a href="/mod/dashboard">
                 <div class="gui-icon"><i class="md md-home"></i></div>
                 <span class="title">Dashboard</span>
               </a>
@@ -118,8 +118,8 @@
               </a>
               <!--start submenu -->
               <ul>
-                <li><a href="mod/shuser" ><span class="title">Social Hub User</span></a></li>
-                <li><a href="mod/cmsuser" ><span class="title">CMS User</span></a></li>
+                <li><a href="/mod/shuser" ><span class="title">Social Hub User</span></a></li>
+                <li><a href="/mod/cmsuser" ><span class="title">CMS User</span></a></li>
               </ul><!--end /submenu -->
             </li><!--end /menu-li -->
             <!-- END FORMS -->
@@ -132,8 +132,7 @@
               </a>
               <!--start submenu -->
               <ul>
-                <li><a href="mod/shinterface" ><span class="title">Social Hub Interface</span></a></li>
-                <li><a href="mod/shapi" ><span class="title">API Management</span></a></li>
+                <li><a href="/mod/apps" ><span class="title">Internal Apps</span></a></li>
               </ul><!--end /submenu -->
             </li><!--end /menu-li -->
             <!-- END FORMS -->
