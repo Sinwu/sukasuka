@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>EDIISH - Dashboard</title>
+		<title>EDIISH - CMS</title>
 
 		<!-- BEGIN META -->
 		<meta charset="utf-8">
@@ -110,10 +110,10 @@
             </li><!--end /menu-li -->
             <!-- END DASHBOARD -->
 
-            <!-- BEGIN TABLES -->
+						<!-- BEGIN FORMS -->
             <li class="gui-folder">
               <a>
-                <div class="gui-icon"><i class="fa fa-user"></i></div>
+                <div class="gui-icon"><span class="glyphicon glyphicon-user"></span></div>
                 <span class="title">User Management</span>
               </a>
               <!--start submenu -->
@@ -122,7 +122,7 @@
                 <li><a href="mod/cmsuser" ><span class="title">CMS User</span></a></li>
               </ul><!--end /submenu -->
             </li><!--end /menu-li -->
-            <!-- END TABLES -->
+            <!-- END FORMS -->
 
             <!-- BEGIN FORMS -->
             <li class="gui-folder">
@@ -148,6 +148,10 @@
     </div><!--end #base-->
     <!-- END BASE -->
     </div>
+
+		<!-- BEGIN MODAL -->
+		@yield('modal');
+		<!-- END MODAL -->
 
 		<!-- BEGIN JAVASCRIPT -->
 		<script src="../cms_assets/js/libs/jquery/jquery-1.11.2.min.js"></script>
