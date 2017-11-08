@@ -146,6 +146,7 @@
                   <div class="line"></div>
                 </div>
                 <div ng-show="updatePError" class="ui negative message">@{{ updatePErrorMessage }}</div>
+                <div ng-show="updatePSuccess" class="ui success message">Password Updated</div>
                 <div class="edit-block">
                   <form name="update-pass" ng-submit="updateP()" id="education" class="form-inline">
                     <div class="row">

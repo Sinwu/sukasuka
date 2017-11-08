@@ -108,6 +108,7 @@ angular.module('wnoo')
 
   $scope.updateP = function() {
     $scope.updatePError = false
+    $scope.updatePSuccess = false
     showLoader()
 
     var p = {
@@ -120,14 +121,16 @@ angular.module('wnoo')
     .then(
       function(success) {
         if(success) {
+          $scope.updatePSuccess = true
         } else {
           alert('need to handle this success error')
         }
         hideLoader()
+        clearPassFields()
       },
       function(error) {
-        console.log(error)
         hideLoader()
+        clearPassFields()
         if(error && error.status == 422) {
           showUpdatePassError(error)
         } else if (error && error.status == 403) {
@@ -147,6 +150,12 @@ angular.module('wnoo')
     } else {
       return '/images/user-default_female.png'
     }
+  }
+
+  function clearPassFields() {
+    $scope.oldP = null
+    $scope.newP = null
+    $scope.newPConfirm = null
   }
 
   function showUpdatePassError(error) {

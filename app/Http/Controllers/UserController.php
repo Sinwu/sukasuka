@@ -101,10 +101,12 @@ class UserController extends Controller
 
         // Get logged user
         $user = User::find(Auth::user()->id)->makeVisible('password');
-
         $check = Hash::check($data['oldPassword'], $user->password);
-
         if (!$check) abort(403, 'Unauthorized action.');
+
+        $user->password = bcrypt($data['newPassword']);
+
+        $user->save();
 
         return response()->json([
             'ok' => true,
