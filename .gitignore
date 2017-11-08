@@ -15,3 +15,4 @@ yarn-error.log
 /config/database.php
 /public/post-images
 /public/post-videos
+/public/profile-images

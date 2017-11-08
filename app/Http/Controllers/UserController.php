@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -80,12 +82,52 @@ class UserController extends Controller
         if(isset($data['gender'])) $user->gender = $data['gender'];
         if(isset($data['birthday'])) $user->birthday = $data['birthday'];
         if(isset($data['about'])) $user->about = $data['about'];
+        if(isset($data['src'])) $user->src = $data['src'];
 
         $user->save();
 
         return response()->json([
             'ok' => 'true'
         ]);
+    }
+
+    public function updatePassword(Request $request)
+    {
+        $data = $request->all();
+        $valid = Validator::make($data, [
+            'oldPassword' => 'required|string',
+            'newPassword' => 'required|string|min:6|confirmed',
+        ])->validate();
+
+        // Get logged user
+        $user = User::find(Auth::user()->id)->makeVisible('password');
+        $check = Hash::check($data['oldPassword'], $user->password);
+        if (!$check) abort(403, 'Unauthorized action.');
+
+        $user->password = bcrypt($data['newPassword']);
+
+        $user->save();
+
+        return response()->json([
+            'ok' => true,
+        ]);
+    }
+
+    public function photo(Request $request)
+    {
+        $file = $request->file('file');
+        $path = $file->store('profile-images');
+
+        if($path) {
+            return response()->json([
+                'ok' => true,
+                'src' => "/" . $path
+            ]);
+        } else {
+            return response()->json([
+                'ok' => false
+            ]);
+        }
     }
 
     /**
