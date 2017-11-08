@@ -6,6 +6,7 @@
   <input id="userGender" type="hidden" value="{{ $user->gender }}">
   <input id="userBirthday" type="hidden" value="{{ $user->birthday }}">
   <input id="userAbout" type="hidden" value="{{ $user->about }}">
+  <input id="userImage" type="hidden" value="{{ $user->src }}">
 
   <!-- Timeline
   ================================================= -->
@@ -17,8 +18,8 @@
         <div class="row">
           <div class="col-md-3">
             <div class="profile-info">
-              <img src="images/user-default.png" alt="" class="img-responsive profile-photo" />
-              <h3>{{ $user->name }}</h3>
+              <img src="@{{getUserImage()}}" alt="" class="img-responsive profile-photo" />
+              <h3>@{{ name }}</h3>
               <p class="text-muted">Administrator</p>
             </div>
           </div>
@@ -38,8 +39,8 @@
       <!--Timeline Menu for Small Screens-->
       <div class="navbar-mobile hidden-lg hidden-md">
         <div class="profile-info">
-          <img src="images/user-default.png" alt="" class="img-responsive profile-photo" />
-          <h4>{{ $user->name }}</h4>
+          <img src="@{{getUserImage()}}" alt="" class="img-responsive profile-photo" />
+          <h4>@{{ name }}</h4>
           <p class="text-muted">Creative Director</p>
         </div>
         <div class="mobile-menu">
@@ -56,33 +57,46 @@
     <div id="page-contents">
       <div class="ui card post-content">
         <div class="post-container">
-          <div class="row">
+          <div class="row ui segment">
+
+            <!--  Loader  -->
+            <div id="loader" class="ui inverted dimmer">
+              <div class="ui text loader">Loading</div>
+            </div>
+
             <div class="col-md-3">
               
               <!--Edit Profile Menu-->
               <ul class="edit-menu">
-                <li class="active"><i class="icon ion-ios-information-outline"></i><a href="editbasic">Basic Information</a></li>
-                <li><i class="icon ion-ios-locked-outline"></i><a href="editpassword">Change Password</a></li>
+                <li ng-click="showProfile = true" ng-class="{active: showProfile}"><i class="icon ion-ios-information-outline"></i><a href="">Basic Information</a></li>
+                <li ng-click="showProfile = false" ng-class="{active: !showProfile}"><i class="icon ion-ios-locked-outline"></i><a href="">Change Password</a></li>
               </ul>
             </div>
             <div class="col-md-9">
 
               <!-- Basic Information
               ================================================= -->
-              <div class="edit-profile-container">
+              <div ng-show="showProfile" class="edit-profile-container">
                 <div class="block-title">
                   <h4 class="grey"><i class="icon ion-android-checkmark-circle"></i>Edit basic information</h4>
                   <div class="line"></div>
                 </div>
+                <div ng-show="updateSuccess" class="ui success message">Profile Updated</div>
                 <div class="edit-block">
                   <form name="basic-info" ng-submit="update()" id="basic-info" class="form-inline">
                     <div class="row">
-                      <div class="form-group col-xs-6">
+                      <div style="text-align: center" class="form-group col-xs-5">
+                        <img ng-show="image" ngf-src="image" class="img-responsive profile-photo update" />
+                        <img ng-hide="image" src="@{{getUserImage()}}" class="img-responsive profile-photo update" />
+                        <button ngf-select="setProfileImage($file)" ng-model="image" name="image" ngf-pattern="'image/*'"
+                          ngf-accept="'image/*'" ngf-max-size="5MB" ngf-model-invalid="errorImage" type="button"
+                          style="width: 100px; margin-top: .5rem" class="btn btn-primary">Change</button>
+                      </div>
+                      <div class="form-group col-xs-7">
                         <label for="firstname">Fullname</label>
                         <input ng-model="name" id="firstname" class="form-control input-group-lg" type="text" name="fullname" required title="Enter your full name" />
-                      </div>
-                      <div class="form-group col-xs-6">
-                        <label for="email">My email</label>
+                        
+                        <label style="margin-top: .5rem" for="email">My email</label>
                         <input id="email" class="form-control input-group-lg" type="text" name="Email" title="Enter Email" value="{{ $user->email }}" disabled />
                       </div>
                     </div>
@@ -122,7 +136,39 @@
                     <button type="submit" class="btn btn-primary">Save Changes</button>
                   </form>
                 </div>
-              </div>
+              </div> <!-- End of Basic Profile -->
+
+              <!-- Change Password
+              ================================================= -->
+              <div ng-hide="showProfile" class="edit-profile-container">
+                <div class="block-title">
+                  <h4 class="grey"><i class="icon ion-ios-locked-outline"></i>Change Password</h4>
+                  <div class="line"></div>
+                </div>
+                <div ng-show="updatePError" class="ui negative message">@{{ updatePErrorMessage }}</div>
+                <div class="edit-block">
+                  <form name="update-pass" ng-submit="updateP()" id="education" class="form-inline">
+                    <div class="row">
+                      <div class="form-group col-xs-12">
+                        <label for="my-password">Old password</label>
+                        <input ng-model="oldP" required class="form-control input-group-lg" type="password" name="password" title="Enter password" placeholder="Old password"/>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="form-group col-xs-6">
+                        <label>New password</label>
+                        <input ng-model="newP" required class="form-control input-group-lg" type="password" name="password" title="Enter password" placeholder="New password"/>
+                      </div>
+                      <div class="form-group col-xs-6">
+                        <label>Confirm password</label>
+                        <input ng-model="newPConfirm" required class="form-control input-group-lg" type="password" name="password" title="Enter password" placeholder="Confirm password"/>
+                      </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Update Password</button>
+                  </form>
+                </div>
+              </div> <!-- End of Change Password -->
+
             </div>
 
           </div>

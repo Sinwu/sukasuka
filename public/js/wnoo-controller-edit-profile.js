@@ -1,12 +1,20 @@
 angular.module('wnoo')
 
-.controller('EditProfileController', ['$scope', '$http', '$window', function($scope, $http, $window) {
+.controller('EditProfileController', ['$scope', '$http', '$window', '$timeout', 'Media', function($scope, $http, $window, $timeout, Media) {
+  $scope.media = new Media()
+
+  $scope.showProfile = true
+  $scope.updateSuccess = false
+  $scope.updatePSuccess = false
+  $scope.updatePError = false
+  $scope.updatePErrorMessage = ''
   $scope.userBirthday = new Date($('#userBirthday').val())
 
   // Default values
   $scope.name = $('#userName').val()
   $scope.about = $('#userAbout').val()
   $scope.gender = $('#userGender').val()
+  $scope.existingImage = $('#userImage').val()
   if($scope.userBirthday != 'Invalid Date') {
     $scope.birthDate = $scope.userBirthday.getDate()
     $scope.birthMonth = $scope.userBirthday.getMonth() + 1
@@ -41,7 +49,7 @@ angular.module('wnoo')
   }
 
   $scope.update = function() {
-    $scope.loginError = false
+    $scope.updateSuccess = false
     showLoader()
 
     var profile = {
@@ -54,11 +62,38 @@ angular.module('wnoo')
       $.extend(profile, {birthday: `${$scope.birthDate} ${$scope.monthStrings[$scope.birthMonth - 1]} ${$scope.birthYear}`})
     }
 
+    if($scope.image) {
+      $scope.media.profileUpload($scope.image)
+      .then(function (success) {
+        if(success.data.ok) {
+          $timeout(function () {
+            profile.src = success.data.src
+            
+            // Post update
+            $scope.image = null
+            $scope.existingImage = success.data.src
+            $scope.save(profile)
+          });
+        } else {
+          alert('Something is wrong, please try again')
+        }
+      }, function (error) {
+        alert('Something is wrong, please try again')
+        return
+      }, function (evt) {
+        // Loader event
+      })
+    } else {
+      $scope.save(profile)
+    }
+  }
+
+  $scope.save = function(profile) {
     $http.post('/api/internal/user/update', profile)
     .then(
       function(success) {
         if(success) {
-          console.log(success)
+          $scope.updateSuccess = true
         } else {
           alert('need to handle this success error')
         }
@@ -69,6 +104,65 @@ angular.module('wnoo')
         hideLoader()
       }
     );
+  }
+
+  $scope.updateP = function() {
+    $scope.updatePError = false
+    showLoader()
+
+    var p = {
+      oldPassword: $scope.oldP,
+      newPassword: $scope.newP,
+      newPassword_confirmation: $scope.newPConfirm
+    }
+    
+    $http.post('/api/internal/user/updateP', p)
+    .then(
+      function(success) {
+        if(success) {
+        } else {
+          alert('need to handle this success error')
+        }
+        hideLoader()
+      },
+      function(error) {
+        console.log(error)
+        hideLoader()
+        if(error && error.status == 422) {
+          showUpdatePassError(error)
+        } else if (error && error.status == 403) {
+          showUpdatePassError()
+        } else {
+          alert('Please check your internet connection')
+        }
+      }
+    );
+  }
+
+  $scope.getUserImage = function() {
+    if($scope.existingImage) return $scope.existingImage
+
+    if($scope.gender == 'm') {
+      return '/images/user-default.png'
+    } else {
+      return '/images/user-default_female.png'
+    }
+  }
+
+  function showUpdatePassError(error) {
+    if(error) {
+      // Populate errors
+      var errors = []
+      angular.forEach(error.data.errors, function(value, key) {
+        errors.push(value[0]);
+      })
+
+      $scope.updatePErrorMessage = errors[0]
+    } else {
+      $scope.updatePErrorMessage = 'Please enter correct old password'
+    }
+    
+    $scope.updatePError = true
   }
 
   function showLoader() {
