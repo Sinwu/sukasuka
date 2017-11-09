@@ -44,10 +44,11 @@ Auth::routes();
 
 // Default home route
 Route::get('/home', 'HomeController@index')->name('home');
+Route::post('/mod/login', 'Auth\LoginModController@login');
 
 // CMS Routes
-Route::prefix('mod')->group(function(){
-	Route::get('/', function(){ return view('/mod/index'); });	
+Route::prefix('mod')->middleware(['auth:web', 'mod'])->group(function(){
+	Route::get('/', function(){ return view('/mod/index'); });
 	Route::get('/dashboard', function(){ return view('/mod/dashboard'); });
 
 	Route::get('/shuser', 'UserController@modShUser');

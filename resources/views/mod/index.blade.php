@@ -39,7 +39,7 @@
 							<br/>
 							<span class="text-lg text-bold text-primary">EDIISH CMS</span>
 							<br/><br/>
-							<form class="form floating-label" action="/login" accept-charset="utf-8" method="post">
+							<form class="form floating-label" action="/mod/login" accept-charset="utf-8" method="post">
 								{{ csrf_field() }}
 								<div class="form-group">
 									<input type="text" class="form-control" id="username" name="email">
