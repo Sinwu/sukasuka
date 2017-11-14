@@ -38,6 +38,7 @@ angular.module('wnoo-login',[])
     $http.post('/login', {email: $scope.logEmail, password: $scope.logPass})
     .then(
       function(success) {
+        console.log(success)
         if(success && success.statusText == 'OK') {
           $window.location.href = '/feed'
         } else {
@@ -46,6 +47,7 @@ angular.module('wnoo-login',[])
         }
       },
       function(error) {
+        console.log(error)
         hideLoader()
         if(error && error.status == 422) {
           $scope.loginError = true

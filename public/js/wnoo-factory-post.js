@@ -9,6 +9,7 @@ angular.module('wnoo')
     this.init = false;
     this.load = false;
     this.stop = false;
+    this.popular = false;
 
     this.busy = false;
   };
@@ -16,8 +17,14 @@ angular.module('wnoo')
   var likeFactory = new Like()
   var commentFactory = new Comment()
 
-  Post.prototype.reload = function() {
-    this.after = 0;
+  Post.prototype.reload = function(popular) {
+    if(popular) {
+      this.after = -1;
+    } else {
+      this.after = 0;
+    }
+
+    this.popular = popular
     this.posts = [];
     this.init = true;
     this.load = false;
@@ -44,6 +51,7 @@ angular.module('wnoo')
     .then(
       function(success) {
         var posts = success.data.posts;
+        var lastPostID = success.data.lastPostID;
 
         if(posts.length < 1) {
           this.stop = true
@@ -62,10 +70,16 @@ angular.module('wnoo')
           
           posts[i].comment = postComment(posts[i])
 
-          this.posts.push(posts[i]);
+          // Extra filter
+          if(this.popular) {
+            var found = this.posts.find(function(p) { return p.id == posts[i].id })
+            if(!found) this.posts.push(posts[i]);
+          } else {
+            this.posts.push(posts[i]);
+          }
         }
-        
-        this.after = this.posts[this.posts.length - 1].id;
+
+        this.after = lastPostID
         if(posts.length < 5) this.stop = true
         this.load = false;
       }.bind(this),
@@ -85,6 +99,7 @@ angular.module('wnoo')
     .then(
       function(success) {
         var posts = success.data.posts;
+        var lastPostID = success.data.lastPostID;
 
         if(posts.length < 1) {
           this.stop = true
@@ -108,7 +123,7 @@ angular.module('wnoo')
           // this.posts.push(posts[i]);
         }
         
-        this.after = this.posts[this.posts.length - 1].posts[this.posts[this.posts.length - 1].posts.length - 1].id;
+        this.after = lastPostID
         if(posts.length < 5) this.stop = true
         this.load = false;
       }.bind(this),

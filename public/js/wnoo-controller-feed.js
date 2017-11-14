@@ -4,12 +4,21 @@ angular.module('wnoo')
   $scope.userImage = $('#userImage').val()
   $scope.userGender = $('#userGender').val()
   $scope.showProgress = false
+  $scope.popular = false
 
   $scope.post = new Post('feed')
   $scope.media = new Media()
 
   $scope.image = null
   $scope.video = null
+
+  $scope.togglePopular = function() {
+    // Reload feeds
+    $scope.post.reload($scope.popular)
+    setTimeout(function() {
+      $(window).scroll()
+    }, 200)
+  }
 
   $scope.postCreate = function() {
     var post = {
@@ -64,7 +73,7 @@ angular.module('wnoo')
           $scope.post.reload()
           setTimeout(function() {
             $(window).scroll()
-          }, 500)
+          }, 200)
 
           // Need success toast
         } else {

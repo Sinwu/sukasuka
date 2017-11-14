@@ -161,6 +161,13 @@
 
         </div><!-- Post Create Box End-->
 
+        <div class="ui popular card" style="padding-left: 1.5rem; max-width: 262px;">
+          <div class="ui toggle checkbox">
+            <input ng-model="popular" type="checkbox" ng-change="togglePopular()">
+            <label style="color: #1678c2;">Popular Posts</label>
+          </div>
+        </div>
+
         <!-- Post Content
         ================================================= -->
         <div infinite-scroll='post.nextPage()' infinite-scroll-disabled='post.load' infinite-scroll-distance='2'>

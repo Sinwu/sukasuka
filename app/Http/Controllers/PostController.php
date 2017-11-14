@@ -26,7 +26,7 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($before)
+    public function index(Request $request, $before)
     {
         // Get logged user
         $user = User::find(Auth::user()->id);
@@ -37,7 +37,11 @@ class PostController extends Controller
                 'comments', 'comments.user',
                 'likes' => function ($q) { $q->where('liked', true); }
             ])
-            ->orderBy('created_at', 'desc')
+            ->withCount('comments')
+            ->when($before == -1, function($query){
+                return $query->orderBy('comments_count', 'desc');
+            })
+            ->orderBy('id', 'desc')
             ->where(function ($query) use ($user){
                 $query->where('destination', 'normal')
                 ->orWhere(function ($query) use ($user) {
@@ -48,17 +52,28 @@ class PostController extends Controller
             ->when($before > 0, function($query) use ($before){
                 return $query->where('id', '<', $before);
             })
-            ->take(5)
+            ->when($before == -1, function($query){
+                return $query->take(10);
+            })
+            ->when($before > -1, function($query){
+                return $query->take(5);
+            })
             ->get();
 
         $results = array_map(function($p) use ($timeAgo) {
             $p['timeago'] = $timeAgo->inWords($p['created_at']);
             return $p;
         }, $posts->toArray());
+        
+        $lastPostID = 0;
+        if($before > -1 && count($results > 0)) {
+            $lastPostID = $results[count($results) - 1]['id'];
+        }
 
         return response()->json([
             'ok' => 'true',
             'posts' => $results,
+            'lastPostID' => $lastPostID,
             'requester' => Auth::user()->id
         ]);
     }
@@ -79,7 +94,7 @@ class PostController extends Controller
                 'comments', 'comments.user',
                 'likes' => function ($q) { $q->where('liked', true); }
             ])
-            ->orderBy('created_at', 'desc')
+            ->orderBy('id', 'desc')
             ->where(function ($query) use ($tUser){
                 $query->where('destination', 'normal')
                 ->where('user_id', $tUser->id)
@@ -99,9 +114,15 @@ class PostController extends Controller
             return $p;
         }, $posts->toArray());
 
+        $lastPostID = 0;
+        if(count($results > 0)) {
+            $lastPostID = $results[count($results) - 1]['id'];
+        }
+
         return response()->json([
             'ok' => 'true',
             'posts' => $results,
+            'lastPostID' => $lastPostID,
             'requester' => Auth::user()->id
         ]);
     }
@@ -128,7 +149,6 @@ class PostController extends Controller
         $user = User::find(Auth::user()->id);
         
         $data = $request->all();
-        \Log::Info($data);
         $post = new Post([
             'type' => $data['type'],
             'content' => $data['content'],
