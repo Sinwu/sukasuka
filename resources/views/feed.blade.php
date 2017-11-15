@@ -29,7 +29,7 @@
             <div class="follow-user" ng-repeat="app in app.apps">
               <img ng-src="@{{app.icon_url}}" alt="" class="profile-photo-sm pull-left" />
               <div>
-                <h5><a href="timeline">@{{app.name}}</a></h5>
+                <h5><a href="@{{app.url}}">@{{app.name}}</a></h5>
                 <p class="text-muted">@{{app.description}}</p>
               </div>
             </div>

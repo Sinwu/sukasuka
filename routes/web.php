@@ -49,7 +49,7 @@ Route::post('/mod/login', 'Auth\LoginModController@login');
 
 // CMS Routes
 Route::prefix('/mod')->middleware(['auth:web', 'mod'])->group(function(){
-	Route::get('/', function(){ return view('/mod/index'); });
+	Route::middleware('guestmod')->get('/', function(){ return view('/mod/index'); });
 	Route::get('/dashboard', function(){ return view('/mod/dashboard'); });
 
 	Route::get('/shuser', 'UserController@modShUser');
