@@ -31,6 +31,7 @@ Route::middleware(['auth:api'])->group(function () {
 	Route::post('/post', 'PostController@store');
 	Route::post('/user/update', 'UserController@update');
 
+	Route::get('/apps', 'AppsController@all');
 	Route::post('/media', 'PostController@media');
 	Route::post('/like', 'LikeController@index');
 	Route::post('/comment', 'CommentController@index');

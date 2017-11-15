@@ -33,6 +33,7 @@ Route::prefix('api/internal')->middleware(['auth:web'])->group(function () {
 	Route::post('/user/update', 'UserController@update');
 	Route::post('/user/updateP', 'UserController@updatePassword');
 
+	Route::get('/apps', 'AppsController@all');
 	Route::post('/media', 'PostController@media');
 	Route::post('/media/profile', 'UserController@photo');
 	Route::post('/like', 'LikeController@index');

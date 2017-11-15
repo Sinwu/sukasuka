@@ -122,6 +122,7 @@
     <script src="/js/wnoo-factory-media.js"></script>
     <script src="/js/wnoo-factory-comment.js"></script>
     <script src="/js/wnoo-factory-like.js"></script>
+    <script src="/js/wnoo-factory-app.js"></script>
     @yield('script')
     
   </body>

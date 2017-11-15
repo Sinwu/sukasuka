@@ -20,6 +20,6 @@ class AuthenticateModPage
     if (Auth::guard($guard)->check() && Auth::user()->admin) {
       return $next($request);
     }
-    return redirect('/index');
+    return redirect('/');
   }
 }

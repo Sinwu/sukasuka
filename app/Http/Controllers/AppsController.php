@@ -14,10 +14,19 @@ class AppsController extends Controller
      */
     public function index()
     {
-        //
         $apps = Apps::all();
         
         return view('mod.shapi',['apps' => $apps]);
+    }
+
+    public function all()
+    {
+        $apps = Apps::all();
+        
+        return response()->json([
+            'ok' => 'true',
+            'apps' => $apps
+        ]);
     }
 
     /**
@@ -46,7 +55,7 @@ class AppsController extends Controller
             'name'          => $data['name'],
             'description'   => $data['description'],
             'shown'         => $data['shown'],
-            'icon_url'      => $path
+            'icon_url'      => "/" . $path
         ));
 
         return redirect()->action('AppsController@index');

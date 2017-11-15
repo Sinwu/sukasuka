@@ -1,6 +1,6 @@
 angular.module('wnoo')
 
-.controller('FeedController', ['$scope', '$timeout', 'Post', 'Media', function($scope, $timeout, Post, Media) {
+.controller('FeedController', ['$scope', '$timeout', 'Post', 'Media', 'App', function($scope, $timeout, Post, Media, App) {
   $scope.userImage = $('#userImage').val()
   $scope.userGender = $('#userGender').val()
   $scope.showProgress = false
@@ -8,9 +8,14 @@ angular.module('wnoo')
 
   $scope.post = new Post('feed')
   $scope.media = new Media()
+  $scope.app = new App()
 
   $scope.image = null
   $scope.video = null
+
+  angular.element(document).ready(function () {
+    $scope.app.fetch()
+  });
 
   $scope.togglePopular = function() {
     // Reload feeds
