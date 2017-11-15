@@ -30,9 +30,11 @@ Route::middleware(['auth:api'])->group(function () {
 	Route::get('/timeline/{tID}/{before}', 'PostController@timeline');
 	Route::post('/post', 'PostController@store');
 	Route::post('/user/update', 'UserController@update');
+	Route::post('/user/updateP', 'UserController@updatePassword');
 
 	Route::get('/apps', 'AppsController@all');
 	Route::post('/media', 'PostController@media');
+	Route::post('/media/profile', 'UserController@photo');
 	Route::post('/like', 'LikeController@index');
 	Route::post('/comment', 'CommentController@index');
 });

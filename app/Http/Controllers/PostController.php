@@ -116,7 +116,7 @@ class PostController extends Controller
         }, $posts->toArray());
 
         $lastPostID = 0;
-        if(count($results > 0)) {
+        if(count($results) > 0) {
             $lastPostID = $results[count($results) - 1]['id'];
         }
 
