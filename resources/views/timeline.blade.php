@@ -27,8 +27,8 @@
           <div class="col-md-9">
             <ul class="list-inline profile-menu">
               <li><a href="/feed">Feed</a></li>
-              <li><a href="/timeline/{{ $user->id }}">Timeline</a></li>
-              <li><a href="/about">About Me</a></li>
+              <li><a href="/timeline/{{ $tUser->id }}">Timeline</a></li>
+              <li><a href="/about/{{ $tUser->id }}">About Me</a></li>
             </ul>
             <ul class="follow-me list-inline">
               <li ng-show="selfTimeline()"><a href="/editbasic"><button class="btn-primary">Edit Profile</button></a></li>
@@ -47,8 +47,8 @@
         <div class="mobile-menu">
           <ul class="list-inline">
             <li><a href="/feed">Feed</a></li>
-            <li><a href="/timeline/{{ $user->id }}">Timeline</a></li>
-            <li><a href="/about">About Me</a></li>
+            <li><a href="/timeline/{{ $tUser->id }}">Timeline</a></li>
+            <li><a href="/about/{{ $tUser->id }}">About Me</a></li>
           </ul>
           <button class="btn-primary">Edit Profile</button>
         </div>
@@ -374,8 +374,16 @@
         </div>
         <div class="col-md-2 static">
           <div id="sticky-sidebar">
-            <h4 class="grey">{{ $user->name }}'s activity</h4>
-            <div class="feed-item">
+            <h4 class="grey">Recent activity</h4>
+            @foreach ($tUserActivities as $activity)
+              <div class="feed-item">
+                <div class="live-activity">
+                  <p><a href="#" class="profile-link">{{ $tUser->name }}</a> <span class="description">{{$activity['type']}} {{$activity['target']}}</span></p>
+                  <p class="text-muted">{{$activity['timeago']}}</p>
+                </div>
+              </div>
+            @endforeach
+            {{--  <div class="feed-item">
               <div class="live-activity">
                 <p><a href="#" class="profile-link">{{ $user->name }}</a> <span class="description">commented on a photo</span></p>
                 <p class="text-muted">5 mins ago</p>
@@ -398,7 +406,7 @@
                 <p><a href="#" class="profile-link">{{ $user->name }}</a> <span class="description">has shared a video</span></p>
                 <p class="text-muted">a day ago</p>
               </div>
-            </div>
+            </div>  --}}
           </div>
         </div>
       </div>

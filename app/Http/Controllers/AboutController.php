@@ -7,7 +7,7 @@ use App\Activity;
 use Westsworld\TimeAgo;
 use Illuminate\Http\Request;
 
-class TimelineController extends Controller
+class AboutController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -47,13 +47,6 @@ class TimelineController extends Controller
             return $a;
         }, $tUserActivityResults->toArray());
 
-        \Log::Info($tUserActivities);
-
-        return view('timeline', ['tUser' => $tUser, 'tUserActivities' => $tUserActivities]);
-    }
-
-    public function about()
-    {
-        return view('about');
+        return view('about', ['tUser' => $tUser, 'tUserActivities' => $tUserActivities]);
     }
 }

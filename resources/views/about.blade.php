@@ -1,7 +1,7 @@
 @extends('layouts.wnoo')
 
 @section('content')
-<div class="timeline container">
+<div class="timeline container" ng-controller="AboutController as ctrl">
 
   <!-- Timeline
   ================================================= -->
@@ -13,16 +13,16 @@
         <div class="row">
           <div class="col-md-3">
             <div class="profile-info">
-              <img src="images/user-default.png" alt="" class="img-responsive profile-photo" />
+              <img src="@{{getAboutUserImage()}}" alt="" class="img-responsive profile-photo" />
               <h3>{{ $user->name }}</h3>
               <p class="text-muted">Administrator</p>
             </div>
           </div>
           <div class="col-md-9">
             <ul class="list-inline profile-menu">
-              <li><a href="feed">Feed</a></li>
-              <li><a href="timeline">Timeline</a></li>
-              <li><a href="about">About Me</a></li>
+              <li><a href="/feed">Feed</a></li>
+              <li><a href="/timeline/{{ $user->id }}">Timeline</a></li>
+              <li><a href="/about/{{ $user->id }}">About Me</a></li>
             </ul>
             <ul class="follow-me list-inline">
               <li><a href="editbasic"><button class="btn-primary">Edit Profile</button></a></li>
@@ -34,15 +34,15 @@
       <!--Timeline Menu for Small Screens-->
       <div class="navbar-mobile hidden-lg hidden-md">
         <div class="profile-info">
-          <img src="images/user-default.png" alt="" class="img-responsive profile-photo" />
+          <img src="@{{getAboutUserImage()}}" alt="" class="img-responsive profile-photo" />
           <h4>{{ $user->name }}</h4>
           <p class="text-muted">Creative Director</p>
         </div>
         <div class="mobile-menu">
           <ul class="list-inline">
-            <li><a href="feed">Feed</a></li>
-            <li><a href="timeline">Timeline</a></li>
-            <li><a href="about">About Me</a></li>
+            <li><a href="/feed">Feed</a></li>
+            <li><a href="/timeline/{{ $user->id }}">Timeline</a></li>
+            <li><a href="/about/{{ $user->id }}">About Me</a></li>
           </ul>
           <button class="btn-primary">Edit Profile</button>
         </div>
@@ -50,7 +50,7 @@
 
     </div>
     <div id="page-contents">
-      <div class="ui card post-content">
+      <div class="ui card post-content" style="background-color: white;">
         <div class="post-container">
           <div class="row">
             <div class="col-md-3"></div>
@@ -126,31 +126,15 @@
             </div>
             <div class="col-md-2 static">
               <div id="sticky-sidebar">
-                <h4 class="grey">{{ $user->name }}'s activity</h4>
-                <div class="feed-item">
-                  <div class="live-activity">
-                    <p><a href="#" class="profile-link">{{ $user->name }}</a> Commended on a Photo</p>
-                    <p class="text-muted">5 mins ago</p>
+                <h4 class="grey">Recent activity</h4>
+                @foreach ($tUserActivities as $activity)
+                  <div class="feed-item">
+                    <div class="live-activity">
+                      <p><a href="#" class="profile-link">{{ $tUser->name }}</a> <span class="description">{{$activity['type']}} {{$activity['target']}}</span></p>
+                      <p class="text-muted">{{$activity['timeago']}}</p>
+                    </div>
                   </div>
-                </div>
-                <div class="feed-item">
-                  <div class="live-activity">
-                    <p><a href="#" class="profile-link">{{ $user->name }}</a> Has posted a photo</p>
-                    <p class="text-muted">an hour ago</p>
-                  </div>
-                </div>
-                <div class="feed-item">
-                  <div class="live-activity">
-                    <p><a href="#" class="profile-link">{{ $user->name }}</a> Liked her friend's post</p>
-                    <p class="text-muted">4 hours ago</p>
-                  </div>
-                </div>
-                <div class="feed-item">
-                  <div class="live-activity">
-                    <p><a href="#" class="profile-link">{{ $user->name }}</a> has shared an album</p>
-                    <p class="text-muted">a day ago</p>
-                  </div>
-                </div>
+                @endforeach
               </div>
             </div>
           </div>
@@ -162,5 +146,5 @@
 @endsection
 
 @section('script')
-<script src="js/wnoo-controller-feed.js"></script>
+<script src="/js/wnoo-controller-about.js"></script>
 @endsection
