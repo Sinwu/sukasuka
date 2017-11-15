@@ -154,7 +154,7 @@ class UserController extends Controller
     public function modShUser()
     {
         $users = User::all();
-        dd($users);
+        //dd($users);
         return view('mod.shuser',['users' => $users]);
     }
 
