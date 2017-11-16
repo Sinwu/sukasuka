@@ -182,6 +182,11 @@ return [
          */
         Laravel\Socialite\SocialiteServiceProvider::class,
 
+        /*
+         * CORS Service Providers...
+         */
+        Barryvdh\Cors\ServiceProvider::class,
+        
     ],
 
     /*
