@@ -111,6 +111,7 @@
      <!-- Angulars
     ================================================= -->
     <script src="/js/angular.min.js"></script>
+    <script src="/js/angular-sanitize.min.js"></script>
 
     <!--  Infinite Scroll  -->
     <script src="/js/ng-infinite-scroll.min.js"></script>

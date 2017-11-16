@@ -200,7 +200,7 @@
                 </div>
                 <div class="line-divider"></div>
                 <div class="post-text">
-                  <p> @{{ post.content }} </p>
+                  <p ng-bind-html="post.contentHtml"> @{{ getPostContent(post) }} </p>
                 </div>
                 <div class="line-divider"></div>
 
