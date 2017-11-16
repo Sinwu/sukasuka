@@ -17,6 +17,8 @@ use Illuminate\Http\Request;
 //     return $request->user();
 // });
 
+Route::post('/register', 'Auth\RegisterController@register');
+
 Route::middleware(['auth:api'])->group(function () {
 
     // Testing Echo URL
