@@ -2,6 +2,8 @@
 
 @section('content')
 <div class="timeline container" ng-controller="AboutController as ctrl">
+  <input id="tUserImage" type="hidden" value="{{ $tUser->src }}">
+  <input id="tUserGender" type="hidden" value="{{ $tUser->gender }}">
 
   <!-- Timeline
   ================================================= -->
@@ -14,15 +16,15 @@
           <div class="col-md-3">
             <div class="profile-info">
               <img src="@{{getAboutUserImage()}}" alt="" class="img-responsive profile-photo" />
-              <h3>{{ $user->name }}</h3>
+              <h3>{{ $tUser->name }}</h3>
               <p class="text-muted">Administrator</p>
             </div>
           </div>
           <div class="col-md-9">
             <ul class="list-inline profile-menu">
               <li><a href="/feed">Feed</a></li>
-              <li><a href="/timeline/{{ $user->id }}">Timeline</a></li>
-              <li><a href="/about/{{ $user->id }}">About Me</a></li>
+              <li><a href="/timeline/{{ $tUser->id }}">Timeline</a></li>
+              <li><a href="/about/{{ $tUser->id }}">About Me</a></li>
             </ul>
             <ul class="follow-me list-inline">
               <li><a href="editbasic"><button class="btn-primary">Edit Profile</button></a></li>
@@ -41,8 +43,8 @@
         <div class="mobile-menu">
           <ul class="list-inline">
             <li><a href="/feed">Feed</a></li>
-            <li><a href="/timeline/{{ $user->id }}">Timeline</a></li>
-            <li><a href="/about/{{ $user->id }}">About Me</a></li>
+            <li><a href="/timeline/{{ $tUser->id }}">Timeline</a></li>
+            <li><a href="/about/{{ $tUser->id }}">About Me</a></li>
           </ul>
           <button class="btn-primary">Edit Profile</button>
         </div>
@@ -66,7 +68,7 @@
                       <p>Fullname</p>
                     </div>
                     <div class="col-md-9">
-                      <p>{{ $user->name }}</p>
+                      <p>{{ $tUser->name }}</p>
                     </div>
                   </div>
                   <div class="row">
@@ -74,7 +76,7 @@
                       <p>Email</p>
                     </div>
                     <div class="col-md-9">
-                      <p>{{ $user->email }}</p>
+                      <p>{{ $tUser->email }}</p>
                     </div>
                   </div>
                   <div class="row">
@@ -82,7 +84,7 @@
                       <p>Date of birth</p>
                     </div>
                     <div class="col-md-9">
-                      <p>{{ $user->birthday }}</p>
+                      <p>{{ $tUser->birthday }}</p>
                     </div>
                   </div>
                 </div>

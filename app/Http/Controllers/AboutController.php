@@ -30,6 +30,7 @@ class AboutController extends Controller
 
         $tUser = User::find($tID);
         if(!$tUser) abort(404);
+        $tUser->birthday = date('d - m - Y', strtotime($tUser->birthday));
 
         $tUserActivityResults = Activity::where('user_id', $tUser->id)
         ->orderBy('id', 'desc')
