@@ -26,7 +26,6 @@ class CreateUsersTable extends Migration
             $table->boolean('admin');
             $table->boolean('corporate');
             $table->rememberToken();
-            $table->string('api_token')->unique()->nullable();
             $table->timestamps();
         });
     }
