@@ -28,6 +28,11 @@ class AlterTableOauthAccessTokens extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('oauth_access_tokens', function (Blueprint $table) {
+            $table->dropColumn('user_id');
+        });
+        Schema::table('oauth_access_tokens', function (Blueprint $table) {
+            $table->id('user_id')->unique();
+        });
     }
 }
