@@ -43,7 +43,7 @@
 
           <!-- Brand and toggle get grouped for better mobile display -->
           <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2" aria-expanded="false">
               <span class="sr-only">Toggle navigation</span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
@@ -53,13 +53,32 @@
           </div>
 
           <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse-mobile" id="bs-example-navbar-collapse-2">
+
+            <ul class="nav navbar-nav navbar-right main-menu">
+              <li class="dropdown open">
+                <ul class="dropdown-menu newsfeed-home">
+                  <li><a href="/feed">Feed</a></li>
+                  <li><a href="/timeline/{{ $user->id }}">My Timeline</a></li>
+                  <li>
+                    <a href="{{ route('logout') }}"
+                      onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">
+                      Logout
+                    </a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                      {{ csrf_field() }}
+                    </form>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div><!-- /.navbar-collapse -->
+
+          <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            {{--  <form class="navbar-form navbar-right hidden-sm">
-              <div class="form-group">
-                <i class="icon ion-android-search"></i>
-                <input type="text" class="form-control" placeholder="Search people">
-              </div>
-            </form>  --}}
+
             <ul class="nav navbar-nav navbar-right main-menu">
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="sidebar icon"></i></a>
@@ -81,6 +100,7 @@
               </li>
             </ul>
           </div><!-- /.navbar-collapse -->
+          
         </div><!-- /.container -->
       </nav>
     </header>
