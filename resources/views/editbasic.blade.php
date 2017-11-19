@@ -156,11 +156,11 @@
                       </div>
                     </div>
                     <div class="row">
-                      <div class="form-group col-xs-6">
+                      <div class="form-group col-sm-6">
                         <label>New password</label>
                         <input ng-model="newP" required class="form-control input-group-lg" type="password" name="password" title="Enter password" placeholder="New password"/>
                       </div>
-                      <div class="form-group col-xs-6">
+                      <div class="form-group col-sm-6">
                         <label>Confirm password</label>
                         <input ng-model="newPConfirm" required class="form-control input-group-lg" type="password" name="password" title="Enter password" placeholder="Confirm password"/>
                       </div>
