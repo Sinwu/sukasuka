@@ -50,7 +50,7 @@
             <li><a href="/timeline/{{ $tUser->id }}">Timeline</a></li>
             <li><a href="/about/{{ $tUser->id }}">About Me</a></li>
           </ul>
-          <button class="btn-primary">Edit Profile</button>
+          <a href="/editbasic"><button class="btn-primary">Edit Profile</button></a>
         </div>
       </div><!--Timeline Menu for Small Screens End-->
 

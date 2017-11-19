@@ -4,6 +4,13 @@
   height: 120px;
 }
 
+@media (max-width: 768px) { 
+  .edit-block .profile-photo.update {
+    width: 85px;
+    height: 85px;
+  }
+}
+
 .edit-menu a:link {
   text-decoration: none !important;
 }

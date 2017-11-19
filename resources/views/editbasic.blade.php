@@ -26,8 +26,8 @@
           <div class="col-md-9">
             <ul class="list-inline profile-menu">
               <li><a href="feed">Feed</a></li>
-              <li><a href="timeline">Timeline</a></li>
-              <li><a href="about">About Me</a></li>
+              <li><a href="timeline/{{ $user->id }}">Timeline</a></li>
+              <li><a href="about/{{ $user->id }}">About Me</a></li>
             </ul>
             <ul class="follow-me list-inline">
               {{--  <li><a href="editbasic"><button class="btn-primary">Edit Profile</button></a></li>  --}}
@@ -46,10 +46,10 @@
         <div class="mobile-menu">
           <ul class="list-inline">
             <li><a href="feed">Feed</a></li>
-            <li><a href="timeline">Timeline</a></li>
-            <li><a href="about">About Me</a></li>
+            <li><a href="timeline/{{ $user->id }}">Timeline</a></li>
+            <li><a href="about/{{ $user->id }}">About Me</a></li>
           </ul>
-          <button class="btn-primary">Edit Profile</button>
+          {{--  <button class="btn-primary">Edit Profile</button>  --}}
         </div>
       </div><!--Timeline Menu for Small Screens End-->
 
