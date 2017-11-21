@@ -33,7 +33,7 @@
 
           <!-- Brand and toggle get grouped for better mobile display -->
           <div class="navbar-header">
-            <img style="max-height: 45px; max-width: 252px;" src="images/logo.png" alt="logo" />
+            <img class="logo-resp" style="max-height: 45px; max-width: 252px;" src="images/logo.png" alt="logo" />
           </div>
 
         </div><!-- /.container -->
@@ -48,8 +48,9 @@
         <div class="row">
         	<div class="col-sm-5">
             <div class="intro-texts">
-            	<h1 class="text-white">EDII Social Hub</h1>
-            	<p>EDIISH is a social network that can be used to share your ideas, and news.<br /></p>
+              
+            	<h1 class="text-white"><img class="logo-mobile" style="max-height: 45px; max-width: 252px;" src="images/logo.png" alt="logo" /><span class="subtitle">EDII Social Hub</span></h1>
+            	<p class="subtitle">EDIISH is a social network that can be used to share your ideas, and news.<br /></p>
             </div>
           </div>
         	<div class="col-sm-6 col-sm-offset-1">
@@ -127,21 +128,21 @@
                       </div> 
                       <div class="row">
                         <p class="sub header"><strong>Date of Birth</strong></p>
-                        <div class="form-group col-sm-3 col-xs-6">
+                        <div class="form-group col-sm-3 col-xs-4">
                           <label for="month" class="sr-only"></label>
                           <select ng-model="regBirthDate" class="form-control" id="day">
                             <option value="Day" disabled selected>Day</option>
                             <option ng-repeat="date in dates" value="@{{date}}">@{{ date }}</option>
                           </select>
                         </div>
-                        <div class="form-group col-sm-6 col-xs-12">
+                        <div class="form-group col-sm-6 col-xs-4">
                           <label for="month" class="sr-only"></label>
                           <select ng-model="regBirthMonth" class="form-control" id="month">
                             <option value="month" disabled selected>Month</option>
                             <option ng-repeat="month in months" value="@{{month}}">@{{ month }}</option>
                           </select>
                         </div>
-                        <div class="form-group col-sm-3 col-xs-6">
+                        <div class="form-group col-sm-3 col-xs-4">
                           <label for="year" class="sr-only"></label>
                           <select ng-model="regBirthYear" class="form-control" id="year">
                             <option value="year" disabled selected>Year</option>

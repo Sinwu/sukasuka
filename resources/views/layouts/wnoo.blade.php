@@ -42,15 +42,32 @@
         <div class="container">
 
           <!-- Brand and toggle get grouped for better mobile display -->
-          <div class="navbar-header">
+          <div class="navbar-header">            
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2" aria-expanded="false">
               <span class="sr-only">Toggle navigation</span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
+            <button style="display:none;" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-3" aria-expanded="false">
+              <i style="color:#f2711c;" class="alarm icon"></i>
+            </button>
             <a class="navbar-brand" href="#"><img style="max-height: 30px; max-width: 168px;" src="/images/logo.png" alt="logo" /></a>
           </div>
+
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse-mobile" id="bs-example-navbar-collapse-3">
+
+            <ul class="nav navbar-nav navbar-right main-menu">
+              <li class="dropdown open">
+                <ul class="dropdown-menu2 notification">
+                  <li><a style="color:black;" href="#">Notif 1</a></li>
+                  <li><a style="color:black;" href="#">Notif 2</a></li>
+                  <li><a style="color:black;" href="#">More Notification..</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div><!-- /.navbar-collapse -->
 
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse-mobile" id="bs-example-navbar-collapse-2">
@@ -80,6 +97,14 @@
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
             <ul class="nav navbar-nav navbar-right main-menu">
+              <li style="display:none;" class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="alarm icon"></i></a>
+                <ul class="dropdown-menu notification" style="background: white;">
+                  <li><a style="color:black;" href="#">Notif 1</a></li>
+                  <li><a style="color:black;" href="#">Notif 2</a></li>
+                  <li><a style="color:black;" href="#">More Notification..</a></li>
+                </ul>
+              </li>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="sidebar icon"></i></a>
                 <ul class="dropdown-menu newsfeed-home">

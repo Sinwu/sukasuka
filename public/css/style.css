@@ -2158,6 +2158,8 @@ ul.contact li i{
 @media only screen and (max-width : 768px) {
 
   .menu ul.main-menu li.dropdown ul.dropdown-menu li{background: #282425;}
+
+  .menu ul.main-menu li.dropdown ul.dropdown-menu2 li{background: #dfdfdf;}
   
   #header-inverse nav.menu .navbar-collapse{background: rgba(0,0,0, 0.9);}
 

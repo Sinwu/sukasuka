@@ -27,3 +27,31 @@ p.sub.header {
   padding-left: .65rem;
   font-size: .9rem;
 }
+
+.logo-mobile {
+  display:none;
+}
+
+@media only screen and (max-width : 768px) {
+  #lp-register > .container.wrapper {
+    min-height: 100vh;
+    padding-top: 41px;
+    padding-bottom: 80px;
+  }
+
+  .subtitle {
+    display:none;
+  }
+
+  .reg-form-container {
+    min-height:254px;
+  }
+
+  .logo-resp {
+    display:none;
+  }
+
+  .logo-mobile {
+    display:block;
+  }
+}
