@@ -17,12 +17,11 @@ angular.module('wnoo')
     this.init = false;
     this.load = true;
 
-    var url = `/api/internal/notification/${this.after}`;
+    var url = `/api/internal/notification/p/${this.after}`;
 
     $http.get(url)
     .then(
       function(success) {
-        console.log(success)
         var notifications = success.data.notifications;
         var lastNotificationID = success.data.lastNotificationID;
 
@@ -44,7 +43,7 @@ angular.module('wnoo')
     );
   };
 
-  Notification.prototype.getSelf = function(post) {
+  Notification.prototype.getSelf = function() {
     if (this.busy) return
     this.busy = true
     this.checked = true

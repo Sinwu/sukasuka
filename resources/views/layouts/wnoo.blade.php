@@ -37,7 +37,7 @@
 
     <!-- Header
     ================================================= -->
-		<header id="header">
+		<header id="header" ng-controller="HeaderController as ctrl">
       <nav class="navbar navbar-default navbar-fixed-top menu">
         <div class="container">
 
@@ -49,28 +49,30 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <button style="display:none;" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-3" aria-expanded="false">
+            <button ng-click="notification.read()" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-3" aria-expanded="false">
               <i style="color:#f2711c;" class="alarm icon"></i>
+              <div ng-show="notification.unread" class="floating ui red circular label mini">@{{notification.unread}}</div>
             </button>
             <a class="navbar-brand" href="/"><img style="max-height: 30px; max-width: 168px;" src="/images/logo.png" alt="logo" /></a>
           </div>
 
           <!-- Collect the nav links, forms, and other content for toggling -->
-          <div class="collapse navbar-collapse-mobile" id="bs-example-navbar-collapse-3">
+          <div style="margin-left: -10px;margin-right: -10px;padding-left: 10px;padding-right: 10px;" class="collapse navbar-collapse-mobile" id="bs-example-navbar-collapse-3">
 
             <ul class="nav navbar-nav navbar-right main-menu">
               <li class="dropdown open">
-                <ul class="dropdown-menu2 notification">
-                  <li><a style="color:black;" href="#">Notif 1</a></li>
-                  <li><a style="color:black;" href="#">Notif 2</a></li>
-                  <li><a style="color:black;" href="#">More Notification..</a></li>
+                <ul class="dropdown-menu notification">
+                  <li class="row" ng-repeat="notif in notification.notifications"><a href="/post/s/@{{notif.post.id}}">
+                    <p style="color: #fff"><span>@{{notif.actor.name}}</span> @{{notif.action}} @{{getNotifDescription(notif.action)}}</p>
+                  </a></li>
+                  <li style="background: none"><a style="color:#FFF" href="/notification">See All..</a></li>
                 </ul>
               </li>
             </ul>
           </div><!-- /.navbar-collapse -->
 
           <!-- Collect the nav links, forms, and other content for toggling -->
-          <div class="collapse navbar-collapse-mobile" id="bs-example-navbar-collapse-2">
+          <div style="margin-left: -10px;margin-right: -10px;padding-left: 10px;padding-right: 10px;" class="collapse navbar-collapse-mobile" id="bs-example-navbar-collapse-2">
 
             <ul class="nav navbar-nav navbar-right main-menu">
               <li class="dropdown open">
@@ -94,7 +96,7 @@
           </div><!-- /.navbar-collapse -->
 
           <!-- Collect the nav links, forms, and other content for toggling -->
-          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" ng-controller="HeaderController as ctrl">
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
             <ul class="nav navbar-nav navbar-right main-menu">
               <li class="dropdown">
@@ -106,7 +108,7 @@
                   <li class="row" ng-repeat="notif in notification.notifications"><a href="/post/s/@{{notif.post.id}}">
                     <p><span>@{{notif.actor.name}}</span> @{{notif.action}} @{{getNotifDescription(notif.action)}}</p>
                   </a></li>
-                  <li><a style="color:#1678c2;" href="#">See All..</a></li>
+                  <li><a style="color:#1678c2;" href="/notification">See All..</a></li>
                 </ul>
               </li>
               <li class="dropdown">

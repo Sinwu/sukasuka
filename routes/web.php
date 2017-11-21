@@ -41,7 +41,7 @@ Route::prefix('api/internal')->middleware(['auth:web'])->group(function () {
 	Route::post('/like', 'LikeController@index');
 	Route::post('/comment', 'CommentController@index');
 
-	Route::get('/notification/{before}', 'NotificationController@index');
+	Route::get('/notification/p/{before}', 'NotificationController@index');
 	Route::get('/notification/self', 'NotificationController@part');
 	Route::post('/notification/update', 'NotificationController@update');
 	Route::get('/post/{id}', 'PostController@show');

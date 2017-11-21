@@ -47,6 +47,19 @@ class NotificationController extends Controller
     ->take(20)
     ->get();
 
+    Notification::with([
+      'actor',
+      'owner',
+      'post'
+    ])
+    ->where('owner_id', $user->id)
+    ->orderBy('id', 'desc')
+    ->when($before > 0, function($query) use ($before){
+      return $query->where('id', '<', $before);
+    })
+    ->take(20)
+    ->update(['read' => true]);
+
     $results = array_map(function($n) use ($timeAgo) {
       $n['timeago'] = $timeAgo->inWords($n['created_at']);
       return $n;
