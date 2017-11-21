@@ -6,6 +6,7 @@ use App\User;
 use App\Post;
 use App\Comment;
 use App\Activity;
+use App\Notification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -45,6 +46,17 @@ class CommentController extends Controller
         'post_id' => $postID
       ]);
       $user->activities()->save($activity);
+
+      // Creating commented activity
+      if($post->user_id != $user->id) {
+        Notification::create([
+          'owner_id' => $post->user_id,
+          'actor_id' => $user->id,
+          'post_id'  => $postID,
+          'action'   => 'commented',
+          'read'     => false
+        ]);
+      }
     });
 
     return response()->json([

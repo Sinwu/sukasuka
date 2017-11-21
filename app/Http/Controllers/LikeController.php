@@ -6,6 +6,7 @@ use App\User;
 use App\Post;
 use App\Like;
 use App\Activity;
+use App\Notification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -45,6 +46,25 @@ class LikeController extends Controller
           'post_id' => $postID
         ]);
         $user->activities()->save($activity);
+
+        // Creating commented activity
+        if($post->user_id != $user->id) {
+          $exists = Notification::where('owner_id', $post->user_id)
+          ->where('actor_id', $user->id)
+          ->where('post_id', $postID)
+          ->where('action', 'liked')
+          ->first();
+
+          if(!$exists) {
+            Notification::create([
+              'owner_id' => $post->user_id,
+              'actor_id' => $user->id,
+              'post_id'  => $postID,
+              'action'   => 'liked',
+              'read'     => false
+            ]);
+          }
+        }
       } else {
         // Unliking
         $like = [

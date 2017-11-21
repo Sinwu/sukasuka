@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Post;
 use App\Activity;
+use App\Notification;
 use Westsworld\TimeAgo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -166,6 +167,17 @@ class PostController extends Controller
                 'post_id' => $userPost->id
             ]);
             $user->activities()->save($activity);
+
+            // Creating notification
+            if($userPost->id != $user->id && $post['wall_id'] != null && $post['wall_id'] != $user->id) {
+                Notification::create([
+                    'owner_id' => $post['wall_id'],
+                    'actor_id' => $user->id,
+                    'post_id'  => $userPost->id,
+                    'action'   => 'posted',
+                    'read'     => false
+                ]);
+            }
         });
 
         return response()->json([
@@ -181,7 +193,30 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        $post = Post::with([
+            'user',
+            'comments', 'comments.user',
+            'likes' => function ($q) { $q->where('liked', true); }
+        ])
+        ->find($id);
+
+        if(!$post) abort(404);
+
+        return response()->json([
+            'ok'   => 'true',
+            'post' => $post
+        ]);
+    }
+
+    /**
+     * Display the single post.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function single(Request $request, $id)
+    {
+        return view('single', ['postID' => $id]);
     }
 
     /**

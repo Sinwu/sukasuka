@@ -1,6 +1,6 @@
 angular.module('wnoo')
 
-.controller('AboutController', ['$scope', '$timeout', 'Post', 'Media', function($scope, $timeout, Post, Media) {
+.controller('AboutController', ['$scope', '$timeout', function($scope, $timeout) {
   $scope.tUserImage = $('#tUserImage').val()
   $scope.tUserGender = $('#tUserGender').val()
 

@@ -42,6 +42,16 @@ class User extends Authenticatable
 		return $this->hasMany('App\Activity');
 	}
 
+	public function NotificationsAsActor()
+	{
+		return $this->hasMany('App\Notification', 'id', 'actor_id');
+	}
+
+	public function NotificationsAsOwner()
+	{
+		return $this->hasMany('App\Notification', 'id', 'owner_id');
+  }
+
 	protected static function boot()
 	{
 		parent::boot();

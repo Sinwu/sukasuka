@@ -40,6 +40,37 @@ angular.module('wnoo')
     return $http.post(url, post)
   };
 
+  Post.prototype.getSingle = function(id) {
+    if(!id) return
+    this.loag = true
+
+    var url = `/api/internal/post/${id}`
+
+    $http.get(url)
+    .then(
+      function(success) {
+        var post = success.data.post;
+        
+        // Define functions
+        post.isPost = getType(post.type, 'post')
+        post.isImage = getType(post.type, 'image')
+        post.isVideo = getType(post.type, 'video')
+        
+        post.like = postLike(post)
+        post.liked = isLiked(post.likes, success.data.requester)
+        post.likes = post.likes.length
+        
+        post.comment = postComment(post)
+
+        this.posts.push(post);
+        this.load = false;
+      }.bind(this),
+      function(error) {
+        console.log(error)
+      }
+    );
+  }
+
   Post.prototype.nextPage = function() {
     if (this.load || this.stop) return;
     this.init = false;

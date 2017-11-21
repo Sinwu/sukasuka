@@ -1,3 +1,9 @@
+.notification a > p {
+  color: rgba(0,0,0,.9);
+  font-weight: normal;
+  font-size: .8rem;
+}
+
 .edit-block .profile-photo.update {
   margin: 0 auto;
   width: 120px;

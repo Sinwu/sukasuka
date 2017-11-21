@@ -94,15 +94,16 @@
           </div><!-- /.navbar-collapse -->
 
           <!-- Collect the nav links, forms, and other content for toggling -->
-          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" ng-controller="HeaderController as ctrl">
 
             <ul class="nav navbar-nav navbar-right main-menu">
-              <li style="display:none;" class="dropdown">
+              <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="alarm icon"></i></a>
                 <ul class="dropdown-menu notification" style="background: white;">
-                  <li><a style="color:black;" href="#">Notif 1</a></li>
-                  <li><a style="color:black;" href="#">Notif 2</a></li>
-                  <li><a style="color:black;" href="#">More Notification..</a></li>
+                  <li ng-repeat="notif in notification.notifications"><a href="/post/s/@{{notif.post.id}}">
+                    <p>@{{notif.actor.name}} has @{{notif.action}} @{{getNotifDescription(notif.action)}}</p>
+                  </a></li>
+                  <li><a style="color:#1678c2;" href="#">See All..</a></li>
                 </ul>
               </li>
               <li class="dropdown">
@@ -169,6 +170,10 @@
     <script src="/js/wnoo-factory-comment.js"></script>
     <script src="/js/wnoo-factory-like.js"></script>
     <script src="/js/wnoo-factory-app.js"></script>
+    <script src="/js/wnoo-factory-notification.js"></script>
+
+    <!--  Angular Controllers  -->
+    <script src="/js/wnoo-controller-header.js"></script>
     @yield('script')
     
   </body>

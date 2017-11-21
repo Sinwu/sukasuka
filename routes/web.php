@@ -23,6 +23,7 @@ Route::middleware(['auth:web', 'logged'])->group(function () {
 	Route::get('/about/{tID}', 'AboutController@index');
 	Route::get('/editbasic', 'UserController@editbasic');
 	Route::get('/editpassword', 'UserController@editpassword');
+	Route::get('/post/s/{id}', 'PostController@single');
 });
 
 // Internal API Routes
@@ -38,6 +39,9 @@ Route::prefix('api/internal')->middleware(['auth:web'])->group(function () {
 	Route::post('/media/profile', 'UserController@photo');
 	Route::post('/like', 'LikeController@index');
 	Route::post('/comment', 'CommentController@index');
+
+	Route::get('/notification/self', 'NotificationController@part');
+	Route::get('/post/{id}', 'PostController@show');
 });
 
 // Vendor's Routes
