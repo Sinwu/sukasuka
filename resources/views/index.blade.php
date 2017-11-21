@@ -74,7 +74,7 @@
                 <div class="tab-pane" id="register">
                   <div ng-show="registerSuccess" class="register prompt">
                     <div class="ui icon success message">
-                      <i class="notched circle loading icon"></i>
+                      <i class="checkmark icon"></i>
                       <div class="content">
                         <div class="header">
                           Your registration request has been received
