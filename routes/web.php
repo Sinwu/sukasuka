@@ -24,6 +24,7 @@ Route::middleware(['auth:web', 'logged'])->group(function () {
 	Route::get('/editbasic', 'UserController@editbasic');
 	Route::get('/editpassword', 'UserController@editpassword');
 	Route::get('/post/s/{id}', 'PostController@single');
+	Route::get('/notification', 'NotificationController@page');
 });
 
 // Internal API Routes
@@ -40,7 +41,9 @@ Route::prefix('api/internal')->middleware(['auth:web'])->group(function () {
 	Route::post('/like', 'LikeController@index');
 	Route::post('/comment', 'CommentController@index');
 
+	Route::get('/notification/{before}', 'NotificationController@index');
 	Route::get('/notification/self', 'NotificationController@part');
+	Route::post('/notification/update', 'NotificationController@update');
 	Route::get('/post/{id}', 'PostController@show');
 });
 

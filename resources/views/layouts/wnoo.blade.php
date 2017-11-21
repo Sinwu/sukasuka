@@ -52,7 +52,7 @@
             <button style="display:none;" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-3" aria-expanded="false">
               <i style="color:#f2711c;" class="alarm icon"></i>
             </button>
-            <a class="navbar-brand" href="#"><img style="max-height: 30px; max-width: 168px;" src="/images/logo.png" alt="logo" /></a>
+            <a class="navbar-brand" href="/"><img style="max-height: 30px; max-width: 168px;" src="/images/logo.png" alt="logo" /></a>
           </div>
 
           <!-- Collect the nav links, forms, and other content for toggling -->
@@ -98,10 +98,13 @@
 
             <ul class="nav navbar-nav navbar-right main-menu">
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="alarm icon"></i></a>
+                <a href="#" ng-click="notification.read()" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                  <i class="alarm icon"></i>
+                </a>
+                <div ng-show="notification.unread" style="top:.5rem; left: 75%;" class="floating ui red circular label mini">@{{notification.unread}}</div>
                 <ul class="dropdown-menu notification" style="background: white;">
-                  <li ng-repeat="notif in notification.notifications"><a href="/post/s/@{{notif.post.id}}">
-                    <p>@{{notif.actor.name}} has @{{notif.action}} @{{getNotifDescription(notif.action)}}</p>
+                  <li class="row" ng-repeat="notif in notification.notifications"><a href="/post/s/@{{notif.post.id}}">
+                    <p><span>@{{notif.actor.name}}</span> @{{notif.action}} @{{getNotifDescription(notif.action)}}</p>
                   </a></li>
                   <li><a style="color:#1678c2;" href="#">See All..</a></li>
                 </ul>

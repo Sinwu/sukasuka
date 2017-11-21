@@ -8,8 +8,10 @@ angular.module('wnoo')
   });
 
   $scope.getNotifDescription = function(action) {
-    if(action == 'post') {
+    if(action == 'posted') {
       return 'on your wall.'
+    } else if (action == 'comment'){
+      return 'on your post.'
     } else {
       return 'your post.'
     }
