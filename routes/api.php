@@ -39,4 +39,6 @@ Route::middleware(['auth:api'])->group(function () {
 	Route::post('/media/profile', 'UserController@photo');
 	Route::post('/like', 'LikeController@index');
 	Route::post('/comment', 'CommentController@index');
+
+	Route::get('/integrate/profile/{id}', 'UserController@profile');
 });
