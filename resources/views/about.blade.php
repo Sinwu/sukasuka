@@ -1,13 +1,14 @@
 @extends('layouts.wnoo')
 
 @section('content')
-<div class="timeline container" ng-controller="AboutController as ctrl">
+<div class="about container" ng-controller="AboutController as ctrl">
+  <input id="tUserID" type="hidden" value="{{ $tUser->id }}">
   <input id="tUserImage" type="hidden" value="{{ $tUser->src }}">
   <input id="tUserGender" type="hidden" value="{{ $tUser->gender }}">
 
   <!-- Timeline
   ================================================= -->
-  <div class="timeline">
+  <div>
     <div class="timeline-cover">
 
       <!--Timeline Menu for Large Screens-->
@@ -15,7 +16,7 @@
         <div class="row">
           <div class="col-md-3">
             <div class="profile-info">
-              <img src="@{{getAboutUserImage()}}" alt="" class="img-responsive profile-photo" />
+              <img ng-src="@{{getAboutUserImage()}}" alt="" class="img-responsive profile-photo" />
               <h3>{{ $tUser->name }}</h3>
               <p class="text-muted">Administrator</p>
             </div>
@@ -36,7 +37,7 @@
       <!--Timeline Menu for Small Screens-->
       <div class="navbar-mobile hidden-lg hidden-md">
         <div class="profile-info">
-          <img src="@{{getAboutUserImage()}}" alt="" class="img-responsive profile-photo" />
+          <img ng-src="@{{getAboutUserImage()}}" alt="" class="img-responsive profile-photo" />
           <h4>{{ $user->name }}</h4>
           <p class="text-muted">Creative Director</p>
         </div>
@@ -54,7 +55,12 @@
     <div id="page-contents">
       <div class="ui card post-content" style="background-color: white;">
         <div class="post-container">
-          <div class="row">
+          <div class="about row ui segment">
+            <!--  Loader  -->
+            <div id="loader" class="ui active inverted dimmer">
+              <div class="ui text loader">Loading</div>
+            </div>
+
             <div class="col-md-3"></div>
             <div class="col-md-7">
 
@@ -63,30 +69,175 @@
               <div class="about-profile">
                 <div class="about-content-block">
                   <h4 class="grey"><i class="ion-ios-information-outline icon-in-title"></i>Personal Information</h4>
-                  <div class="row">
-                    <div class="col-md-3">
-                      <p>Fullname</p>
+                  {{--
+                  "NIK": "8314265",
+                  "Nama": "Syafrizal",
+                  "email": "syafrizal@edi-indonesia.co.id",
+                  "jabatan": "Analyst Programmer",
+                  "nama_div_ext": "IT Development",
+                  "subdivisi": "Project & Product Development",
+                  "lokasi": "Jakarta",
+                  "noext": "8322",
+                  "Alamat": "Jl. Pengadegan Selatan VIII No. 13 RT.010/RW.05 Pengadegan, Pancoran, Jakarta Selatan",
+                  "NoTelepon": "-",
+                  "NoHp": "085659650001",
+                  "TempatLahir": "Garut",
+                  "TanggalLahir": "1983-09-25",
+                  "nama_agama": "Islam",
+                  "emailreg": "isol.retro@gmail.com",
+                  "gol_darah": "",
+                  "hobi": null
+                  --}}
+                  <div ng-hide="isEmployee">
+                    <div class="row">
+                      <div class="col-md-3">
+                        <p>Fullname</p>
+                      </div>
+                      <div class="col-md-9">
+                        <p>{{ $tUser->name }}</p>
+                      </div>
                     </div>
-                    <div class="col-md-9">
-                      <p>{{ $tUser->name }}</p>
+                    <div class="row">
+                      <div class="col-md-3">
+                        <p>Email</p>
+                      </div>
+                      <div class="col-md-9">
+                        <p>{{ $tUser->email }}</p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-3">
+                        <p>Date of birth</p>
+                      </div>
+                      <div class="col-md-9">
+                        <p>{{ $tUser->birthday }}</p>
+                      </div>
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="col-md-3">
-                      <p>Email</p>
+
+                  <div ng-show="isEmployee">
+                    <div class="row">
+                      <div class="col-md-3">
+                        <p>NIK</p>
+                      </div>
+                      <div class="col-md-9">
+                        <p>@{{ profile.datapribadi.NIK }}</p>
+                      </div>
                     </div>
-                    <div class="col-md-9">
-                      <p>{{ $tUser->email }}</p>
+                    <div class="row">
+                      <div class="col-md-3">
+                        <p>Fullname</p>
+                      </div>
+                      <div class="col-md-9">
+                        <p>@{{ profile.datapribadi.Nama }}</p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-3">
+                        <p>Email</p>
+                      </div>
+                      <div class="col-md-9">
+                        <p>@{{ profile.datapribadi.email }}</p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-3">
+                        <p>Email Pribadi</p>
+                      </div>
+                      <div class="col-md-9">
+                        <p>@{{ profile.datapribadi.emailreg }}</p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-3">
+                        <p>Jabatan</p>
+                      </div>
+                      <div class="col-md-9">
+                        <p>@{{ profile.datapribadi.jabatan }}</p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-3">
+                        <p>Divisi</p>
+                      </div>
+                      <div class="col-md-9">
+                        <p>@{{ profile.datapribadi.nama_div_ext }}</p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-3">
+                        <p>Sub Divisi</p>
+                      </div>
+                      <div class="col-md-9">
+                        <p>@{{ profile.datapribadi.subdivisi }}</p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-3">
+                        <p>Lokasi</p>
+                      </div>
+                      <div class="col-md-9">
+                        <p>@{{ profile.datapribadi.lokasi }}</p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-3">
+                        <p>No. Extension</p>
+                      </div>
+                      <div class="col-md-9">
+                        <p>@{{ profile.datapribadi.noext }}</p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-3">
+                        <p>Alamat</p>
+                      </div>
+                      <div class="col-md-9">
+                        <p>@{{ profile.datapribadi.Alamat }}</p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-3">
+                        <p>Telepon / HP</p>
+                      </div>
+                      <div class="col-md-9">
+                        <p>@{{ profile.datapribadi.NoTelepon }} / @{{ profile.datapribadi.NoHp }}</p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-3">
+                        <p>Tempat, Tanggal Lahir</p>
+                      </div>
+                      <div class="col-md-9">
+                        <p>@{{ profile.datapribadi.TempatLahir }}, @{{ profile.datapribadi.TanggalLahir }}</p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-3">
+                        <p>Agama</p>
+                      </div>
+                      <div class="col-md-9">
+                        <p>@{{ profile.datapribadi.nama_agama }}</p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-3">
+                        <p>Gol. Darah</p>
+                      </div>
+                      <div class="col-md-9">
+                        <p>@{{ profile.datapribadi.gol_darah }}</p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-3">
+                        <p>Hobi</p>
+                      </div>
+                      <div class="col-md-9">
+                        <p>@{{ profile.datapribadi.hobi }}</p>
+                      </div>
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="col-md-3">
-                      <p>Date of birth</p>
-                    </div>
-                    <div class="col-md-9">
-                      <p>{{ $tUser->birthday }}</p>
-                    </div>
-                  </div>
+
                 </div>
                 
                 <div class="about-content-block">

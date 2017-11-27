@@ -153,7 +153,7 @@ class PostController extends Controller
         $data = $request->all();
         $post = new Post([
             'type' => $data['type'],
-            'content' => $data['content'],
+            'content' => $data['content'] ?? '',
             'destination' => $data['destination'],
             'wall_id' => $data['wallid'] ?? null,
             'src' => $data['src'] ?? null

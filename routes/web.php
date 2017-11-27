@@ -45,6 +45,8 @@ Route::prefix('api/internal')->middleware(['auth:web'])->group(function () {
 	Route::get('/notification/self', 'NotificationController@part');
 	Route::post('/notification/update', 'NotificationController@update');
 	Route::get('/post/{id}', 'PostController@show');
+
+	Route::get('/integrate/profile/{id}', 'UserController@profile');
 });
 
 // Vendor's Routes

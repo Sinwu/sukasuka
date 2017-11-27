@@ -47,7 +47,7 @@
   text-decoration: none !important;
 }
 
-.edit-profile .ui.segment {
+.edit-profile .ui.segment, .about.row.ui.segment {
   margin: 0;
   padding: 0;
   border: none;
