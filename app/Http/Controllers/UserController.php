@@ -132,11 +132,10 @@ class UserController extends Controller
 
     public function profile($id)
     {
-        $key = '';
-        $url = 'http://192.168.5.24/internalAPI/public/oauth/access_token';
+        $url = 'https://192.168.5.24/internalAPI/public/oauth/access_token';
 
         $client   = new \GuzzleHttp\Client();
-        $response = $client->request('GET', $url, [
+        $response = $client->request('POST', $url, [
             'form_params' => [
                 'grant_type'    => 'client_credentials',
                 'client_id'     => 'api-hris',
@@ -144,11 +143,28 @@ class UserController extends Controller
             ]
         ]);
 
-        $res     = $response->json();
-        \Log::Info($res);
+        $result = json_decode($response->getBody());
+        $token  = $result->access_token;
+        if (!$token) abort(403, 'Unauthorized action.');
+
+        $config  = [
+            'headers' => [
+                'Authorization' => 'Bearer ' . $token
+            ]
+        ];
+        $urlP      = 'https://192.168.5.24/internalAPI/public/api1/getProfilEmployee';
+        $clientP   = new \GuzzleHttp\Client($config);
+        $responseP = $client->request('POST', $url, [
+            'form_params' => [
+                'email'    => 'ibnu.ridho'
+            ]
+        ]);
+
+        $resultP = json_decode($responseP->getBody());
 
         return response()->json([
-            'ok' => true
+            'ok'      => true,
+            'profile' => $resultP
         ]);
     }
 
