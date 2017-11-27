@@ -130,6 +130,15 @@ class UserController extends Controller
         }
     }
 
+    public function profile($id)
+    {
+        
+
+        return response()->json([
+            'ok' => true,
+        ]);
+    }
+
     /**
      * Remove the specified resource from storage.
      *

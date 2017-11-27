@@ -23,8 +23,6 @@ angular.module('wnoo')
       wallid: $scope.pageID
     }
 
-    console.log(post)
-
     // Return if nothing to post
     if(post.type == 'post' && !post.content) return
 
@@ -91,6 +89,7 @@ angular.module('wnoo')
 
   $scope.postMediaImage = function(file) {
     // VALIDATION HERE
+    if(!file) return false
 
     $scope.image = file
     $scope.shareMediaImage()
@@ -99,6 +98,7 @@ angular.module('wnoo')
 
   $scope.postMediaVideo = function(file) {
     // VALIDATION HERE
+    if(!file) return false
 
     $scope.video = file
     $scope.shareMediaVideo()

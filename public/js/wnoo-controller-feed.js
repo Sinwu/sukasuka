@@ -112,6 +112,7 @@ angular.module('wnoo')
 
   $scope.postMediaImage = function(file) {
     // VALIDATION HERE
+    if(!file) return false
 
     $scope.image = file
     $scope.shareMediaImage()
@@ -120,6 +121,7 @@ angular.module('wnoo')
 
   $scope.postMediaVideo = function(file) {
     // VALIDATION HERE
+    if(!file) return false
 
     $scope.video = file
     $scope.shareMediaVideo()

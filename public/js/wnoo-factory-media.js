@@ -8,7 +8,7 @@ angular.module('wnoo')
   Media.prototype.upload = function(file) {
     if (this.busy) return
 
-    var url = `api/internal/media`;
+    var url = `/api/internal/media`;
     file.upload = Upload.upload({
       url: url,
       data: {file: file},
@@ -20,7 +20,7 @@ angular.module('wnoo')
   Media.prototype.profileUpload = function(file) {
     if (this.busy) return
     
-    var url = `api/internal/media/profile`;
+    var url = `/api/internal/media/profile`;
     file.upload = Upload.upload({
       url: url,
       data: {file: file},
