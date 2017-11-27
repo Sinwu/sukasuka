@@ -9,6 +9,16 @@
   color: #1678c2;
 }
 
+.error.pointing.label {
+  width: calc(100% + 1px);
+  margin-left: -1px;
+  margin-top: 0;
+}
+
+.error.pointing.label::before {
+  content: none;
+}
+
 @media (min-width: 768px) { 
   .notif-container.row img {
     border-top-right-radius: 0px !important;

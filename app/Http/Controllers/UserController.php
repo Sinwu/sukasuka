@@ -130,6 +130,28 @@ class UserController extends Controller
         }
     }
 
+    public function profile($id)
+    {
+        $key = '';
+        $url = 'http://192.168.5.24/internalAPI/public/oauth/access_token';
+
+        $client   = new \GuzzleHttp\Client();
+        $response = $client->request('GET', $url, [
+            'form_params' => [
+                'grant_type'    => 'client_credentials',
+                'client_id'     => 'api-hris',
+                'client_secret' => 'b7c53e8d93d208c408222f68db4cf2eda50a337b',
+            ]
+        ]);
+
+        $res     = $response->json();
+        \Log::Info($res);
+
+        return response()->json([
+            'ok' => true
+        ]);
+    }
+
     /**
      * Remove the specified resource from storage.
      *

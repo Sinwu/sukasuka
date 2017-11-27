@@ -94,7 +94,7 @@
                   </div>
                 </a>
                 <a class="step" href="#" ngf-select="postMediaImage($file)" ng-model="image" name="image" ngf-pattern="'image/*'"
-                  ngf-accept="'image/*'" ngf-max-size="5MB"
+                  ngf-accept="'image/*'" ngf-max-size="20MB"
                   ngf-model-invalid="errorImage">
                   <i class="camera retro orange icon"></i>
                   <div class="content">
@@ -103,7 +103,7 @@
                   </div>
                 </a>
                 <a class="step" href="#" ngf-select="postMediaVideo($file)" ng-model="video" name="video" ngf-pattern="'video/*'"
-                  ngf-accept="'video/*'" ngf-max-size="20MB"
+                  ngf-accept="'video/*'" ngf-max-size="100MB"
                   ngf-model-invalid="errorVideo">
                   <i class="film purple icon"></i>
                   <div class="content">
@@ -112,8 +112,11 @@
                   </div>
                 </a>
               </div>
-
             </div>
+
+            {{--  ERRORS  --}}
+            <div ng-show="postForm.video.$error.maxSize" class="ui error pointing red basic label">Video is too large @{{errorVideo.size / 1000000|number:1}}MB: max 100MB</div>
+            <div ng-show="postForm.image.$error.maxSize" class="ui error pointing red basic label">Image is too large @{{errorImage.size / 1000000|number:1}}MB: max 20MB</div>
 
             <div class="post write" style="display: none">
               <textarea ng-model="postContent" name="content" id="contentTextArea" rows="2" class="form-control textarea" placeholder="Write your thought"></textarea>
