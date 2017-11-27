@@ -19,6 +19,8 @@
             <p class="text-white">Administrator</p>
           </div><!--profile card ends-->
 
+          <div class="ui divider"></div>
+
           <div class="ui card internal segment">
             <div ng-show="app.busy" class="ui inverted active dimmer">
               <div class="ui loader"></div>
@@ -166,11 +168,18 @@
 
         </div><!-- Post Create Box End-->
 
-        <div class="ui popular card" style="padding-left: 1.5rem; max-width: 262px;">
-          <div class="ui toggle checkbox">
-            <input ng-model="popular" type="checkbox" ng-change="togglePopular()">
-            <label style="color: #1678c2;">Popular Posts</label>
-          </div>
+        <div class="ui popular">
+          <div class="ui grid">
+            <div class="twelve wide column"  style="padding-top:0;">
+              <div class="ui divider"></div>
+            </div>
+            <div class="four wide column"  style="padding-top:0;">
+              <div class="ui toggle checkbox" style="margin-top: 4px;">
+                <input ng-model="popular" type="checkbox" ng-change="togglePopular()">
+                <label style="color: #1678c2;">Popular Post</label>
+              </div>              
+            </div>
+          </div>          
         </div>
 
         <!-- Post Content
