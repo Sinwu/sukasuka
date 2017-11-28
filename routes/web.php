@@ -75,4 +75,5 @@ Route::prefix('/mod')->middleware(['auth:web', 'mod'])->group(function(){
 	Route::post('/updShownApp', 'AppsController@updShown');
 
 	Route::post('/appparams', 'AppParamsController@store');
+	Route::get('/appparams/{id}', 'AppParamsController@show2');
 });

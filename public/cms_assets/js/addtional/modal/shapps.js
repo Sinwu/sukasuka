@@ -67,6 +67,33 @@ $(document).ready(function(){
 
     $('#appid').val(appid);
 
+    $.ajax({
+      type: "GET",
+      url: "/mod/appparams/"+appid,
+      dataType: "json",
+      success: function(resp) {
+        console.log(resp);
+        if(resp.ok == "true") {
+
+          // $('#headerTable > tbody:last-child').append('<tr>'+
+          //   '<td>'+resp.data.name+'</td>'+
+          //   '<td>'+resp.data.value+'</td>'+
+          //   '<td class="text-center"><button id="delButton" type="button" class="btn ink-reaction btn-raised btn-danger" data-toggle="modal" data-target="#delModal" data-id="'+resp.id+'">Delete</button></td>'+              
+          // '</tr>');
+
+        } else {
+          
+          toastr.clear();
+          
+          var message = 'Failed to fetch data.';
+          toastr.info(message, '');
+        }
+      },
+      error: function() {
+        alert('error handing here');
+      }
+    });
+
     console.log(appid);
 
     $(document).on('click', '#submitHeaderButton', function(e){
@@ -96,13 +123,13 @@ $(document).ready(function(){
 
             toastr.clear();
 
-            var message = 'Berhasil menyimpan data.';
+            var message = 'Data saved.';
             toastr.info(message, '');
 
-            $('#headerBody > tbody:last-child').append('<tr>'+
-              '<td>'+data.name+'</td>'+
-              '<td>'+data.value+'</td>'+
-              '<td>'+data.name+'</td>'+              
+            $('#headerTable > tbody:last-child').append('<tr>'+
+              '<td class="text-center">'+resp.data.name+'</td>'+
+              '<td class="text-center">'+resp.data.value+'</td>'+
+              '<td class="text-center"><button id="delButton" type="button" class="btn ink-reaction btn-raised btn-danger" data-toggle="modal" data-target="#delModal" data-id="'+resp.id+'">Delete</button></td>'+              
             '</tr>');
 
             $('#headerModal').modal('hide');
@@ -112,7 +139,7 @@ $(document).ready(function(){
             
             toastr.clear();
             
-            var message = 'Gagal menyimpan data.';
+            var message = 'Failed to save data.';
             toastr.info(message, '');
           }
         },
@@ -151,8 +178,14 @@ $(document).ready(function(){
 
             toastr.clear();
 
-            var message = 'Berhasil menyimpan data.';
+            var message = 'Data saved.';
             toastr.info(message, '');
+
+            $('#bodyTable > tbody:last-child').append('<tr>'+
+              '<td class="text-center">'+resp.data.name+'</td>'+
+              '<td class="text-center">'+resp.data.value+'</td>'+
+              '<td class="text-center"><button id="delButton" type="button" class="btn ink-reaction btn-raised btn-danger" data-toggle="modal" data-target="#delModal" data-id="'+resp.id+'">Delete</button></td>'+              
+            '</tr>');
 
             $('#bodyModal').modal('hide');
 
@@ -161,7 +194,7 @@ $(document).ready(function(){
             
             toastr.clear();
             
-            var message = 'Gagal menyimpan data.';
+            var message = 'Failed to save data.';
             toastr.info(message, '');
           }
         },

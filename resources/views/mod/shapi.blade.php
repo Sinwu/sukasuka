@@ -218,8 +218,8 @@
             <table id="headerTable" class="table table-condensed no-margin">
               <thead>
                 <tr>
-                  <th>Key</th>
-                  <th>Value</th>
+                  <th class="text-center">Key</th>
+                  <th class="text-center">Value</th>
                   <th class="text-center">Action</th>
                 </tr>
               </thead>
@@ -253,8 +253,8 @@
             <table id="bodyTable" class="table table-condensed no-margin">
               <thead>
                 <tr>
-                  <th>Key</th>
-                  <th>Value</th>
+                  <th class="text-center">Key</th>
+                  <th class="text-center">Value</th>
                   <th class="text-center">Action</th>
                 </tr>
               </thead>

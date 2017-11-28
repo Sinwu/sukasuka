@@ -37,7 +37,7 @@ class AppParamsController extends Controller
     {
         $data = $request->all();
 
-        AppParams::create(array(
+        $id = AppParams::insertGetId(array(
             'apps_id'    => $data['apps_id'],
             'type'      => $data['type'],
             'name'      => $data['name'],
@@ -45,8 +45,9 @@ class AppParamsController extends Controller
         ));
 
         return response()->json([
-            'ok' => 'true',
-            'data' => $data
+            'ok'    =>  'true',
+            'data'  =>  $data,
+            'id'    =>  $id
         ]);
     }
 
@@ -56,9 +57,15 @@ class AppParamsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show2($id)
     {
-        //
+        $params = AppParams::where('apps_id',$id)->get();
+        if(!$params) return response('Invalid Request', 500);
+
+        return response()->json([
+            'ok'       => true,
+            'params' => $params
+        ]);
     }
 
     /**
