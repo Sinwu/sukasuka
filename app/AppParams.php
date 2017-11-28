@@ -12,7 +12,7 @@ class AppParams extends Model
  	* @var array
  	*/
 	protected $fillable = [
-		'app_id', 'type', 'name', 'value'
+		'apps_id', 'type', 'name', 'value'
 	];
     
     public function apps()

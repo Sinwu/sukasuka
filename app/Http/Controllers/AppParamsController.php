@@ -38,7 +38,7 @@ class AppParamsController extends Controller
         $data = $request->all();
 
         AppParams::create(array(
-            'app_id'    => $data['app_id'],
+            'apps_id'    => $data['apps_id'],
             'type'      => $data['type'],
             'name'      => $data['name'],
             'value'     => $data['value']
