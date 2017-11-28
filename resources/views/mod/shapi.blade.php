@@ -37,7 +37,7 @@
                     <th>App Description</th>
                     <th>App Url</th>
 										<th>Status</th>
-                    <th>Action</th>
+                    <th class="text-center">Action</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -54,7 +54,7 @@
                         <b> {{ "Enabled"}} </b>
                       @endif
 										</td>
-                    <td>
+                    <td class="text-center">
                       <button id="actButton" type="button" class="btn ink-reaction btn-raised btn-info" data-toggle="modal" data-target="#actModal" data-id="{{ $app->id }}" data-active="{{ $app->shown }}">
                       @if ($app->shown == 1)
 												{{ "Disable" }}
@@ -64,6 +64,9 @@
                       </button>
 											<button id="delButton" type="button" class="btn ink-reaction btn-raised btn-danger" data-toggle="modal" data-target="#delModal" data-id="{{ $app->id }}">
 											Delete
+											</button>
+                      <button id="paramButton" type="button" class="btn ink-reaction btn-raised btn-primary" data-toggle="modal" data-target="#paramModal" data-id="{{ $app->id }}">
+											Params
 											</button>
                     </td>
                   </tr>
@@ -125,15 +128,15 @@
 					<div class="form-group floating-label">
 						<input type="text" class="form-control" id="appname" required="required" name="name">
 						<label for="appname">App Name</label>
-					</div>
-					<div class="form-group floating-label">
-						<input type="text" class="form-control" id="appdesc" required="required" name="description">
-						<label for="appdesc">App Description</label>
-					</div>
+					</div>					
 					<div class="form-group floating-label">
 						<input type="text" class="form-control" id="appurl" required="required" name="url">
 						<label for="appurl">App Url</label>
 						<p class="help-block">ex: http://your-internal-application.com</p>
+					</div>
+          <div class="form-group floating-label">
+						<input type="text" class="form-control" id="appdesc" required="required" name="description">
+						<label for="appdesc">App Description</label>
 					</div>
 					<div class="form-group floating-label">
 						<div class="row">
@@ -189,6 +192,159 @@
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 <!-- END DELETE MODAL MARKUP -->
+
+<!-- BEGIN PARAM MODAL MARKUP -->
+<div class="modal fade" id="paramModal" tabindex="-1" role="dialog" aria-labelledby="simpleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header btn-primary">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="simpleModalLabel">Parameter Sent to Access Apps</h4>
+        <input type="hidden" id="appid">
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="col-md-8">
+              <h2 class="text-primary">Header</h2>
+            </div>
+            <div class="col-md-4">
+              <h2 class="text-right">
+                <button id="createButton2" type="button" class="btn ink-reaction btn-raised btn-primary" data-toggle="modal" data-target="#headerModal">
+                Add Header
+                </button>
+              </h2>
+            </div>
+            <table class="table table-condensed no-margin">
+              <thead>
+                <tr>
+                  <th>Key</th>
+                  <th>Value</th>
+                  <th class="text-center">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>Mark</td>
+                  <td class="text-center">
+                    <button id="delButton2" type="button" class="btn ink-reaction btn-raised btn-danger" data-toggle="modal" data-target="#delParamModal" data-id="{{ $app->id }}">
+											Delete
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <hr class="ruler-m">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="col-md-8">
+              <h2 class="text-primary">Body</h2>
+            </div>
+            <div class="col-md-4">
+              <h2 class="text-right">
+                <button id="createButton2" type="button" class="btn ink-reaction btn-raised btn-primary" data-toggle="modal" data-target="#bodyModal">
+                Add Body
+                </button>
+              </h2>
+            </div>
+            <table class="table table-condensed no-margin">
+              <thead>
+                <tr>
+                  <th>Key</th>
+                  <th>Value</th>
+                  <th class="text-center">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>Mark</td>
+                  <td class="text-center">
+                    <button id="delButton2" type="button" class="btn ink-reaction btn-raised btn-danger" data-toggle="modal" data-target="#delParamModal" data-id="{{ $app->id }}">
+											Delete
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- END PARAM MODAL MARKUP -->
+
+<!-- BEGIN HEADER MODAL MARKUP -->
+<div class="modal fade" id="headerModal" tabindex="18" role="dialog" aria-labelledby="simpleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header btn-primary">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="simpleModalLabel">Add New Header Data</h4>
+      </div>
+      <div class="modal-body">
+      <form id="headerForm" class="form" role="form">
+        {{ csrf_field() }}
+        <div class="form-group floating-label">
+          <input type="text" class="form-control" id="appname" required="required" name="name">
+          <label for="appname">Header Param Name</label>
+        </div>
+        <div class="form-group floating-label">
+          <input type="text" class="form-control" id="appdesc" required="required" name="value">
+          <label for="appdesc">Header Param Value</label>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" id="submitHeaderButton">Submit</button>
+			</form>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- END HEADER MODAL MARKUP -->
+
+<!-- BEGIN BODY MODAL MARKUP -->
+<div class="modal fade" id="bodyModal" tabindex="18" role="dialog" aria-labelledby="simpleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header btn-primary">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="simpleModalLabel">Add New Body Form Data</h4>
+      </div>
+      <div class="modal-body">
+      <form id="bodyForm" class="form" role="form">
+        {{ csrf_field() }}
+        <div class="form-group floating-label">
+          <input type="text" class="form-control" id="appname" required="required" name="name">
+          <label for="appname">Body Param Name</label>
+        </div>
+        <div class="form-group floating-label">
+          <select id="select2" name="select2" class="form-control" name="value">
+            <option value="">&nbsp;</option>
+            <option value="id">id</option>
+            <option value="email">email</option>
+            <option value="password">password</option>
+          </select>
+          <label for="appdesc">User data from local db</label>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" id="submitBodyButton">Submit</button>
+			</form>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- END BODY MODAL MARKUP -->
 @endsection
 
 @section('script')

@@ -38,4 +38,82 @@ $(document).ready(function(){
   });
   // END DEL MODAL
 
+  // BEGIN PARAM MODAL
+  $(document).on('click', '#paramButton', function(e){
+    $('#appid').empty();
+
+    e.preventDefault();
+    
+    var appid = $(this).data('id');    
+
+    $('#appid').val(appid);
+
+    console.log(appid);
+
+    $(document).on('click', '#submitHeaderButton', function(e){
+      $('#appid').empty();
+      e.preventDefault();
+      
+      var data = $('#headerForm').serializeArray();
+      var appid = $('#appid').val();
+
+      data.push({
+        name: "app_id",
+        value: appid
+      },
+      {
+        name: "type",
+        value: "header"
+      });
+
+      $.ajax({
+        type: "POST",
+        url: "/mod/appparams",
+        data: data,
+        dataType: "json",
+        success: function(resp) {
+          console.log(resp);
+        },
+        error: function() {
+          alert('error handing here');
+        }
+      });
+      
+       
+    });
+
+    $(document).on('click', '#submitBodyButton', function(e){
+      $('#appid').empty();
+      e.preventDefault();
+      
+      var data = $('#bodyForm').serializeArray();
+      var appid = $('#appid').val();
+
+      data.push({
+        name: "app_id",
+        value: appid
+      },
+      {
+        name: "type",
+        value: "body"
+      });
+
+      $.ajax({
+        type: "POST",
+        url: "/mod/appparams",
+        data: data,
+        dataType: "json",
+        success: function(resp) {
+          console.log(resp);
+        },
+        error: function() {
+          alert('error handing here');
+        }
+      });
+     
+    });
+
+  });
+  // END PARAM MODAL
+
 });

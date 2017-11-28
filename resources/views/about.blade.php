@@ -240,7 +240,7 @@
 
                 </div>
                 
-                <div class="about-content-block">
+                {{--  <div class="about-content-block">
                   <h4 class="grey"><i class="ion-ios-briefcase-outline icon-in-title"></i>Work Experiences</h4>
                   <div class="organization">
                     <img src="images/fav.png" alt="" class="pull-left img-org" />
@@ -274,7 +274,7 @@
                     <li><span class="int-icons" title="Traveling"><i class="icon ion-android-plane"></i></span></li>
                     <li><span class="int-icons" title="Eating"><i class="icon ion-android-restaurant"></i></span></li>
                   </ul>
-                </div>
+                </div>  --}}
               </div>
             </div>
             <div class="col-md-2 static">

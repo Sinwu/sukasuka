@@ -70,4 +70,6 @@ Route::prefix('/mod')->middleware(['auth:web', 'mod'])->group(function(){
 	Route::post('/apps', 'AppsController@store');
 	Route::post('/delApp', 'AppsController@delete');	
 	Route::post('/updShownApp', 'AppsController@updShown');
+
+	Route::post('/appparams', 'AppParamsController@store');
 });

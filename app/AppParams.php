@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Apps extends Model
+class AppParams extends Model
 {
     /**
  	* The attributes that are mass assignable.
@@ -12,12 +12,11 @@ class Apps extends Model
  	* @var array
  	*/
 	protected $fillable = [
-		'url', 'icon_url', 'name', 'description','shown'
+		'app_id', 'type', 'name', 'value'
 	];
-	
-	public function appParams()
-	{
-		return $this->hasMany('App\AppParams');
-	}
     
+    public function apps()
+	{
+		return $this->belongsTo('App\Apps');
+	}
 }

@@ -119,7 +119,6 @@
               <!--start submenu -->
               <ul>
                 <li><a href="/mod/shuser" ><span class="title">Social Hub User</span></a></li>
-                <li><a href="/mod/cmsuser" ><span class="title">CMS User</span></a></li>
               </ul><!--end /submenu -->
             </li><!--end /menu-li -->
             <!-- END FORMS -->
