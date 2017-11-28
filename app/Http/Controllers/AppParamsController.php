@@ -39,9 +39,9 @@ class AppParamsController extends Controller
 
         $id = AppParams::insertGetId(array(
             'apps_id'    => $data['apps_id'],
-            'type'      => $data['type'],
-            'name'      => $data['name'],
-            'value'     => $data['value']
+            'type'       => $data['type'],
+            'name'       => $data['name'],
+            'value'      => $data['value']
         ));
 
         return response()->json([

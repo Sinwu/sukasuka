@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Apps;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AppsController extends Controller
 {
@@ -23,9 +25,13 @@ class AppsController extends Controller
         // Get the apps
         $app = Apps::with(['params'])->find($id);
 
+        // Get logged user
+        $user = User::find(Auth::user()->id);
+
         return response()->json([
-            'ok' => 'true',
-            'app' => $app
+            'ok'   => 'true',
+            'app'  => $app,
+            'user' => $user
         ]);
     }
 
@@ -37,7 +43,7 @@ class AppsController extends Controller
 
         try {
             $response = $client->request('POST', $url, [
-                'timeout'     => 3,
+                'timeout'     => 10,
                 'http_errors' => false,
                 'form_params' => [
                     'grant_type'    => 'client_credentials',
