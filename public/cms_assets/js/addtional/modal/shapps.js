@@ -41,6 +41,10 @@ $(document).ready(function(){
   // BEGIN PARAM MODAL
   $(document).on('click', '#paramButton', function(e){
     $('#appid').empty();
+    $('#headerName').empty();
+    $('#headerValue').empty();
+    $('#bodyName').empty();
+    $('#bodyValue').empty();
 
     e.preventDefault();
     

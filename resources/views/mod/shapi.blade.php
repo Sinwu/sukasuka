@@ -43,7 +43,7 @@
                 <tbody>
                   @foreach ($apps as $app)
                   <tr>
-                    <td><img style="max-width:30px; max-height:30px;" src="{{ URL::to('/') . '/' . $app->icon_url }}" alt="appIcon"></td>
+                    <td><img style="max-width:30px; max-height:30px;" src="{{ URL::to('/') . $app->icon_url }}" alt="appIcon"></td>
                     <td>{{ $app->name }}</td>
                     <td>{{ $app->description }}</td>
                     <td><a href="{{ $app->url }}" target="_blank">{{ $app->url }}</a></td>
@@ -132,7 +132,7 @@
 					<div class="form-group floating-label">
 						<input type="text" class="form-control" id="appurl" required="required" name="url">
 						<label for="appurl">App Url</label>
-						<p class="help-block">ex: http://your-internal-application.com</p>
+						<p class="help-block">ex: http://internal.api/public/login</p>
 					</div>
           <div class="form-group floating-label">
 						<input type="text" class="form-control" id="appdesc" required="required" name="description">
@@ -293,12 +293,12 @@
       <form id="headerForm" class="form" role="form">
         {{ csrf_field() }}
         <div class="form-group floating-label">
-          <input type="text" class="form-control" id="appname" required="required" name="name">
-          <label for="appname">Header Param Name</label>
+          <input type="text" class="form-control" id="headerName" required="required" name="name">
+          <label for="headerName">Header Param Name</label>
         </div>
         <div class="form-group floating-label">
-          <input type="text" class="form-control" id="appdesc" required="required" name="value">
-          <label for="appdesc">Header Param Value</label>
+          <input type="text" class="form-control" id="headerValue" required="required" name="value">
+          <label for="headerValue">Header Param Value</label>
         </div>
       </div>
       <div class="modal-footer">
@@ -323,17 +323,17 @@
       <form id="bodyForm" class="form" role="form">
         {{ csrf_field() }}
         <div class="form-group floating-label">
-          <input type="text" class="form-control" id="appname" required="required" name="name">
-          <label for="appname">Body Param Name</label>
+          <input type="text" class="form-control" id="bodyName" required="required" name="name">
+          <label for="bodyName">Body Param Name</label>
         </div>
         <div class="form-group floating-label">
-          <select id="select2" name="select2" class="form-control" name="value">
+          <select id="bodyValue" class="form-control" name="value">
             <option value="">&nbsp;</option>
             <option value="id">id</option>
             <option value="email">email</option>
             <option value="password">password</option>
           </select>
-          <label for="appdesc">User data from local db</label>
+          <label for="bodyValue">User data from local db</label>
         </div>
       </div>
       <div class="modal-footer">
