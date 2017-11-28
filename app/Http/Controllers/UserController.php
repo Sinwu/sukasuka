@@ -132,6 +132,18 @@ class UserController extends Controller
 
     public function profile($id)
     {
+        // Validate email before processing
+        $user = User::find($id);
+        if (!$user) abort(403, 'Unauthorized action.');
+        $email = $user->email;
+
+        if(!preg_match('/(.+)@edi-indonesia.co.id/', $email, $matches)) {
+            return response()->json([
+                'ok'      => false,
+                'email'   => $email
+            ]);
+        }
+
         $url = 'http://192.168.5.24/internalAPI/public/oauth/access_token';
 
         $client   = new \GuzzleHttp\Client();
@@ -158,7 +170,7 @@ class UserController extends Controller
         $responseP = $clientP->request('POST', $urlP, [
             'timeout'     => 10,
             'form_params' => [
-                'email'    => 'ibnu.ridho'
+                'email'    => $matches[1]
             ]
         ]);
 
