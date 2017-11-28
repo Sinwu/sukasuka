@@ -15,7 +15,7 @@ class Apps extends Model
 		'url', 'icon_url', 'name', 'description','shown'
 	];
 	
-	public function appParams()
+	public function params()
 	{
 		return $this->hasMany('App\AppParams');
 	}

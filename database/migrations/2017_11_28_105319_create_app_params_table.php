@@ -17,8 +17,8 @@ class CreateAppParamsTable extends Migration
             $table->increments('id');
 
             // Foreign key 
-            $table->integer('app_id');
-            $table->foreign('app_id')->references('id')->on('apps');
+            $table->integer('apps_id');
+            $table->foreign('apps_id')->references('id')->on('apps');
  
             $table->string('type');
             $table->string('name');

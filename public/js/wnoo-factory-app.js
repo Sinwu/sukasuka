@@ -18,6 +18,10 @@ angular.module('wnoo')
     .then(
       function(success){
         this.apps = success.data.apps
+        for (var i = 0; i < this.apps.length; i++) {
+          this.apps[i].getURL = getURL(this.apps[i])
+        }
+
         this.busy = false;
       }.bind(this),
       function(error) {
@@ -28,6 +32,12 @@ angular.module('wnoo')
 
   Apps.prototype.isEmpty = function() {
     return this.apps.length < 1
+  }
+
+  var getURL = function(app) {
+    return function() {
+      return `/internalApp/redirect/${app.id}`
+    }
   }
 
   return Apps;

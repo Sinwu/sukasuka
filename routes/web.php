@@ -25,6 +25,7 @@ Route::middleware(['auth:web', 'logged'])->group(function () {
 	Route::get('/editpassword', 'UserController@editpassword');
 	Route::get('/post/s/{id}', 'PostController@single');
 	Route::get('/notification', 'NotificationController@page');
+	Route::get('/internalApp/redirect/{id}', 'AppsController@redirect');
 });
 
 // Internal API Routes
@@ -36,6 +37,8 @@ Route::prefix('api/internal')->middleware(['auth:web'])->group(function () {
 	Route::post('/user/updateP', 'UserController@updatePassword');
 
 	Route::get('/apps', 'AppsController@all');
+	Route::get('/apps/{id}', 'AppsController@single');
+
 	Route::post('/media', 'PostController@media');
 	Route::post('/media/profile', 'UserController@photo');
 	Route::post('/like', 'LikeController@index');
