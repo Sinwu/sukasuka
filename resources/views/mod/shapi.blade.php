@@ -228,7 +228,7 @@
                   <td>1</td>
                   <td>Mark</td>
                   <td class="text-center">
-                    <button id="delButton2" type="button" class="btn ink-reaction btn-raised btn-danger" data-toggle="modal" data-target="#delParamModal" data-id="{{ $app->id }}">
+                    <button id="delButton2" type="button" class="btn ink-reaction btn-raised btn-danger" data-toggle="modal" data-target="#delParamModal" data-id="">
 											Delete
                     </button>
                   </td>
@@ -263,7 +263,7 @@
                   <td>1</td>
                   <td>Mark</td>
                   <td class="text-center">
-                    <button id="delButton2" type="button" class="btn ink-reaction btn-raised btn-danger" data-toggle="modal" data-target="#delParamModal" data-id="{{ $app->id }}">
+                    <button id="delButton2" type="button" class="btn ink-reaction btn-raised btn-danger" data-toggle="modal" data-target="#delParamModal" data-id="">
 											Delete
                     </button>
                   </td>
