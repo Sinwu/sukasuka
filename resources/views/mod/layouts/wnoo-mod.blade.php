@@ -20,6 +20,7 @@
 		<link type="text/css" rel="stylesheet" href="../cms_assets/css/theme-default/libs/DataTables/extensions/dataTables.colVis.css?1423553990" />
 		<link type="text/css" rel="stylesheet" href="../cms_assets/css/theme-default/libs/rickshaw/rickshaw.css?1422792967" />
 		<link type="text/css" rel="stylesheet" href="../cms_assets/css/theme-default/libs/morris/morris.core.css?1420463396" />
+		<link type="text/css" rel="stylesheet" href="/cms_assets/css/theme-default/libs/toastr/toastr.css?1425466569" />
 		<!-- END STYLESHEETS -->
 
 		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -158,6 +159,7 @@
 		<script src="../cms_assets/js/libs/spin.js/spin.min.js"></script>
 		<script src="../cms_assets/js/libs/autosize/jquery.autosize.min.js"></script>
 		<script src="../cms_assets/js/libs/moment/moment.min.js"></script>
+		<script src="../cms_assets/js/libs/toastr/toastr.js"></script>
 		<script src="../cms_assets/js/core/source/App.js"></script>
 		<script src="../cms_assets/js/core/source/AppNavigation.js"></script>
 		<script src="../cms_assets/js/core/source/AppOffcanvas.js"></script>

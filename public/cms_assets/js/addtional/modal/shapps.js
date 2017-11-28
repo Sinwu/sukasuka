@@ -1,4 +1,19 @@
 $(document).ready(function(){
+
+  // Toastr Option          
+  toastr.options.closeButton = false;
+  toastr.options.progressBar = false;
+  toastr.options.debug = false;
+  toastr.options.positionClass = 'toast-top-right';
+  toastr.options.showDuration = 333;
+  toastr.options.hideDuration = 333;
+  toastr.options.timeOut = 0;
+  toastr.options.extendedTimeOut = 1000;
+  toastr.options.showEasing = 'swing';
+  toastr.options.hideEasing = 'swing';
+  toastr.options.showMethod = 'slideDown';
+  toastr.options.hideMethod = 'slideUp';
+
   // BEGIN ACT MODAL
   $(document).on('click', '#actButton', function(e){
     $('#hiddenID').empty();
@@ -44,7 +59,7 @@ $(document).ready(function(){
     $('#headerName').empty();
     $('#headerValue').empty();
     $('#bodyName').empty();
-    $('#bodyValue').empty();
+    $('#bodyValue').prop('selectedIndex',0);
 
     e.preventDefault();
     
@@ -77,6 +92,23 @@ $(document).ready(function(){
         dataType: "json",
         success: function(resp) {
           console.log(resp);
+          if(resp.ok == "true") {
+
+            toastr.clear();
+
+            var message = 'Berhasil menyimpan data.';
+            toastr.info(message, '');
+
+            $('#headerModal').modal('hide');
+
+            // location.reload();
+          } else {
+            
+            toastr.clear();
+            
+            var message = 'Gagal menyimpan data.';
+            toastr.info(message, '');
+          }
         },
         error: function() {
           alert('error handing here');
@@ -109,6 +141,23 @@ $(document).ready(function(){
         dataType: "json",
         success: function(resp) {
           console.log(resp);
+          if(resp.ok == "true") {
+
+            toastr.clear();
+
+            var message = 'Berhasil menyimpan data.';
+            toastr.info(message, '');
+
+            $('#bodyModal').modal('hide');
+
+            // location.reload();
+          } else {
+            
+            toastr.clear();
+            
+            var message = 'Gagal menyimpan data.';
+            toastr.info(message, '');
+          }
         },
         error: function() {
           alert('error handing here');
