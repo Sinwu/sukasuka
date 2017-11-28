@@ -77,7 +77,7 @@ $(document).ready(function(){
       var appid = $('#appid').val();
 
       data.push({
-        name: "app_id",
+        name: "apps_id",
         value: appid
       },
       {
@@ -98,6 +98,12 @@ $(document).ready(function(){
 
             var message = 'Berhasil menyimpan data.';
             toastr.info(message, '');
+
+            $('#headerBody > tbody:last-child').append('<tr>'+
+              '<td>'+data.name+'</td>'+
+              '<td>'+data.value+'</td>'+
+              '<td>'+data.name+'</td>'+              
+            '</tr>');
 
             $('#headerModal').modal('hide');
 
@@ -126,7 +132,7 @@ $(document).ready(function(){
       var appid = $('#appid').val();
 
       data.push({
-        name: "app_id",
+        name: "apps_id",
         value: appid
       },
       {

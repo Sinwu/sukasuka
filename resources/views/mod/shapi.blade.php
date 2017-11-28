@@ -215,7 +215,7 @@
                 </button>
               </h2>
             </div>
-            <table class="table table-condensed no-margin">
+            <table id="headerTable" class="table table-condensed no-margin">
               <thead>
                 <tr>
                   <th>Key</th>
@@ -250,7 +250,7 @@
                 </button>
               </h2>
             </div>
-            <table class="table table-condensed no-margin">
+            <table id="bodyTable" class="table table-condensed no-margin">
               <thead>
                 <tr>
                   <th>Key</th>
