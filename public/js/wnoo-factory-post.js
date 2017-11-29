@@ -51,6 +51,9 @@ angular.module('wnoo')
       function(success) {
         var post = success.data.post;
         
+        // Override comments
+        post.comments = post.comments_
+
         // Define functions
         post.isPost = getType(post.type, 'post')
         post.isImage = getType(post.type, 'image')

@@ -7,6 +7,7 @@ use App\Post;
 use App\Comment;
 use App\Activity;
 use App\Notification;
+use Westsworld\TimeAgo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -28,7 +29,7 @@ class CommentController extends Controller
     $user = User::find(Auth::user()->id);
     $data = $request->all();
 
-    DB::transaction(function () use ($user, $data) {
+    DB::transaction(function () use ($user, &$data) {
       $postID = $data['post'];
       $post = Post::find($postID);
 
@@ -38,6 +39,9 @@ class CommentController extends Controller
         'content' => $data['content']
       ]);
       $postComment = $post->comments()->save($comment);
+
+      $timeAgo = new TimeAgo();
+      $data['timeago'] = $timeAgo->inWords($postComment->created_at);
 
       // Creating commented activity
       $activity = new Activity([
@@ -62,7 +66,8 @@ class CommentController extends Controller
     return response()->json([
       'ok' => 'true',
       'user' => $user,
-      'content' => $data['content']
+      'content' => $data['content'],
+      'timeago' => $data['timeago']
     ]);
   }
 }

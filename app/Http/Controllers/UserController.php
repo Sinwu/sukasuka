@@ -76,7 +76,6 @@ class UserController extends Controller
         $user = User::find(Auth::user()->id);
 
         $data = $request->all();
-        \Log::Info($data);
 
         if(isset($data['name'])) $user->name = $data['name'];
         if(isset($data['gender'])) $user->gender = $data['gender'];

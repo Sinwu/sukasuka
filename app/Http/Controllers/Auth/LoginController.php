@@ -43,4 +43,15 @@ class LoginController extends Controller
     {
         return array_merge($request->only($this->username(), 'password'), ['active' => true]);
     }
+
+    protected function sendLoginResponse(Request $request)
+    {
+        $request->session()->regenerate();
+
+        $this->clearLoginAttempts($request);
+
+        return response()->json([
+            'ok' => true
+        ]);
+    }
 }

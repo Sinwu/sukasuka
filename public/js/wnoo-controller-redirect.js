@@ -17,6 +17,7 @@ angular.module('wnoo-redirect',[])
       function(success){
         $scope.app  = success.data.app
         $scope.user = success.data.user
+        console.log($scope.user)
 
         $scope.redirect()
       },

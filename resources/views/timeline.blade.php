@@ -50,7 +50,7 @@
             <li><a href="/timeline/{{ $tUser->id }}">Timeline</a></li>
             <li><a href="/about/{{ $tUser->id }}">About Me</a></li>
           </ul>
-          <a href="/editbasic"><button class="btn-primary">Edit Profile</button></a>
+          <a ng-show="selfTimeline()" href="/editbasic"><button class="btn-primary">Edit Profile</button></a>
         </div>
       </div><!--Timeline Menu for Small Screens End-->
 
@@ -207,7 +207,10 @@
 
                     <div ng-repeat="comment in post.comments" class="post-comment">
                       <img ng-src="@{{getUserImage(comment.user)}}" alt="" class="profile-photo-sm" />
-                      <p><a href="/timeline/@{{ comment.user.id }}" class="profile-link">@{{ comment.user.name }} </a> @{{ comment.content }} </p>
+                      <div>
+                        <a href="/timeline/@{{ comment.user.id }}" class="profile-link">@{{ comment.user.name }} </a> @{{ comment.content }}
+                        <p class="text-muted timestamp">@{{ comment.timeago }}</p>
+                      </div>
                     </div>
                     <div class="post-comment">
                       <img ng-src="@{{getHostUserImage()}}" alt="" class="profile-photo-sm" />

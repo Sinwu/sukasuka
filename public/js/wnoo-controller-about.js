@@ -1,6 +1,7 @@
 angular.module('wnoo')
 
 .controller('AboutController', ['$scope', '$timeout', '$http', function($scope, $timeout, $http) {
+  $scope.userID = $('#userID').val()
   $scope.tUserID = $('#tUserID').val()
   $scope.tUserImage = $('#tUserImage').val()
   $scope.tUserGender = $('#tUserGender').val()
@@ -38,5 +39,9 @@ angular.module('wnoo')
     } else {
       return '/images/user-default_female.png'
     }
+  }
+
+  $scope.selfAbout = function () {
+    return $scope.userID == $scope.tUserID
   }
 }])
