@@ -57,7 +57,7 @@ angular.module('wnoo')
       name: $scope.name,
       gender: $scope.gender,
       about: $scope.about,
-      sso_id: $scope.sso_id,
+      // sso_id: $scope.sso_id,
     }
 
     if ($scope.birthDate && $scope.birthMonth && $scope.birthYear) {
