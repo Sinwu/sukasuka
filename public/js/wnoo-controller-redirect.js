@@ -49,10 +49,6 @@ angular.module('wnoo-redirect',[])
     angular.forEach(appBody, function(val, key) {
       data[val.name] = $scope.user[val.value]
     })
-    
-    console.log($scope.app)
-    console.log(headers)
-    console.log(data)
 
     // Do Redirect
     var req = {

@@ -171,19 +171,15 @@
 
         </div><!-- Post Create Box End-->
 
-        <div class="ui popular">
-          <div class="ui grid">
-            <div class="twelve wide column"  style="padding-top:0;">
-              <div class="ui divider"></div>
-            </div>
-            <div class="four wide column"  style="padding-top:0;">
-              <div class="ui toggle checkbox" style="margin-top: 4px;">
-                <input ng-model="popular" type="checkbox" ng-change="togglePopular()">
-                <label style="color: #1678c2;">Popular Post</label>
-              </div>              
-            </div>
-          </div>          
-        </div>
+        <div class="row">
+          <div class="col-md-10 col-xs-7"  style="padding-top:0;">
+            <div class="ui divider"></div>
+          </div>
+          <div class="col-md-2 col-xs-5 ui toggle checkbox"  style="padding-top:0;margin-top: 4px;">
+            <input ng-model="popular" type="checkbox" ng-change="togglePopular()">
+            <label style="color: #1678c2;">Popular</label>
+          </div>
+        </div> 
 
         <!-- Post Content
         ================================================= -->

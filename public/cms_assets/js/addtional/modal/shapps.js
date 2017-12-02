@@ -72,22 +72,40 @@ $(document).ready(function(){
       url: "/mod/appparams/"+appid,
       dataType: "json",
       success: function(resp) {
+        var stringDataHeader = "";
+        var stringDataBody = "";
+
         console.log(resp);
-        if(resp.ok == "true") {
+        setTimeout(function(){
+          for (i=0; i < resp.params.length; i++){
+            if (resp.params.type = "header"){
+              stringDataHeader += '<tr>'+
+                '<td class="text-center">'+resp.params[i].name+'</td>'+
+                '<td class="text-center">'+resp.params[i].value+'</td>'+
+                '<td class="text-center"><button id="delButton" type="button" class="btn ink-reaction btn-raised btn-danger" data-toggle="modal" data-target="#delModal" data-id="'+resp.params[i].id+'">Delete</button></td>'+              
+              '</tr>';
+            } else if (resp.params.type = "body"){
+              stringDataBody += '<tr>'+
+                '<td class="text-center">'+resp.params[i].name+'</td>'+
+                '<td class="text-center">'+resp.params[i].value+'</td>'+
+                '<td class="text-center"><button id="delButton" type="button" class="btn ink-reaction btn-raised btn-danger" data-toggle="modal" data-target="#delModal" data-id="'+resp.params[i].id+'">Delete</button></td>'+              
+              '</tr>';
+            }
+          }
 
-          // $('#headerTable > tbody:last-child').append('<tr>'+
-          //   '<td>'+resp.data.name+'</td>'+
-          //   '<td>'+resp.data.value+'</td>'+
-          //   '<td class="text-center"><button id="delButton" type="button" class="btn ink-reaction btn-raised btn-danger" data-toggle="modal" data-target="#delModal" data-id="'+resp.id+'">Delete</button></td>'+              
-          // '</tr>');
+          $('#headerTable > tbody:last-child').append(stringDataHeader);
+          $('#bodyTable > tbody:last-child').append(stringDataBody);
 
-        } else {
+          console.log(stringDataHeader);
+          console.log(stringDataBody);
+        },2000);
+        //  else {
           
-          toastr.clear();
+        //   toastr.clear();
           
-          var message = 'Failed to fetch data.';
-          toastr.info(message, '');
-        }
+        //   var message = 'Failed to fetch data.';
+        //   toastr.info(message, '');
+        // }
       },
       error: function() {
         alert('error handing here');

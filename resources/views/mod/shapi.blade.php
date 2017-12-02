@@ -62,9 +62,9 @@
 												{{ "Enable" }}
 											@endif
                       </button>
-											<button id="delButton" type="button" class="btn ink-reaction btn-raised btn-danger" data-toggle="modal" data-target="#delModal" data-id="{{ $app->id }}">
+											{{--  <button id="delButton" type="button" class="btn ink-reaction btn-raised btn-danger" data-toggle="modal" data-target="#delModal" data-id="{{ $app->id }}">
 											Delete
-											</button>
+											</button>  --}}
                       <button id="paramButton" type="button" class="btn ink-reaction btn-raised btn-primary" data-toggle="modal" data-target="#paramModal" data-id="{{ $app->id }}">
 											Params
 											</button>
@@ -153,7 +153,7 @@
 					<div class="form-group floating-label">
 						<label for="file_url">Upload Icon</label>
 						<input type="file" class="form-control" name="icon_url" id="file_url" required="required">
-						<p class="help-block">Max file size is 5MB</p>
+						<p class="help-block">Max file size is 2MB</p>
 					</div>
 				
 			</p>
@@ -224,15 +224,15 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Mark</td>
+                {{--  <tr>
+                  <td class="text-center">1</td>
+                  <td class="text-center">Mark</td>
                   <td class="text-center">
                     <button id="delButton2" type="button" class="btn ink-reaction btn-raised btn-danger" data-toggle="modal" data-target="#delParamModal" data-id="">
 											Delete
                     </button>
                   </td>
-                </tr>
+                </tr>  --}}
               </tbody>
             </table>
           </div>
@@ -259,15 +259,15 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Mark</td>
+                {{--  <tr>
+                  <td class="text-center">1</td>
+                  <td class="text-center">Mark</td>
                   <td class="text-center">
                     <button id="delButton2" type="button" class="btn ink-reaction btn-raised btn-danger" data-toggle="modal" data-target="#delParamModal" data-id="">
 											Delete
                     </button>
                   </td>
-                </tr>
+                </tr>  --}}
               </tbody>
             </table>
           </div>
@@ -329,7 +329,7 @@
         <div class="form-group floating-label">
           <select id="bodyValue" class="form-control" name="value">
             <option value="">&nbsp;</option>
-            <option value="id">id</option>
+            <option value="uuid">uuid</option>
             <option value="email">email</option>
             <option value="password">password</option>
           </select>
