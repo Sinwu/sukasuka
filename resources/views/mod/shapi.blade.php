@@ -331,6 +331,7 @@
             <option value="">&nbsp;</option>
             <option value="uuid">uuid</option>
             <option value="email">email</option>
+            <option value="sso_id">sso_id</option>
             <option value="password">password</option>
           </select>
           <label for="bodyValue">User data from local db</label>

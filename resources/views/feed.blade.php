@@ -65,7 +65,7 @@
 
         <!-- Post Create Box
         ================================================= -->
-        <div class="ui card segment create-post">
+        <div class="ui card segment create-post" style="margin-bottom:0px;">
 
           {{--  Loader  --}}
           <div class="ui inverted dimmer loader-post">
