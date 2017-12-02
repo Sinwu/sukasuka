@@ -78,9 +78,10 @@ class UserController extends Controller
         $data = $request->all();
 
         if(isset($data['name'])) $user->name = $data['name'];
+        if(array_key_exists('sso_id', $data)) $user->sso_id = $data['sso_id'];
         if(isset($data['gender'])) $user->gender = $data['gender'];
         if(isset($data['birthday'])) $user->birthday = $data['birthday'];
-        if(isset($data['about'])) $user->about = $data['about'];
+        if(array_key_exists('about', $data)) $user->about = $data['about'];
         if(isset($data['src'])) $user->src = $data['src'];
 
         $user->save();

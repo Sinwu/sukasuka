@@ -51,8 +51,8 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+            'name'     => 'required|string|max:255',
+            'email'    => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
             'birthday' => 'date|string',
         ]);
@@ -66,14 +66,21 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $sso_id = null;
+
+        if(preg_match('/(.+)@edi-indonesia.co.id/', $data['email'], $matches)) {
+            $sso_id = $matches[1];
+        }
+
         return User::create([
-            'active' => false,
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'gender' => $data['gender'],
-            'password' => bcrypt($data['password']),
-            'birthday' => $data['birthday'] ?? null,
-            'admin' => false,
+            'active'    => false,
+            'name'      => $data['name'],
+            'email'     => $data['email'],
+            'gender'    => $data['gender'],
+            'password'  => bcrypt($data['password']),
+            'birthday'  => $data['birthday'] ?? null,
+            'sso_id'    => $sso_id,
+            'admin'     => false,
             'corporate' => false
         ]);
     }

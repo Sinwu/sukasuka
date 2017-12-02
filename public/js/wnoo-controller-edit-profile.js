@@ -12,6 +12,7 @@ angular.module('wnoo')
 
   // Default values
   $scope.name = $('#userName').val()
+  $scope.sso_id = $('#userSSOID').val()
   $scope.about = $('#userAbout').val()
   $scope.gender = $('#userGender').val()
   $scope.existingImage = $('#userImage').val()
@@ -55,7 +56,8 @@ angular.module('wnoo')
     var profile = {
       name: $scope.name,
       gender: $scope.gender,
-      about: $scope.about
+      about: $scope.about,
+      sso_id: $scope.sso_id,
     }
 
     if ($scope.birthDate && $scope.birthMonth && $scope.birthYear) {
