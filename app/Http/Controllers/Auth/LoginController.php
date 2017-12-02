@@ -41,7 +41,7 @@ class LoginController extends Controller
     // Override credentials function
     protected function credentials(Request $request)
     {
-        return array_merge($request->only(strtolower($this->username()), 'password'), ['active' => true]);
+        return array_merge($request->only($this->username(), 'password'), ['active' => true]);
     }
 
     protected function sendLoginResponse(Request $request)

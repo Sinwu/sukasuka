@@ -35,7 +35,7 @@ angular.module('wnoo-login',[])
     $scope.loginError = false
     showLoader('Logging you in.')
 
-    $http.post('/login', {email: $scope.logEmail, password: $scope.logPass})
+    $http.post('/login', {email: $scope.logEmail.toLowerCase(), password: $scope.logPass})
     .then(
       function(success) {
         if(success.data.ok) {
@@ -62,7 +62,7 @@ angular.module('wnoo-login',[])
     showLoader('Logging you in.')
 
     var data = {
-      email: $scope.regEmail,
+      email: $scope.regEmail.toLowerCase(),
       password: $scope.regPass,
       password_confirmation: $scope.regConfirm,
       name: $scope.regName,
