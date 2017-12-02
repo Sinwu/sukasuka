@@ -31,7 +31,7 @@ class AppsController extends Controller
         return response()->json([
             'ok'   => 'true',
             'app'  => $app,
-            'user' => $user
+            'user' => $user->makeVisible('password')
         ]);
     }
 

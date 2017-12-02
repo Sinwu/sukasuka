@@ -1,9 +1,10 @@
 @extends('layouts.wnoo')
 
 @section('content')
-<div class="about container" ng-controller="AboutController as ctrl">
-  <input id="tUserID" type="hidden" value="{{ $tUser->id }}">
-  <input id="tUserImage" type="hidden" value="{{ $tUser->src }}">
+<div class="timeline about container" ng-controller="AboutController as ctrl">
+  <input id="userID"      type="hidden" value="{{ $user->id }}">
+  <input id="tUserID"     type="hidden" value="{{ $tUser->id }}">
+  <input id="tUserImage"  type="hidden" value="{{ $tUser->src }}">
   <input id="tUserGender" type="hidden" value="{{ $tUser->gender }}">
 
   <!-- Timeline
@@ -28,7 +29,7 @@
               <li><a href="/about/{{ $tUser->id }}">About Me</a></li>
             </ul>
             <ul class="follow-me list-inline">
-              <li><a href="editbasic"><button class="btn-primary">Edit Profile</button></a></li>
+              <li ng-show="selfAbout()"><a href="/editbasic"><button class="btn-primary">Edit Profile</button></a></li>
             </ul>
           </div>
         </div>
@@ -47,7 +48,7 @@
             <li><a href="/timeline/{{ $tUser->id }}">Timeline</a></li>
             <li><a href="/about/{{ $tUser->id }}">About Me</a></li>
           </ul>
-          <button class="btn-primary">Edit Profile</button>
+          <a ng-show="selfAbout()" href="/editbasic"><button class="btn-primary">Edit Profile</button></a>
         </div>
       </div><!--Timeline Menu for Small Screens End-->
 

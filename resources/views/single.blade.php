@@ -70,7 +70,10 @@
 
               <div ng-repeat="comment in post.comments" class="post-comment">
                 <img ng-src="@{{getUserImage(comment.user)}}" alt="" class="profile-photo-sm" />
-                <p><a href="/timeline/@{{ comment.user.id }}" class="profile-link">@{{ comment.user.name }} </a> @{{ comment.content }} </p>
+                <div>
+                  <a href="/timeline/@{{ comment.user.id }}" class="profile-link">@{{ comment.user.name }} </a> @{{ comment.content }}
+                  <p class="text-muted timestamp">@{{ comment.timeago }}</p>
+                </div>
               </div>
               <div class="post-comment">
                 <img ng-src="@{{getHostUserImage()}}" alt="" class="profile-photo-sm" />

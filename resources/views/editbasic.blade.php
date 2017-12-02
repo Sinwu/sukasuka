@@ -3,6 +3,7 @@
 @section('content')
 <div class="edit profile container" ng-controller="EditProfileController as ctrl">
   <input id="userName" type="hidden" value="{{ $user->name }}">
+  {{--  <input id="userSSOID" type="hidden" value="{{ $user->sso_id }}">  --}}
   <input id="userGender" type="hidden" value="{{ $user->gender }}">
   <input id="userBirthday" type="hidden" value="{{ $user->birthday }}">
   <input id="userAbout" type="hidden" value="{{ $user->about }}">
@@ -93,11 +94,14 @@
                           style="width: 100px; margin-top: .5rem" class="btn btn-primary">Change</button>
                       </div>
                       <div class="form-group col-xs-7">
-                        <label for="firstname">Fullname</label>
+                        <label for="email">Email</label>
+                        <input id="email" class="form-control input-group-lg" type="text" name="Email" title="Enter Email" value="{{ $user->email }}" disabled />
+
+                        <label style="margin-top: .5rem" for="firstname">Fullname</label>
                         <input ng-model="name" id="firstname" class="form-control input-group-lg" type="text" name="fullname" required title="Enter your full name" />
                         
-                        <label style="margin-top: .5rem" for="email">My email</label>
-                        <input id="email" class="form-control input-group-lg" type="text" name="Email" title="Enter Email" value="{{ $user->email }}" disabled />
+                        {{--  <label style="margin-top: .5rem" for="sso_id">SSO ID</label>
+                        <input ng-model="sso_id" id="sso_id" class="form-control input-group-lg" type="text" name="sso_id" title="Enter your sso id" />  --}}
                       </div>
                     </div>
                     <div class="row">

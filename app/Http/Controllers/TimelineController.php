@@ -47,8 +47,6 @@ class TimelineController extends Controller
             return $a;
         }, $tUserActivityResults->toArray());
 
-        \Log::Info($tUserActivities);
-
         return view('timeline', ['tUser' => $tUser, 'tUserActivities' => $tUserActivities]);
     }
 

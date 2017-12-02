@@ -23,7 +23,8 @@ angular.module('wnoo')
         // Push comment to post
         var c = {
           user: success.data.user,
-          content: success.data.content
+          content: success.data.content,
+          timeago: success.data.timeago
         }
         post.comments.push(c)
 

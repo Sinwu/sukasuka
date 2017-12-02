@@ -38,12 +38,11 @@ angular.module('wnoo-login',[])
     $http.post('/login', {email: $scope.logEmail, password: $scope.logPass})
     .then(
       function(success) {
-        console.log(success)
-        if(success && success.statusText == 'OK') {
+        if(success.data.ok) {
           $window.location.href = '/feed'
         } else {
           hideLoader()
-          alert('need to handle this success error')
+          $scope.loginError = true
         }
       },
       function(error) {

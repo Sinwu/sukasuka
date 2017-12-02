@@ -63,6 +63,12 @@ class PostController extends Controller
 
         $results = array_map(function($p) use ($timeAgo) {
             $p['timeago'] = $timeAgo->inWords($p['created_at']);
+            $p['comments'] = array_map(function($c) use ($timeAgo) {
+                $c['timeago'] = $timeAgo->inWords($c['created_at']);
+
+                return $c;
+            }, $p['comments']);
+
             return $p;
         }, $posts->toArray());
         
@@ -113,6 +119,12 @@ class PostController extends Controller
 
         $results = array_map(function($p) use ($timeAgo) {
             $p['timeago'] = $timeAgo->inWords($p['created_at']);
+            $p['comments'] = array_map(function($c) use ($timeAgo) {
+                $c['timeago'] = $timeAgo->inWords($c['created_at']);
+
+                return $c;
+            }, $p['comments']);
+
             return $p;
         }, $posts->toArray());
 
@@ -202,9 +214,18 @@ class PostController extends Controller
 
         if(!$post) abort(404);
 
+        $timeAgo = new TimeAgo();
+        $post['timeago']   = $timeAgo->inWords($post['created_at']);
+        $post['comments_'] = array_map(function($c) use ($timeAgo) {
+            $c['timeago']  = $timeAgo->inWords($c['created_at']);
+
+            return $c;
+        }, $post['comments']->toArray());
+
         return response()->json([
             'ok'   => 'true',
-            'post' => $post
+            'post' => $post,
+            'requester' => Auth::user()->id
         ]);
     }
 

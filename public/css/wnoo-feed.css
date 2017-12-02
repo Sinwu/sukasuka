@@ -15,6 +15,10 @@
   margin-top: 0;
 }
 
+.timeline.about .post-content::before {
+  content: none;
+}
+
 .error.pointing.label::before {
   content: none;
 }
@@ -93,6 +97,10 @@ h5.prgrs.label {
 }
 
 .user-info p {
+  font-size: .8rem;
+}
+
+.post-content .timestamp {
   font-size: .8rem;
 }
 

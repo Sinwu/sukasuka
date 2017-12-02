@@ -27,6 +27,11 @@ angular.module('wnoo')
     })
   }
 
+  $scope.postComment = function(post) {
+    if(!post || !post.commentContent) return
+    post.comment(post.commentContent)
+  }
+
   $scope.getHostUserImage = function() {
     if($scope.userImage) return $scope.userImage
 
