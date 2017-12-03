@@ -7,7 +7,8 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="keywords" content="your,keywords">
-		<meta name="description" content="Short explanation about this website">
+		<meta name="description" content="EDIISH | CMS">
+		<meta name="csrf-token" content="{{ csrf_token() }}">
 		<!-- END META -->
 
 		<!-- BEGIN STYLESHEETS -->
@@ -20,7 +21,7 @@
 		<link type="text/css" rel="stylesheet" href="../cms_assets/css/theme-default/libs/DataTables/extensions/dataTables.colVis.css?1423553990" />
 		<link type="text/css" rel="stylesheet" href="../cms_assets/css/theme-default/libs/rickshaw/rickshaw.css?1422792967" />
 		<link type="text/css" rel="stylesheet" href="../cms_assets/css/theme-default/libs/morris/morris.core.css?1420463396" />
-		<link type="text/css" rel="stylesheet" href="/cms_assets/css/theme-default/libs/toastr/toastr.css?1425466569" />
+		<link type="text/css" rel="stylesheet" href="../cms_assets/css/theme-default/libs/toastr/toastr.css?1425466569" />
 		<!-- END STYLESHEETS -->
 
 		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->

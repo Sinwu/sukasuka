@@ -113,9 +113,15 @@ class AppsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show2($id)
     {
-        //
+        $apps = Apps::where('id',$id)->get();
+        if(!$apps) return response('Invalid Request', 500);
+
+        return response()->json([
+            'ok'       => true,
+            'apps' => $apps
+        ]);
     }
 
     /**
@@ -186,5 +192,24 @@ class AppsController extends Controller
         $app->save();
 
         return redirect()->action('AppsController@index');  
+    }
+
+    public function updApp(Request $request)
+    {
+        $data = $request->all();
+        $id = $data['id'];
+        $existing = Apps::find($id);
+
+        $path = $request->file('icon_url')->store('icon-apps');   
+        
+        $existing->update(array(
+            'url'           => $data['url'],
+            'name'          => $data['name'],
+            'description'   => $data['description'],
+            'shown'         => $data['shown'],
+            'icon_url'      => "/" . $path
+        ));
+     
+        return redirect()->action('AppsController@index');
     }
 }

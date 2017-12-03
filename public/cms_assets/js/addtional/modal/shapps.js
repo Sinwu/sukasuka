@@ -53,6 +53,45 @@ $(document).ready(function(){
   });
   // END DEL MODAL
 
+  // BEGIN EDIT APP MODAL
+  $(document).on('click', '#editApp', function(e){
+    $('#appID2').empty();
+    e.preventDefault();
+    
+    var uid = $(this).data('id');
+    $('#appID2').val(uid);
+
+    alert(uid);
+
+    $.ajax({
+      type: "GET",
+      url: "/mod/apps/"+uid,
+      dataType: "json",
+      success: function(resp) {
+        if(resp.ok == true) {
+          $('#appname2').val(resp.apps[0].name);
+          $('#appurl2').val(resp.apps[0].url);
+          $('#appdesc2').val(resp.apps[0].description);
+
+          console.log(resp);
+
+          // location.reload();
+        } else {
+          
+          toastr.clear();
+          
+          var message = 'Failed to get data.';
+          toastr.info(message, '');
+        }
+      },
+      error: function() {
+        alert('error handing here');
+      }
+    });
+     
+  });
+  // END EDIT APP MODAL
+
   // BEGIN PARAM MODAL
   $(document).on('click', '#paramButton', function(e){
     $('#appid').empty();
@@ -60,6 +99,9 @@ $(document).ready(function(){
     $('#headerValue').empty();
     $('#bodyName').empty();
     $('#bodyValue').prop('selectedIndex',0);
+
+    $('#headerTable > tbody:last-child').empty();
+    $('#bodyTable > tbody:last-child').empty();
 
     e.preventDefault();
     
@@ -78,26 +120,35 @@ $(document).ready(function(){
         console.log(resp);
         setTimeout(function(){
           for (i=0; i < resp.params.length; i++){
-            if (resp.params.type = "header"){
-              stringDataHeader += '<tr>'+
-                '<td class="text-center">'+resp.params[i].name+'</td>'+
-                '<td class="text-center">'+resp.params[i].value+'</td>'+
-                '<td class="text-center"><button id="delButton" type="button" class="btn ink-reaction btn-raised btn-danger" data-toggle="modal" data-target="#delModal" data-id="'+resp.params[i].id+'">Delete</button></td>'+              
-              '</tr>';
-            } else if (resp.params.type = "body"){
-              stringDataBody += '<tr>'+
-                '<td class="text-center">'+resp.params[i].name+'</td>'+
-                '<td class="text-center">'+resp.params[i].value+'</td>'+
-                '<td class="text-center"><button id="delButton" type="button" class="btn ink-reaction btn-raised btn-danger" data-toggle="modal" data-target="#delModal" data-id="'+resp.params[i].id+'">Delete</button></td>'+              
-              '</tr>';
+            switch(resp.params[i].type){
+              case "header":
+                  stringDataHeader += '<tr>'+
+                    '<td class="text-center">'+resp.params[i].name+'</td>'+
+                    '<td class="text-center">'+resp.params[i].value+'</td>'+
+                    '<td class="text-right">'+
+                    // '<button id="editParam" type="button" class="btn ink-reaction btn-raised btn-warning" data-toggle="modal" data-target="#editParamModal" data-id="'+resp.params[i].id+'"><i class="md md-border-color"></i></button>'+
+                    '<button id="delParam" type="button" class="btn ink-reaction btn-raised btn-danger" data-toggle="modal" data-target="#delParamModal" data-id="'+resp.params[i].id+'"><i class="md md-delete"></i></button>'+                      
+                    '</td>'+ 
+                  '</tr>';
+                break;
+              case "body":
+                  stringDataBody += '<tr>'+
+                    '<td class="text-center">'+resp.params[i].name+'</td>'+
+                    '<td class="text-center">'+resp.params[i].value+'</td>'+
+                    '<td class="text-right">'+
+                    // '<button id="editParam" type="button" class="btn ink-reaction btn-raised btn-warning" data-toggle="modal" data-target="#editParamModal" data-id="'+resp.params[i].id+'"><i class="md md-border-color"></i></button>'+
+                    '<button id="delParam" type="button" class="btn ink-reaction btn-raised btn-danger" data-toggle="modal" data-target="#delParamModal" data-id="'+resp.params[i].id+'"><i class="md md-delete"></i></button>'+                      
+                    '</td>'+              
+                  '</tr>';
+                break;
+              default:
+                console.log(resp.params.type);
             }
           }
 
           $('#headerTable > tbody:last-child').append(stringDataHeader);
           $('#bodyTable > tbody:last-child').append(stringDataBody);
 
-          console.log(stringDataHeader);
-          console.log(stringDataBody);
         },2000);
         //  else {
           
@@ -147,8 +198,11 @@ $(document).ready(function(){
             $('#headerTable > tbody:last-child').append('<tr>'+
               '<td class="text-center">'+resp.data.name+'</td>'+
               '<td class="text-center">'+resp.data.value+'</td>'+
-              '<td class="text-center"><button id="delButton" type="button" class="btn ink-reaction btn-raised btn-danger" data-toggle="modal" data-target="#delModal" data-id="'+resp.id+'">Delete</button></td>'+              
-            '</tr>');
+              '<td class="text-right">'+
+              // '<button id="editParam" type="button" class="btn ink-reaction btn-raised btn-warning" data-toggle="modal" data-target="#editParamModal" data-id="'+resp.data.id+'"><i class="md md-border-color"></i></button>'+
+              '<button id="delParam" type="button" class="btn ink-reaction btn-raised btn-danger" data-toggle="modal" data-target="#delParamModal" data-id="'+resp.data.id+'"><i class="md md-delete"></i></button>'+                      
+              '</td>'+ 
+              '</tr>');
 
             $('#headerModal').modal('hide');
 
@@ -202,8 +256,11 @@ $(document).ready(function(){
             $('#bodyTable > tbody:last-child').append('<tr>'+
               '<td class="text-center">'+resp.data.name+'</td>'+
               '<td class="text-center">'+resp.data.value+'</td>'+
-              '<td class="text-center"><button id="delButton" type="button" class="btn ink-reaction btn-raised btn-danger" data-toggle="modal" data-target="#delModal" data-id="'+resp.id+'">Delete</button></td>'+              
-            '</tr>');
+              '<td class="text-right">'+
+              // '<button id="editParam" type="button" class="btn ink-reaction btn-raised btn-warning" data-toggle="modal" data-target="#editParamModal" data-id="'+resp.data.id+'"><i class="md md-border-color"></i></button>'+
+              '<button id="delParam" type="button" class="btn ink-reaction btn-raised btn-danger" data-toggle="modal" data-target="#delParamModal" data-id="'+resp.data.id+'"><i class="md md-delete"></i></button>'+                      
+              '</td>'+ 
+              '/tr>');
 
             $('#bodyModal').modal('hide');
 
@@ -222,6 +279,46 @@ $(document).ready(function(){
       });
      
     });
+
+    // BEGIN DEL MODAL
+    $(document).on('click', '#delParam', function(e){
+      $('#paramID').empty();
+
+      e.preventDefault();
+      
+      var uid = $(this).data('id');
+      $('#paramID').val(uid);      
+      
+      $(document).on('click', '#delParamButton', function(e){
+
+        e.preventDefault();
+        
+        var data = $('#delParamForm').serializeArray();      
+
+        $.ajax({
+          type: "POST",
+          url: "/mod/delappparams",
+          data: data,
+          dataType: "json",
+          success: function(resp) {
+            console.log(resp);
+
+            var message = 'Data deleted.';
+            toastr.info(message, '');
+
+            $('#delParamModal').modal('hide');
+            $('#paramModal').modal('hide');
+
+          },
+          error: function(resp) {
+            alert('error handing here');
+          }
+        });
+
+      });
+      
+    });
+    // END DEL MODAL
 
   });
   // END PARAM MODAL

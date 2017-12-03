@@ -99,6 +99,23 @@ class AppParamsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
+    }
+
+    public function delete(Request $request)
+    {
+        $data = $request->all();
+
+        $id  = $data['id'];
+
+        $existing = AppParams::find($id);
+        if(!$existing) return response('Invalid Request', 500);
+
+        // Delete
+        $ok = $existing->delete();
+
+        return response()->json([
+            'ok' => $ok
+        ]);
     }
 }

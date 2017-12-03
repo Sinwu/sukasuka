@@ -70,10 +70,13 @@ Route::prefix('/mod')->middleware(['auth:web', 'mod'])->group(function(){
 	Route::get('/cmsuser', 'UserController@modCmsUser' );
 	
 	Route::get('/apps', 'AppsController@index');
+	Route::get('/apps/{id}', 'AppsController@show2');
 	Route::post('/apps', 'AppsController@store');
+	Route::post('/updapps', 'AppsController@updApp');
 	Route::post('/delApp', 'AppsController@delete');	
 	Route::post('/updShownApp', 'AppsController@updShown');
 
 	Route::post('/appparams', 'AppParamsController@store');
 	Route::get('/appparams/{id}', 'AppParamsController@show2');
+	Route::post('/delappparams', 'AppParamsController@delete');
 });

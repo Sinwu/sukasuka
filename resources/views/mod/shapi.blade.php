@@ -62,9 +62,9 @@
 												{{ "Enable" }}
 											@endif
                       </button>
-											{{--  <button id="delButton" type="button" class="btn ink-reaction btn-raised btn-danger" data-toggle="modal" data-target="#delModal" data-id="{{ $app->id }}">
-											Delete
-											</button>  --}}
+											<button id="editApp" type="button" class="btn ink-reaction btn-raised btn-warning" data-toggle="modal" data-target="#editAppModal" data-id="{{ $app->id }}">
+											Edit
+											</button>
                       <button id="paramButton" type="button" class="btn ink-reaction btn-raised btn-primary" data-toggle="modal" data-target="#paramModal" data-id="{{ $app->id }}">
 											Params
 											</button>
@@ -169,6 +169,64 @@
 </div><!-- /.modal -->
 <!-- END CREATE MODAL MARKUP -->
 
+<!-- BEGIN EDIT MODAL MARKUP -->
+<div class="modal fade" id="editAppModal" tabindex="-1" role="dialog" aria-labelledby="simpleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header btn-warning">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="simpleModalLabel">Edit Internal Apps</h4>
+        <input type="hidden" id="hiddenID"></input>
+      </div>
+      <div class="modal-body">
+			<p>
+        <form class="form" role="form" method="POST" action="/mod/updapps" enctype="multipart/form-data">
+					{{ csrf_field() }}
+					<div class="form-group">
+            <input type="hidden" id="appID2" name="id">
+						<input type="text" class="form-control" id="appname2" required="required" name="name">
+						<label for="appname2">App Name</label>
+					</div>					
+					<div class="form-group">
+						<input type="text" class="form-control" id="appurl2" required="required" name="url">
+						<label for="appurl2">App Url</label>
+						<p class="help-block">ex: http://internal.api/public/login</p>
+					</div>
+          <div class="form-group">
+						<input type="text" class="form-control" id="appdesc2" required="required" name="description">
+						<label for="appdesc2">App Description</label>
+					</div>
+					<div class="form-group floating-label">
+						<div class="row">
+							<div class="col-md-12">
+								<label class="radio-inline radio-styled">
+									<input type="radio" name="shown" value="1" required="required"><span>Enable</span>
+								</label>
+								<label class="radio-inline radio-styled">
+									<input type="radio" name="shown" value="0" required="required"><span>Disable</span>
+								</label>
+							</div>
+						</div>
+					</div>
+					<div class="form-group floating-label">
+						<label for="file_url">Upload Icon</label>
+						<input type="file" class="form-control" name="icon_url" id="file_url" required="required">
+						<p class="help-block">Max file size is 2MB</p>
+					</div>
+				
+			</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <input type="submit" class="btn btn-warning" value="Submit"/>
+      </div>
+				</form>
+
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- END EDIT MODAL MARKUP -->
+
 <!-- BEGIN DELETE MODAL MARKUP -->
 <div class="modal fade" id="delModal" tabindex="-1" role="dialog" aria-labelledby="simpleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-sm">
@@ -220,19 +278,11 @@
                 <tr>
                   <th class="text-center">Key</th>
                   <th class="text-center">Value</th>
-                  <th class="text-center">Action</th>
+                  <th class="text-right">Action</th>
                 </tr>
               </thead>
               <tbody>
-                {{--  <tr>
-                  <td class="text-center">1</td>
-                  <td class="text-center">Mark</td>
-                  <td class="text-center">
-                    <button id="delButton2" type="button" class="btn ink-reaction btn-raised btn-danger" data-toggle="modal" data-target="#delParamModal" data-id="">
-											Delete
-                    </button>
-                  </td>
-                </tr>  --}}
+                {{-- add content dynamicaly here  --}}
               </tbody>
             </table>
           </div>
@@ -255,19 +305,11 @@
                 <tr>
                   <th class="text-center">Key</th>
                   <th class="text-center">Value</th>
-                  <th class="text-center">Action</th>
+                  <th class="text-right">Action</th>
                 </tr>
               </thead>
               <tbody>
-                {{--  <tr>
-                  <td class="text-center">1</td>
-                  <td class="text-center">Mark</td>
-                  <td class="text-center">
-                    <button id="delButton2" type="button" class="btn ink-reaction btn-raised btn-danger" data-toggle="modal" data-target="#delParamModal" data-id="">
-											Delete
-                    </button>
-                  </td>
-                </tr>  --}}
+                {{-- add content dynamicaly here  --}}
               </tbody>
             </table>
           </div>
@@ -346,6 +388,30 @@
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 <!-- END BODY MODAL MARKUP -->
+
+<!-- BEGIN DELETE MODAL MARKUP -->
+<div class="modal fade" id="delParamModal" tabindex="18" role="dialog" aria-labelledby="simpleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="simpleModalLabel">Delete App</h4>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure to delete this parameter ??</p>
+      </div>
+      <div class="modal-footer">
+      <form id="delParamForm" action="/mod/delappparams" method="POST">
+        {{ csrf_field() }}
+        <input type="hidden" id="paramID" name="id" required="required">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-danger" id="delParamButton">Delete</button>
+      </form>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- END DELETE MODAL MARKUP -->
 @endsection
 
 @section('script')
