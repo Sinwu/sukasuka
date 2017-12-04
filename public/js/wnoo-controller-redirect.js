@@ -28,6 +28,7 @@ angular.module('wnoo-redirect',[])
 
   $scope.redirect = function() {
     var headers = {
+      'Accept': undefined,
       'Authorization': `Bearer ${$scope.token}`
     }
 
