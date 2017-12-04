@@ -16,7 +16,7 @@
           <div class="profile-card">
             <img ng-src="@{{getHostUserImage()}}" alt="user" class="profile-photo" />
             <h5><a href="/timeline/{{ $user->id }}" class="text-white">{{ $user->name }}</a></h5>
-            <p class="text-white">Administrator</p>
+            {{--  <p class="text-white">Administrator</p>  --}}
           </div><!--profile card ends-->
 
           <div class="ui card internal segment">
@@ -29,7 +29,7 @@
             <div class="follow-user" ng-repeat="app in app.apps">
               <img ng-src="@{{app.icon_url}}" alt="" class="profile-photo-sm pull-left" />
               <div>
-                <h5><a href="@{{app.url}}">@{{app.name}}</a></h5>
+                <h5><a href="@{{app.getURL()}}">@{{app.name}}</a></h5>
                 <p class="text-muted">@{{app.description}}</p>
               </div>
             </div>

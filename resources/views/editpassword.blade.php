@@ -13,17 +13,19 @@
         <div class="row">
           <div class="col-md-3">
             <div class="profile-info">
-              <img src="images/user-default.png" alt="" class="img-responsive profile-photo" />
-              <h3>John Doe</h3>
-              <p class="text-muted">Creative Director</p>
+              <img src="@{{getUserImage()}}" alt="" class="img-responsive profile-photo" />
+              <h3>@{{ name }}</h3>
+              {{--  <p class="text-muted">Administrator</p>  --}}
             </div>
           </div>
           <div class="col-md-9">
             <ul class="list-inline profile-menu">
-              <li><a href="timeline">Timeline</a></li>
+              <li><a href="feed">Feed</a></li>
+              <li><a href="timeline/{{ $user->id }}">Timeline</a></li>
+              <li><a href="about/{{ $user->id }}">About Me</a></li>
             </ul>
             <ul class="follow-me list-inline">
-              <li><button class="btn-primary">Edit Profile</button></li>
+              {{--  <li><button class="btn-primary">Edit Profile</button></li>  --}}
             </ul>
           </div>
         </div>
@@ -32,15 +34,17 @@
       <!--Timeline Menu for Small Screens-->
       <div class="navbar-mobile hidden-lg hidden-md">
         <div class="profile-info">
-          <img src="images/user-default.png" alt="" class="img-responsive profile-photo" />
-          <h4>John Doe</h4>
-          <p class="text-muted">Creative Director</p>
+          <img src="@{{getUserImage()}}" alt="" class="img-responsive profile-photo" />
+          <h4>@{{ name }}</h4>
+          {{--  <p class="text-muted">Creative Director</p>  --}}
         </div>
         <div class="mobile-menu">
           <ul class="list-inline">
-            <li><a href="timline">Timeline</a></li>
+            <li><a href="feed">Feed</a></li>
+            <li><a href="timeline/{{ $user->id }}">Timeline</a></li>
+            <li><a href="about/{{ $user->id }}">About Me</a></li>
           </ul>
-          <button class="btn-primary">Edit Profile</button>
+          {{--  <button class="btn-primary">Edit Profile</button>  --}}
         </div>
       </div><!--Timeline Menu for Small Screens End-->
 

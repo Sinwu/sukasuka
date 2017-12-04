@@ -19,7 +19,7 @@
             <div class="profile-info">
               <img ng-src="@{{getAboutUserImage()}}" alt="" class="img-responsive profile-photo" />
               <h3>{{ $tUser->name }}</h3>
-              <p class="text-muted">Administrator</p>
+              {{--  <p class="text-muted">Administrator</p>  --}}
             </div>
           </div>
           <div class="col-md-9">
@@ -40,7 +40,7 @@
         <div class="profile-info">
           <img ng-src="@{{getAboutUserImage()}}" alt="" class="img-responsive profile-photo" />
           <h4>{{ $user->name }}</h4>
-          <p class="text-muted">Creative Director</p>
+          {{--  <p class="text-muted">Creative Director</p>  --}}
         </div>
         <div class="mobile-menu">
           <ul class="list-inline">
