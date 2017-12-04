@@ -30,6 +30,7 @@
                     <th>Fullname</th>
                     <th>Email</th>
                     <th>Birthday</th>
+                    <th>Admin</th>
                     <th>Status</th>
                     <th>Action</th>
                   </tr>
@@ -40,6 +41,15 @@
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
                     <td>{{ $user->birthday }}</td>
+                    <td>
+                      @if ( $user->admin == 0)
+                        <b> {{ "False" }} </b>
+                        <button id="adminButton" type="button" class="btn btn-default" data-id="{{ $user->id }}" data-admin="1"><i class="fa fa-fw fa-power-off text-danger"></i></button>
+                      @elseif ( $user->admin == 1)
+                        <b> {{ "True" }} </b>
+                        <button id="adminButton" type="button" class="btn btn-default" data-id="{{ $user->id }}" data-admin="0"><i class="fa fa-fw fa-power-off text-primary"></i></button>
+                      @endif
+                    </td>
                     <td>
                       @if ( $user->active == 0)
                         <b> {{ "Not Active" }} </b>

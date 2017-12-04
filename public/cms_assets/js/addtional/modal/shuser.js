@@ -44,4 +44,28 @@ $(document).ready(function(){
   });
   // END ACT MODAL
 
+  // BEGIN ADMIN MODAL
+  $(document).on('click', '#adminButton', function(e){
+
+    e.preventDefault();
+    
+    var uid = $(this).data('id');
+    var admin = $(this).data('admin');
+    
+    $.ajax({
+      url: 'updateAdmin',
+      type: 'get',
+      data: {id: uid, admin: admin},
+      dataType: 'json'
+    })
+    .done(function(response){
+      console.log(response);
+      location.reload();
+    })
+    .fail(function(){
+      console.log("failed to update id: " + uid);
+    }); 
+  });
+  // END ADMIN MODAL
+
 });

@@ -205,7 +205,7 @@ class UserController extends Controller
 
     public function modShUser()
     {
-        $users = User::all();
+        $users = User::where('email','!=','admin.ediish@edi-indonesia.co.id')->get();
         //dd($users);
         return view('mod.shuser',['users' => $users]);
     }
@@ -237,6 +237,22 @@ class UserController extends Controller
             'currState' => $curr,
             'nextState' => $next,
             'userdata' => $user
+        ]);
+    }
+
+    public function updateAdmin(Request $request)
+    {
+        $data = $request->all();
+        $id = $data['id'];
+        $admin = $data['admin'];
+
+        $user = User::where('id',$id)->first();
+        $user->admin = $admin;
+        $user->save();
+
+        return response()->json([
+            'ok' => 'true',
+            'id' => $id,
         ]);
     }
 }

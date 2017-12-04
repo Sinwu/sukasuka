@@ -16,7 +16,7 @@ class UsersTableSeeder extends Seeder
 		'id' => 'fe472637-66a1-40f6-847f-d91d309da6ae',
 		'name' => 'Administrator',
 		'email' => 'admin.ediish@edi-indonesia.co.id',
-		'password' => bycrypt('EdiiSocialHub2017!'),
+		'password' => bcrypt('EdiiSocialHub2017!'),
 		'birthday' => '1991-11-11 00:00:00',
 		'active' => 1,
 		'admin' => 1,

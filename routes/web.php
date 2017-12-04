@@ -66,6 +66,7 @@ Route::prefix('/mod')->middleware(['auth:web', 'mod'])->group(function(){
 
 	Route::get('/shuser', 'UserController@modShUser');
 	Route::get('/updateActive', 'UserController@updateActive');
+	Route::get('/updateAdmin', 'UserController@updateAdmin');
 
 	Route::get('/cmsuser', 'UserController@modCmsUser' );
 	
