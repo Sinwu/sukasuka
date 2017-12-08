@@ -124,6 +124,10 @@
                 <button ng-click="postCreate()" class="ui mini blue button post">
                   Publish
                 </button>
+                <div class="ui checkbox post public" ng-click="postIsPublic=!postIsPublic">
+                  <input type="checkbox" ng-model="postIsPublic">
+                  <label>Make it public</label>
+                </div>
               </div>
 
               <div class="post media image" style="display: none">

@@ -1,3 +1,9 @@
+.ui.checkbox.post.public {
+  float: right;
+  font-size: .8em;
+  right: 1rem;
+}
+
 .notification a > p {
   color: rgba(0,0,0,.9);
   font-weight: normal;
@@ -161,7 +167,8 @@ h5.prgrs.label {
   background: none;
 }
 
-.feed.container img.profile-photo-sm {
+.feed.container img.profile-photo-sm,
+.timeline.container img.profile-photo-sm {
 	height: 40px;
 	width: 40px;
 	border-radius: 10%;

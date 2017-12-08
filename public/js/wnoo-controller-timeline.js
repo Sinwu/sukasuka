@@ -8,6 +8,7 @@ angular.module('wnoo')
   $scope.userImage = $('#userImage').val()
   $scope.userGender = $('#userGender').val()
   $scope.showProgress = false
+  $scope.postIsPublic = false
 
   $scope.post = new Post('timeline', $scope.pageID)
   $scope.media = new Media()
@@ -18,9 +19,13 @@ angular.module('wnoo')
   $scope.postCreate = function() {
     var post = {
       content: $scope.postContent,
-      type: getFileTypeCategory(),
-      destination: 'wall',
-      wallid: $scope.pageID
+      type: getFileTypeCategory()
+    }
+
+    if ($scope.postIsPublic) {
+      $.extend(post, {destination: 'normal'})
+    } else {
+      $.extend(post, {destination: 'wall', wallid: $scope.pageID})
     }
 
     // Return if nothing to post
@@ -114,6 +119,7 @@ angular.module('wnoo')
     $scope.postContent = null
     $scope.image = null
     $scope.video = null
+    $scope.postIsPublic = false
   }
 
   $scope.cancelPost = function() {
